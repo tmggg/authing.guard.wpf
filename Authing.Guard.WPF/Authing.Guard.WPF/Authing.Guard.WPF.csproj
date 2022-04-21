@@ -7,9 +7,6 @@
 
 	<ItemGroup>
 		<Folder Include="Infrastructures\" />
-		<Folder Include="Controls\" />
-		<Folder Include="Converters\" />
-		<Folder Include="Styles\" />
 		<Folder Include="Views\" />
 	</ItemGroup>
 
