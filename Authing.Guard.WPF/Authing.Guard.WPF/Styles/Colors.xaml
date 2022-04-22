@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color R="#39" G="#6a" B="#ff" ScA="1" x:Key="AppBlue"/>
+
+    <Color R="#D7" G="#E1" B="#FF" ScA="1" x:Key="AppBlueBorder"/>
+
+    <Color R="#33" G="#33" B="#33" ScA="1" x:Key="AppBlack"/>
+
+    <Color R="#AE" G="#B9" B="#D4" ScA="1" x:Key="AppGray"/>
+
+    <Color R="#6B" G="#90" B="#FF" ScA="1" x:Key="AppLightBlue"/>
+
+    <Color R="#D9" G="#D9" B="#D9" ScA="1" x:Key="AppLightGray"/>
+
+    <Color R="#DD" G="#DD" B="#DD" ScA="1" x:Key="AppUltraGray"/>
+
+    <!---主要的颜色 按钮-->
+    <SolidColorBrush Color="{StaticResource AppBlue}" x:Key="AppBlueBrush"/>
+
+    <!-- 输入框的边框的颜色-->
+    <SolidColorBrush Color="{StaticResource AppBlueBorder}" x:Key="AppBlueBorderBrush"/>
+
+    <!--登录方式切换的字体的颜色-->
+    <SolidColorBrush Color="{StaticResource AppGray}" x:Key="AppGrayBrush"/>
+
+    <!--立即注册 遇到问题 忘记密码 鼠标移动上去的颜色-->
+    <SolidColorBrush Color="{StaticResource AppLightBlue}" x:Key="AppLightBlueBrush"/>
+
+    <!--输入框的外边框颜色-->
+    <SolidColorBrush Color="{StaticResource AppLightGray}" x:Key="AppLightGrayBrush"/>
+
+    <!--输入框内的图标的颜色-->
+    <SolidColorBrush Color="{StaticResource AppUltraGray}" x:Key="AppUltraGrayBrush"/>
+
+</ResourceDictionary>
