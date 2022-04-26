@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Styles/Tabitem.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Styles/TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Styles/CountDownButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Styles/Colors/Color_Blue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Styles/Brushes.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Styles/QrCodeControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
