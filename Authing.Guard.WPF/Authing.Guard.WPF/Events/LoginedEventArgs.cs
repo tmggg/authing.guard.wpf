@@ -1,16 +1,12 @@
 ﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Events
 {
     /// <summary>
     /// 用户登录成功事件参数
     /// </summary>
-    class LoginedEventArgs : EventArgs
+    internal class LoginedEventArgs : EventArgs
     {
         /// <summary>
         /// 用户信息

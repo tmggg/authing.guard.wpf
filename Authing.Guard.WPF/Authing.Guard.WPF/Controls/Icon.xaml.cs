@@ -1,18 +1,8 @@
 ﻿using Authing.Guard.WPF.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Authing.Guard.WPF.Controls
 {
@@ -21,7 +11,7 @@ namespace Authing.Guard.WPF.Controls
     /// </summary>
     public partial class Icon : UserControl
     {
-        private readonly static Dictionary<string, Style> m_KeyMapStyle;
+        private static readonly Dictionary<string, Style> m_KeyMapStyle;
 
         static Icon()
         {
@@ -58,7 +48,7 @@ namespace Authing.Guard.WPF.Controls
             }
         }
 
-        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(nameof(Type), typeof(IconType), typeof(Icon), new PropertyMetadata(IconType.Blank,TypeChanged));
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(nameof(Type), typeof(IconType), typeof(Icon), new PropertyMetadata(IconType.Blank, TypeChanged));
 
         public double ImageWidth
         {
@@ -90,7 +80,6 @@ namespace Authing.Guard.WPF.Controls
 
         public Brush Fill;
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(Icon), new PropertyMetadata(null, FillChanged));
-
 
         private static void TypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

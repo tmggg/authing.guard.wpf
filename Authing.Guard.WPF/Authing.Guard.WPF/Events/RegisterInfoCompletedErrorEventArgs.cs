@@ -1,16 +1,12 @@
 ﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Events
 {
     /// <summary>
     /// 注册补充失败事件参数
     /// </summary>
-    class RegisterInfoCompletedErrorEventArgs : EventArgs
+    internal class RegisterInfoCompletedErrorEventArgs : EventArgs
     {
         /// <summary>
         /// 用户信息

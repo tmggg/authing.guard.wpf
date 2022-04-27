@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Media;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Authing.Guard.WPF.Converters
 {
@@ -36,6 +31,7 @@ namespace Authing.Guard.WPF.Converters
                 SetValue(PlaceHolderFontSizeProperty, value);
             }
         }
+
         public static DependencyProperty PlaceHolderFontSizeProperty = DependencyProperty.Register(nameof(PlaceHolderFontSize), typeof(double), typeof(AuthingPlaceHolderTextBox), new PropertyMetadata(12.0));
 
         public Brush PlaceHolderForeground
@@ -49,6 +45,7 @@ namespace Authing.Guard.WPF.Converters
                 SetValue(PlaceHolderForegroundProperty, value);
             }
         }
+
         public static DependencyProperty PlaceHolderForegroundProperty = DependencyProperty.Register(nameof(PlaceHolderForeground), typeof(Brush), typeof(AuthingPlaceHolderTextBox), new PropertyMetadata(null));
 
         public VerticalAlignment PlaceHolderVerticalAlignment
@@ -62,7 +59,7 @@ namespace Authing.Guard.WPF.Converters
                 SetValue(PlaceHolderVerticalAlignmentProperty, value);
             }
         }
+
         public static DependencyProperty PlaceHolderVerticalAlignmentProperty = DependencyProperty.Register(nameof(PlaceHolderVerticalAlignment), typeof(VerticalAlignment), typeof(AuthingPlaceHolderTextBox), new PropertyMetadata(VerticalAlignment.Center));
-          
     }
 }

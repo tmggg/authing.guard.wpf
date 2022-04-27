@@ -4,10 +4,10 @@
     <Geometry x:Key="Icon">M512 907c-24.852 0-45-20.148-45-45s20.148-45 45-45c168.446 0 305-136.554 305-305S680.446 207 512 207 207 343.554 207 512c0 24.852-20.148 45-45 45S117 536.852 117 512c0-218.152 176.848-395 395-395S907 293.848 907 512 730.152 907 512 907z</Geometry>
     <Style TargetType="controls:CoutDownButton">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
+        <!--<Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />-->
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
@@ -16,6 +16,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CoutDownButton">
+
                     <Border
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -45,26 +46,35 @@
                                 Background="{TemplateBinding Background}"
                                 Visibility="Visible">
                                 <Path
-                                    Width="24" Height="24"
+                                    x:Name="PART_IconPath"
+                                    Width="{TemplateBinding attach:IconAttach.Width}"
+                                    Height="{TemplateBinding attach:IconAttach.Height}"
+                                    Data="{TemplateBinding attach:IconAttach.Geometry}"
+                                    Fill="{DynamicResource PrimaryBrush}"
+                                    RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True"
+                                    Stretch="Uniform">
+                                    <Path.RenderTransform>
+                                        <RotateTransform />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <!--<Path
+                                    x:Name="PART_IconPath" Width="24"
+                                    Height="24"
                                     Data="{StaticResource Icon}"
                                     Fill="{DynamicResource PrimaryBrush}"
                                     RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                                     <Path.RenderTransform>
-                                        <RotateTransform x:Name="test" />
+                                        <RotateTransform />
                                     </Path.RenderTransform>
-                                    <Path.Triggers>
-                                        <EventTrigger RoutedEvent="Path.Loaded">
-                                            <BeginStoryboard>
-                                                <Storyboard RepeatBehavior="Forever">
-                                                    <DoubleAnimation
-                                                        BeginTime="0:0:0" Storyboard.TargetName="test"
-                                                        Storyboard.TargetProperty="Angle" To="360"
-                                                        Duration="0:0:.5" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </Path.Triggers>
-                                </Path>
+                                    <Path.Resources>
+                                        <Storyboard x:Key="BusyStoryBoard">
+                                            <DoubleAnimation
+                                                BeginTime="0:0:0" RepeatBehavior="Forever"
+                                                Storyboard.TargetName="PART_IconPath" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)"
+                                                To="360" Duration="0:0:.5" />
+                                        </Storyboard>
+                                    </Path.Resources>
+                                </Path>-->
                             </Border>
                         </Grid>
                     </Border>

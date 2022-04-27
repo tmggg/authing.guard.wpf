@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Authing.Guard.WPF
+﻿namespace Authing.Guard.WPF
 {
     public class Class1
     {

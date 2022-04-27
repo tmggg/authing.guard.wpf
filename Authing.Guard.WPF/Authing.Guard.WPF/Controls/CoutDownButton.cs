@@ -2,19 +2,24 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Authing.Guard.WPF.Controls
 {
     [TemplatePart(Name = ElementMainBorder, Type = typeof(Border))]
     [TemplatePart(Name = ElementTipDockPanel, Type = typeof(DockPanel))]
+    [TemplatePart(Name = BusyStoryBoard, Type = typeof(Storyboard))]
+    [TemplatePart(Name = ElementBusyIconPath, Type = typeof(Path))]
     public class CoutDownButton : Button
     {
         #region 定义样式中存在的控件
 
         private const string ElementMainBorder = "PART_MainBorder";
-
         private const string ElementTipDockPanel = "PART_TipDockPanel";
+        private const string ElementBusyIconPath = "PART_IconPath";
+        private const string BusyStoryBoard = "BusyStoryBoard";
 
         #endregion 定义样式中存在的控件
 
@@ -24,6 +29,8 @@ namespace Authing.Guard.WPF.Controls
         private Border _mainBorder;
         private DockPanel _tipDockPanel;
         private uint _defultcount;
+        private Storyboard _busyStoryBoard;
+        private Path _IconPath;
 
         #endregion 字段
 
@@ -54,7 +61,17 @@ namespace Authing.Guard.WPF.Controls
         public bool IsBusy
         {
             get { return (bool)GetValue(IsBusyProperty); }
-            set { SetValue(IsBusyProperty, value); }
+            set
+            {
+                if (IsBusy != value)
+                {
+                    if (value)
+                        _busyStoryBoard.Begin();
+                    else
+                        _busyStoryBoard.Stop();
+                }
+                SetValue(IsBusyProperty, value);
+            }
         }
 
         public bool StartCountDown
@@ -63,7 +80,7 @@ namespace Authing.Guard.WPF.Controls
             set
             {
                 SetValue(StartCountDownProperty, value);
-                if (value == true)
+                if (value)
                     DoWork();
             }
         }
@@ -88,6 +105,8 @@ namespace Authing.Guard.WPF.Controls
             base.OnApplyTemplate();
             _mainBorder = GetTemplateChild(ElementMainBorder) as Border;
             _tipDockPanel = GetTemplateChild(ElementTipDockPanel) as DockPanel;
+            _IconPath = GetTemplateChild(ElementBusyIconPath) as Path;
+            _busyStoryBoard = MakeRotationAnimation(_IconPath);
         }
 
         private void DataTimer_Tick(object sender, EventArgs e)
@@ -108,6 +127,24 @@ namespace Authing.Guard.WPF.Controls
                     }
                 }
             });
+        }
+
+        private Storyboard MakeRotationAnimation(DependencyObject obj)
+        {
+            Storyboard storyboard = new Storyboard() { RepeatBehavior = RepeatBehavior.Forever };
+            storyboard.Duration = new Duration(TimeSpan.FromMilliseconds(500));
+            DoubleAnimation rotateAnimation = new DoubleAnimation()
+            {
+                From = 0,
+                To = 360,
+                Duration = storyboard.Duration,
+            };
+
+            Storyboard.SetTarget(rotateAnimation, obj);
+            Storyboard.SetTargetProperty(rotateAnimation, new PropertyPath("(UIElement.RenderTransform).(RotateTransform.Angle)"));
+
+            storyboard.Children.Add(rotateAnimation);
+            return storyboard;
         }
     }
 }

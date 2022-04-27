@@ -2,7 +2,7 @@
     <Style x:Key="AuthingTabControl" TargetType="TabControl">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource TabItemStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource TabItemStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabControl">

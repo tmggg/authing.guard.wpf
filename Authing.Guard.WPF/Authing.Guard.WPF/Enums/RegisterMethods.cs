@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Authing.Guard.WPF.Enums
 {
@@ -17,6 +12,7 @@ namespace Authing.Guard.WPF.Enums
         /// </summary>
         [Description("email")]
         Email,
+
         /// <summary>
         /// 手机验证码注册
         /// </summary>

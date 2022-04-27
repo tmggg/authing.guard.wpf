@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Utils
 {
@@ -16,11 +12,11 @@ namespace Authing.Guard.WPF.Utils
         /// </summary>
         /// <param name="info">日志内容</param>
         void InfoMessage(string info);
+
         /// <summary>
         /// 打印错误日志信息
         /// </summary>
         /// <param name="ex">异常</param>
         void ErrorMessage(Exception ex);
-
     }
 }
