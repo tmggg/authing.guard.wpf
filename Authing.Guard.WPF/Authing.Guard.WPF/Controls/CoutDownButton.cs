@@ -28,7 +28,7 @@ namespace Authing.Guard.WPF.Controls
         private System.Timers.Timer _timer;
         private Border _mainBorder;
         private DockPanel _tipDockPanel;
-        private uint _defultcount;
+        private uint _defultCount;
         private Storyboard _busyStoryBoard;
         private Path _IconPath;
 
@@ -93,7 +93,7 @@ namespace Authing.Guard.WPF.Controls
                 _timer.Elapsed += DataTimer_Tick;
                 _timer.Interval = 1000;
             }
-            _defultcount = Count;
+            _defultCount = Count;
             _tipDockPanel.Visibility = Visibility.Visible;
             _mainBorder.Visibility = Visibility.Hidden;
             IsEnabled = false;
@@ -118,7 +118,7 @@ namespace Authing.Guard.WPF.Controls
                     Count--;
                     if (Count == 0)
                     {
-                        Count = _defultcount;
+                        Count = _defultCount;
                         _timer.Stop();
                         _tipDockPanel.Visibility = Visibility.Hidden;
                         _mainBorder.Visibility = Visibility.Visible;
