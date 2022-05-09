@@ -11,9 +11,17 @@
         <Setter Property="attach:BorderAttach.CornerRadius" Value="0" />
         <Setter Property="Margin" Value="10" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
+                    <ControlTemplate.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Colors/Color_Blue.xaml" />
+                            </ResourceDictionary.MergedDictionaries>
+                        </ResourceDictionary>
+                    </ControlTemplate.Resources>
                     <Border
                         Background="Transparent"
                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -29,8 +37,12 @@
                                 Width="{TemplateBinding attach:IconAttach.Width}"
                                 Height="{TemplateBinding attach:IconAttach.Height}"
                                 Data="{TemplateBinding attach:IconAttach.Geometry}"
-                                Fill="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True" Stretch="Uniform" />
+                                SnapsToDevicePixels="True"
+                                Stretch="Uniform">
+                                <Path.Fill>
+                                    <SolidColorBrush x:Name="FillBrush" Color="{DynamicResource SecondaryBorderColor}" />
+                                </Path.Fill>
+                            </Path>
                         </ContentControl>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -40,26 +52,58 @@
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard TargetName="PathLogo">
+                                    <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" From="#D9D9D9"
-                                            To="#396AFF" Duration="0:0:0.2" />
+                                            Storyboard.TargetName="PathLogo"
+                                            Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)"
+                                            From="#D9D9D9"
+                                            To="#396AFF"
+                                            Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.EnterActions>
                             <MultiTrigger.ExitActions>
                                 <BeginStoryboard>
-                                    <Storyboard TargetName="PathLogo">
+                                    <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" From="#396AFF"
-                                            To="#D9D9D9" Duration="0:0:0.2" />
+                                            Storyboard.TargetName="PathLogo"
+                                            Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)"
+                                            From="#396AFF"
+                                            To="#D9D9D9"
+                                            Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PathLogo" Property="Fill" Value="{Binding (attach:IconAttach.ForegroundColorLight), RelativeSource={RelativeSource TemplatedParent}}" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="FillBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            From="{StaticResource SecondaryBorderColor}"
+                                            To="{StaticResource PrimaryTextColor}"
+                                            Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetName="FillBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            From="{StaticResource PrimaryTextColor}"
+                                            To="{StaticResource SecondaryBorderColor}"
+                                            Duration="0:0:0.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
                         </Trigger>
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="PathLogo" Property="Fill" Value="{Binding (attach:IconAttach.ForegroundColorLight), RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Trigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
