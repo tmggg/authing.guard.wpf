@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authing.Guard.WPF", "Authing.Guard.WPF\Authing.Guard.WPF.csproj", "{57C55BA0-6CF5-4CCB-9002-33C2E26D98EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest", "UITest\UITest.csproj", "{132F85BF-F563-41DD-90C1-3A40AA773603}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C55BA0-6CF5-4CCB-9002-33C2E26D98EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C55BA0-6CF5-4CCB-9002-33C2E26D98EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C55BA0-6CF5-4CCB-9002-33C2E26D98EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C55BA0-6CF5-4CCB-9002-33C2E26D98EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132F85BF-F563-41DD-90C1-3A40AA773603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132F85BF-F563-41DD-90C1-3A40AA773603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132F85BF-F563-41DD-90C1-3A40AA773603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132F85BF-F563-41DD-90C1-3A40AA773603}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F961368-6759-4E77-9431-0709F648CA6C}
+	EndGlobalSection
+EndGlobal

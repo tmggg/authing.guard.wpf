@@ -329,5 +329,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-Authing.Guard.WPF/UITest/
-Authing.Guard.WPF/Authing.Guard.WPF.sln
+#Authing.Guard.WPF/UITest/
+#Authing.Guard.WPF/Authing.Guard.WPF.sln

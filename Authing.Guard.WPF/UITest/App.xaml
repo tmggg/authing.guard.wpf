@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="UITest.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:UITest"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UITest;component/Lang/en-US.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UITest;component/Lang/zh-CN.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

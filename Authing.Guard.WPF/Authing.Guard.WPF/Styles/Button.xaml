@@ -46,6 +46,7 @@
                         </ContentControl>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <!--  此样式动画不正常  -->
                         <!--<MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True" />
