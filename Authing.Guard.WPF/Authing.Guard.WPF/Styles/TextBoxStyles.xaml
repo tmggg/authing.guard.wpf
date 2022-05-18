@@ -1,0 +1,161 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="controls:PlaceHolderTextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="PlaceHolderFontSize" Value="12"/>
+        <Setter Property="Background" Value="{StaticResource AppTextBoxNormalGrayBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PlaceHolderTextBox">
+                    <Grid>
+                        <Border x:Name="outBd"></Border>
+                        <Grid Background="Transparent">
+                            <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:Icon Margin="5 0 5 0" ImageHeight="15" ImageWidth="10" Fill="{StaticResource AppIconGrayBrush}" Type="{TemplateBinding IconType}"/>
+                                <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" BorderThickness="0" VerticalAlignment="Stretch" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Margin}"/>
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding PlaceHolder}" HorizontalAlignment="{TemplateBinding PlacelHolderHorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   FontSize="{TemplateBinding PlaceHolderFontSize}" Foreground="{TemplateBinding PlaceHolderForeground}" Margin="{TemplateBinding Padding}" x:Name="tbPlaceHolder"
+                                   Visibility="Visible"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxCoverGrayBrush}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxFocusWhiteBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource AppTextBoxCoverGrayBrush}"/>
+                                <Setter Property="BorderBrush" TargetName="outBd" Value="{StaticResource AppBlueBorderBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="outBd" Value="2"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxFocusWhiteBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource AppTextBoxInnerBorderBlueBrush}"/>
+                                <Setter Property="BorderBrush" TargetName="outBd" Value="{StaticResource AppBlueBorderBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="outBd" Value="2"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:PasswordHolderTextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="PlaceHolderFontSize" Value="12"/>
+        <Setter Property="Background" Value="{StaticResource AppTextBoxNormalGrayBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:PasswordHolderTextBox">
+                    <Grid>
+                        <Border x:Name="outBd"></Border>
+                        <Grid Background="Transparent">
+                            <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"></Border>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:Icon Margin="5 0 5 0" ImageHeight="15" ImageWidth="10" Fill="{StaticResource AppIconGrayBrush}" Type="Password"/>
+                                <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" BorderThickness="0" VerticalAlignment="Stretch" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Margin}"/>
+                                <TextBlock Grid.Column="1" Text="{TemplateBinding PlaceHolder}" HorizontalAlignment="{TemplateBinding PlacelHolderHorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   FontSize="{TemplateBinding PlaceHolderFontSize}" Foreground="{TemplateBinding PlaceHolderForeground}" Margin="{TemplateBinding Padding}" x:Name="tbPlaceHolder"
+                                   Visibility="Visible"/>
+                                <Grid Grid.Column="2">
+                                    <controls:Icon Type="OpenEye" x:Name="openEye" Visibility="Collapsed" Height="24" Width="24"/>
+                                    <controls:Icon Type="CloseEye" x:Name="closeEye" Visibility="Visible" Height="24" Width="24"/>
+                                    <ToggleButton BorderThickness="0" Background="Transparent" IsChecked="{TemplateBinding ShowPassword}"></ToggleButton>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" TargetName="tbPlaceHolder" Value="Collapsed"/>
+                            <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxCoverGrayBrush}"/>
+                        </Trigger>
+                        <Trigger Property="ShowPassword" Value="True">
+                            <Setter TargetName="openEye" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="closeEye" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ShowPassword" Value="False">
+                            <Setter TargetName="openEye" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="closeEye" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxFocusWhiteBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource AppTextBoxCoverGrayBrush}"/>
+                                <Setter Property="BorderBrush" TargetName="outBd" Value="{StaticResource AppBlueBorderBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="outBd" Value="2"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource AppTextBoxFocusWhiteBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource AppTextBoxInnerBorderBlueBrush}"/>
+                                <Setter Property="BorderBrush" TargetName="outBd" Value="{StaticResource AppBlueBorderBrush}"/>
+                                <Setter Property="BorderThickness" TargetName="outBd" Value="2"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -20,6 +20,14 @@
         /// <summary>
         /// 验证码
         /// </summary>
-        VerifyCode
+        VerifyCode,
+        /// <summary>
+        /// 显示密码
+        /// </summary>
+        OpenEye,
+        /// <summary>
+        /// 隐藏密码
+        /// </summary>
+        CloseEye
     }
 }
