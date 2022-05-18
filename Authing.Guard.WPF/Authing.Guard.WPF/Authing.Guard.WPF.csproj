@@ -8,12 +8,18 @@
 	<ItemGroup>
 		<Folder Include="Converters\" />
 		<Folder Include="Infrastructures\" />
-		<Folder Include="Views\" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Authing.Library" Version="0.0.6" />
 		<PackageReference Include="NLog" Version="4.7.15" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Styles\ButtonStyles.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
 	</ItemGroup>
 
 </Project>

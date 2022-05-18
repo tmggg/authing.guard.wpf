@@ -14,6 +14,18 @@
 
     <Color R="#DD" G="#DD" B="#DD" ScA="1" x:Key="AppUltraGray"/>
 
+    <Color R="#87" G="#8A" B="#95" ScA="1" x:Key="AppIconGray"/>
+
+    <Color R="#F5" G="#F6" B="#F7" ScA="1" x:Key="AppTextBoxNormalGray"/>
+
+    <Color R="#EE" G="#EE" B="#F1" ScA="1" x:Key="AppTextBoxCoverGray"/>
+
+    <Color R="#FF" G="#FF" B="#FF" ScA="1" x:Key="AppTextBoxFocusWhite"/>
+
+    <Color R="#61" G="#8E" B="#FF" ScA="1" x:Key="AppTextBoxInnerBorderBlue"/>
+
+    <Color R="#FF" G="#4D" B="#4F" ScA="1" x:Key="AppRed"/>
+
     <!---主要的颜色 按钮-->
     <SolidColorBrush Color="{StaticResource AppBlue}" x:Key="AppBlueBrush"/>
 
@@ -31,5 +43,22 @@
 
     <!--输入框内的图标的颜色-->
     <SolidColorBrush Color="{StaticResource AppUltraGray}" x:Key="AppUltraGrayBrush"/>
+
+    <!--输入框内的 Icon 的颜色-->
+    <SolidColorBrush Color="{StaticResource AppIconGray}" x:Key="AppIconGrayBrush"/>
+
+    <!--输入框内的 Normal 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxNormalGray}" x:Key="AppTextBoxNormalGrayBrush"/>
+
+    <!--输入框内的鼠标 Cover 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxCoverGray}" x:Key="AppTextBoxCoverGrayBrush"/>
+
+    <!--输入框内的鼠标 Focus 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxFocusWhite}" x:Key="AppTextBoxFocusWhiteBrush"/>
+
+    <!--输入框内的边框 Focus 状态下，鼠标移除输入框内，内边框颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxInnerBorderBlue}" x:Key="AppTextBoxInnerBorderBlueBrush"/>
+
+    <SolidColorBrush Color="{StaticResource AppRed}" x:Key="AppRedBrush"/>
 
 </ResourceDictionary>
