@@ -10,7 +10,7 @@ namespace Authing.Guard.WPF.Enums
     /// <summary>
     /// Guard 支持的普通登录方式
     /// </summary>
-    public enum LoginMethod
+    public enum LoginMethods
     {
         /// <summary>
         /// LDAP 身份目录登录（需要配置 LDAP 服务）

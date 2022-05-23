@@ -25,10 +25,16 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <controls:PlaceHolderTextBox PlaceHolder="请输入手机号" x:Name="tbPhone" IconType="Account" Height="25" Width="280" CornerRadius="5" Margin="10"></controls:PlaceHolderTextBox>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <controls:PasswordHolderTextBox Grid.Row="1" x:Name="tbSMSCode" PlaceHolder="请输入 4 位验证码" Height="25" Width="280"  CornerRadius="5" Margin="10"></controls:PasswordHolderTextBox>
-            <controls:PrimaryButton x:Name="btnSendSMS" Background="White" Height="25" Width="70" BorderThickness="1" BorderBrush="Gray" Foreground="Black" Content="发送验证码" Click="btnSendSMS_Click"></controls:PrimaryButton>
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+            <controls:PlaceHolderTextBox  PlaceHolder="请输入手机号" MaxLength="11" x:Name="tbPhone" IconType="Account" Height="25" Width="280" CornerRadius="5"></controls:PlaceHolderTextBox>
+            <TextBlock Text="输入有效的手机号" Foreground="{StaticResource AppRedBrush}" Margin="0 2 0 0" x:Name="tbPhoneInfo" Visibility="Collapsed"></TextBlock>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1"  Margin="10">
+            <StackPanel  Orientation="Horizontal" >
+                <controls:PasswordHolderTextBox  x:Name="tbSMSCode" PlaceHolder="请输入 4 位验证码" Height="25" Width="210"  CornerRadius="5" ></controls:PasswordHolderTextBox>
+                <controls:PrimaryButton x:Name="btnSendSMS" Background="White" Height="25" Width="70" BorderThickness="1" BorderBrush="Gray" Foreground="Black" Content="发送验证码" Click="btnSendSMS_Click"></controls:PrimaryButton>
+            </StackPanel>
+            <TextBlock Text="验证码未填写" Foreground="{StaticResource AppRedBrush}" Margin="0 2 0 0" x:Name="tbSMSCodeInfo" Visibility="Collapsed"></TextBlock>
         </StackPanel>
         <CheckBox Grid.Row="2" HorizontalAlignment="Center" Margin="10">
             <TextBlock>我已阅读并同意 Authing 
