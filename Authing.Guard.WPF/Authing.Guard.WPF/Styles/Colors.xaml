@@ -26,6 +26,12 @@
 
     <Color R="#FF" G="#4D" B="#4F" ScA="1" x:Key="AppRed"/>
 
+    <Color R="#C8" G="#C9" B="#CC" ScA="1" x:Key="TextBoxPlaceHolderGray"/>
+
+    <Color R="#87" G="#87" B="#87" ScA="1" x:Key="EyeIconNorGray"/>
+
+    <Color R="#23" G="#23" B="#24" ScA="1" x:Key="EyeIconOverBlack"/>
+
     <!---主要的颜色 按钮-->
     <SolidColorBrush Color="{StaticResource AppBlue}" x:Key="AppBlueBrush"/>
 
@@ -60,5 +66,13 @@
     <SolidColorBrush Color="{StaticResource AppTextBoxInnerBorderBlue}" x:Key="AppTextBoxInnerBorderBlueBrush"/>
 
     <SolidColorBrush Color="{StaticResource AppRed}" x:Key="AppRedBrush"/>
+
+    <SolidColorBrush Color="{StaticResource TextBoxPlaceHolderGray}" x:Key="TextBoxPlaceHolderGrayBrush"/>
+
+    <!--显示密码按钮，正常状态下的颜色-->
+    <SolidColorBrush Color="{StaticResource EyeIconNorGray}" x:Key="EyeIconNorGrayBrush"/>
+
+    <!--显示密码按钮，鼠标 Cover 下的颜色-->
+    <SolidColorBrush Color="{StaticResource EyeIconOverBlack}" x:Key="EyeIconOverBlackBrush"/>
 
 </ResourceDictionary>

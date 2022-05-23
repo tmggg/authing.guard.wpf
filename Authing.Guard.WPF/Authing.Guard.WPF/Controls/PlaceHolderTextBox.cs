@@ -110,5 +110,19 @@ namespace Authing.Guard.WPF.Controls
         }
         public static DependencyProperty IconTypeProperty = 
             DependencyProperty.Register(nameof(IconType), typeof(IconType), typeof(PlaceHolderTextBox), new PropertyMetadata(IconType.Blank));
+
+        public bool Warn
+        {
+            get
+            {
+                return (bool)GetValue(WarnProperty);
+            }
+            set
+            {
+                SetValue(WarnProperty, value);
+            }
+        }
+        public static DependencyProperty WarnProperty =
+            DependencyProperty.Register(nameof(Warn), typeof(bool), typeof(PlaceHolderTextBox), new PropertyMetadata(false));
     }
 }
