@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Authing.Guard.WPF.Utils
+{
+    public interface IWindowsAPI
+    {
+        /// <summary>
+        /// 默认打开文件
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="file"></param>
+        void ShellExecute(string operation, string file);
+    }
+}
