@@ -76,6 +76,7 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             Config.LoginMethods.Add(LoginMethods.Password);
             Config.LoginMethods.Add(LoginMethods.PhoneCode);
+            Config.LoginMethods.Add(LoginMethods.AppQr);
         }
 
         private void InitLoginMethod()
@@ -90,6 +91,12 @@ namespace Authing.Guard.WPF.Views.LoginView
                 else if (item == LoginMethods.AppQr)
                 {
                     //添加 App 扫码登录界面
+                    TabItem tabItem = new TabItem();
+                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
+                    tabItem.Content = new ScanCodeLoginView();
+
+                    loginViewTabControl.Items.Add(tabItem);
+
                 }
                 else if (item == LoginMethods.LDAP)
                 {
@@ -99,7 +106,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加账号+密码登录
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = "11231";
+                    tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
                     tabItem.Content = new PasswordLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -108,6 +115,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加手机号验证码登录
                     TabItem tabItem = new TabItem();
+                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
                 }

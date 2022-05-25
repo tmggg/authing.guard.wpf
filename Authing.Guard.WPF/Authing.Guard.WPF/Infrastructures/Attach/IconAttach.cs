@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Authing.Guard.WPF.Attach
+namespace Authing.Guard.WPF.Infrastructures.Attach
 {
     public class IconAttach
     {

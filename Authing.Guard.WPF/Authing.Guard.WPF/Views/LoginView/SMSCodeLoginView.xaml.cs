@@ -19,6 +19,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Authing.Guard.WPF.Infrastructures;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -161,6 +162,14 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             tbPhone.Warn = false;
             tbPhoneRemind.Visibility = Visibility.Collapsed;
+        }
+
+        private async void Testbtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Testbtn.IsBusy = Testbtn.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            Testbtn.IsBusy = Testbtn.IsBusy != true;
+            Testbtn.StartCountDown = true;
         }
     }
 }
