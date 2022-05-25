@@ -1,11 +1,15 @@
-﻿<UserControl x:Class="Authing.Guard.WPF.Controls.Icon"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Authing.Guard.WPF.Controls"
-             mc:Ignorable="d" IsHitTestVisible="False"
-             d:DesignHeight="40" d:DesignWidth="40" x:Name="icon">
+﻿<UserControl
+    x:Class="Authing.Guard.WPF.Controls.Icon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Authing.Guard.WPF.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="icon"
+    d:DesignHeight="40"
+    d:DesignWidth="40"
+    IsHitTestVisible="False"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary Source="../Styles/IconStyles.xaml" />
     </UserControl.Resources>
@@ -16,8 +20,8 @@
         </Style>
     </UserControl.Style>
     <Grid>
-        <Viewbox Width="{Binding ElementName=icon,Path=ImageWidth}" Height="{Binding ElementName=icon,Path=ImageHeight}">
-            <Button Style="{StaticResource Blank}" x:Name="btn"></Button>
+        <Viewbox Width="{Binding ElementName=icon, Path=ImageWidth}" Height="{Binding ElementName=icon, Path=ImageHeight}">
+            <Button x:Name="btn" Style="{StaticResource Blank}" />
         </Viewbox>
     </Grid>
 </UserControl>

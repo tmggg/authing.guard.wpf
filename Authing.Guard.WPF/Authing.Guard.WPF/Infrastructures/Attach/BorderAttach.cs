@@ -1,9 +1,9 @@
-﻿using Authing.Guard.WPF.Converters;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Authing.Guard.WPF.Converters;
 
-namespace Authing.Guard.WPF.Attach
+namespace Authing.Guard.WPF.Infrastructures.Attach
 {
     public class BorderAttach
     {

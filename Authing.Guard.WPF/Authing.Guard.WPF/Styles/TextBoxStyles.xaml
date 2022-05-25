@@ -4,7 +4,7 @@
                      xmlns:ins="clr-namespace:Authing.Guard.WPF.Infrastructures">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
+        <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 

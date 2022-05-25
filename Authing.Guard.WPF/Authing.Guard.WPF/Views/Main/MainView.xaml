@@ -1,12 +1,14 @@
-﻿<controls:BaseGuardControl   x:Class="Authing.Guard.WPF.Views.LoginView.MainView"
-             xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls" 
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+﻿<controls:BaseGuardControl
+    x:Class="Authing.Guard.WPF.Views.LoginView.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
     <controls:BaseGuardControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -23,19 +25,22 @@
     </controls:BaseGuardControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical">
-            <Image Width="50" Height="50" x:Name="imgLogo" ></Image>
-            <TextBlock Text="Authing" x:Name="tbTitle" ></TextBlock>
+            <Image
+                x:Name="imgLogo"
+                Width="50"
+                Height="50" />
+            <TextBlock x:Name="tbTitle" Text="Authing" />
         </StackPanel>
         <Grid HorizontalAlignment="Right">
             <ToggleButton Content="切换登录" Style="{StaticResource SwitchPageToggleButtonStyle}" x:Name="btnSwitchLogin" Click="btnSwitchLogin_Click"></ToggleButton>
         </Grid>
-        <Grid Grid.Row="1" x:Name="LoginContent">
+        <Grid x:Name="LoginContent" Grid.Row="1">
             <Grid x:Name="moreLoginGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -49,22 +54,22 @@
                     <Button HorizontalAlignment="Right" Content="立即注册"  Style="{StaticResource LinkButtonStyle}" x:Name="btnRegister" Click="btnRegister_Click"></Button>
                 </Grid>
             </Grid>
-            <Grid x:Name="QRCodeLoginGrid"/>
+            <Grid x:Name="QRCodeLoginGrid" />
         </Grid>
-        <Grid Grid.Row="2" x:Name="ThirdCottent">
+        <Grid x:Name="ThirdCottent" Grid.Row="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid>
-                <TextBlock Text="第三方账号登录"></TextBlock>
+                <TextBlock Text="第三方账号登录" />
             </Grid>
             <Grid Grid.Row="1">
-                <ListBox></ListBox>
+                <ListBox />
             </Grid>
         </Grid>
         <Grid Grid.Row="3">
-            <ToggleButton x:Name="switchLanguage" Content="English"></ToggleButton>
+            <ToggleButton x:Name="switchLanguage" Content="English" />
         </Grid>
     </Grid>
 </controls:BaseGuardControl>
