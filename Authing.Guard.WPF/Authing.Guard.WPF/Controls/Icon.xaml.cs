@@ -78,7 +78,17 @@ namespace Authing.Guard.WPF.Controls
 
         public static readonly DependencyProperty ImageHeightProperty = DependencyProperty.Register(nameof(ImageHeight), typeof(double), typeof(Icon), new PropertyMetadata(40.0));
 
-        public Brush Fill;
+        public Brush Fill
+        {
+            get
+            {
+                return (Brush)GetValue(FillProperty);
+            }
+            set
+            {
+                SetValue(FillProperty, value);
+            }
+        }
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(Icon), new PropertyMetadata(null, FillChanged));
 
         private static void TypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

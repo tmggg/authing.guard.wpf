@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color R="#39" G="#6a" B="#ff" ScA="1" x:Key="AppBlue"/>
+
+    <Color R="#D7" G="#E1" B="#FF" ScA="1" x:Key="AppBlueBorder"/>
+
+    <Color R="#33" G="#33" B="#33" ScA="1" x:Key="AppBlack"/>
+
+    <Color R="#AE" G="#B9" B="#D4" ScA="1" x:Key="AppGray"/>
+
+    <Color R="#6B" G="#90" B="#FF" ScA="1" x:Key="AppLightBlue"/>
+
+    <Color R="#D9" G="#D9" B="#D9" ScA="1" x:Key="AppLightGray"/>
+
+    <Color R="#DD" G="#DD" B="#DD" ScA="1" x:Key="AppUltraGray"/>
+
+    <Color R="#87" G="#8A" B="#95" ScA="1" x:Key="AppIconGray"/>
+
+    <Color R="#F5" G="#F6" B="#F7" ScA="1" x:Key="AppTextBoxNormalGray"/>
+
+    <Color R="#EE" G="#EE" B="#F1" ScA="1" x:Key="AppTextBoxCoverGray"/>
+
+    <Color R="#FF" G="#FF" B="#FF" ScA="1" x:Key="AppTextBoxFocusWhite"/>
+
+    <Color R="#61" G="#8E" B="#FF" ScA="1" x:Key="AppTextBoxInnerBorderBlue"/>
+
+    <Color R="#FF" G="#4D" B="#4F" ScA="1" x:Key="AppRed"/>
+
+    <Color R="#C8" G="#C9" B="#CC" ScA="1" x:Key="TextBoxPlaceHolderGray"/>
+
+    <Color R="#87" G="#87" B="#87" ScA="1" x:Key="EyeIconNorGray"/>
+
+    <Color R="#23" G="#23" B="#24" ScA="1" x:Key="EyeIconOverBlack"/>
+
+    <!---主要的颜色 按钮-->
+    <SolidColorBrush Color="{StaticResource AppBlue}" x:Key="AppBlueBrush"/>
+
+    <!-- 输入框的边框的颜色-->
+    <SolidColorBrush Color="{StaticResource AppBlueBorder}" x:Key="AppBlueBorderBrush"/>
+
+    <!--登录方式切换的字体的颜色-->
+    <SolidColorBrush Color="{StaticResource AppGray}" x:Key="AppGrayBrush"/>
+
+    <!--立即注册 遇到问题 忘记密码 鼠标移动上去的颜色-->
+    <SolidColorBrush Color="{StaticResource AppLightBlue}" x:Key="AppLightBlueBrush"/>
+
+    <!--输入框的外边框颜色-->
+    <SolidColorBrush Color="{StaticResource AppLightGray}" x:Key="AppLightGrayBrush"/>
+
+    <!--输入框内的图标的颜色-->
+    <SolidColorBrush Color="{StaticResource AppUltraGray}" x:Key="AppUltraGrayBrush"/>
+
+    <!--输入框内的 Icon 的颜色-->
+    <SolidColorBrush Color="{StaticResource AppIconGray}" x:Key="AppIconGrayBrush"/>
+
+    <!--输入框内的 Normal 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxNormalGray}" x:Key="AppTextBoxNormalGrayBrush"/>
+
+    <!--输入框内的鼠标 Cover 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxCoverGray}" x:Key="AppTextBoxCoverGrayBrush"/>
+
+    <!--输入框内的鼠标 Focus 状态颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxFocusWhite}" x:Key="AppTextBoxFocusWhiteBrush"/>
+
+    <!--输入框内的边框 Focus 状态下，鼠标移除输入框内，内边框颜色-->
+    <SolidColorBrush Color="{StaticResource AppTextBoxInnerBorderBlue}" x:Key="AppTextBoxInnerBorderBlueBrush"/>
+
+    <SolidColorBrush Color="{StaticResource AppRed}" x:Key="AppRedBrush"/>
+
+    <SolidColorBrush Color="{StaticResource TextBoxPlaceHolderGray}" x:Key="TextBoxPlaceHolderGrayBrush"/>
+
+    <!--显示密码按钮，正常状态下的颜色-->
+    <SolidColorBrush Color="{StaticResource EyeIconNorGray}" x:Key="EyeIconNorGrayBrush"/>
+
+    <!--显示密码按钮，鼠标 Cover 下的颜色-->
+    <SolidColorBrush Color="{StaticResource EyeIconOverBlack}" x:Key="EyeIconOverBlackBrush"/>
+
+</ResourceDictionary>

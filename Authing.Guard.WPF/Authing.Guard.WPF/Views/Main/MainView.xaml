@@ -1,0 +1,53 @@
+﻿<controls:BaseGuardControl   x:Class="Authing.Guard.WPF.Views.LoginView.MainView"
+             xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Image Width="50" Height="50" x:Name="imgLogo" ></Image>
+            <TextBlock Text="Authing" x:Name="tbTitle" ></TextBlock>
+        </StackPanel>
+        <Grid HorizontalAlignment="Right">
+            <ToggleButton Content="切换登录" x:Name="btnSwitchLogin" Click="btnSwitchLogin_Click"></ToggleButton>
+        </Grid>
+        <Grid Grid.Row="1" x:Name="LoginContent">
+            <Grid x:Name="moreLoginGrid">
+                <TabControl x:Name="loginViewTabControl">
+                    <!--<TabItem Header="密码登录">
+                        <login:PasswordLoginView></login:PasswordLoginView>
+                    </TabItem>
+                    <TabItem Header="短信验证码登录">
+                        <login:SMSCodeLoginView></login:SMSCodeLoginView>
+                    </TabItem>-->
+                </TabControl>
+            </Grid>
+            <Grid x:Name="QRCodeLoginGrid"/>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="ThirdCottent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <TextBlock Text="第三方账号登录"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListBox></ListBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
+            <ToggleButton x:Name="switchLanguage" Content="English"></ToggleButton>
+        </Grid>
+    </Grid>
+</controls:BaseGuardControl>

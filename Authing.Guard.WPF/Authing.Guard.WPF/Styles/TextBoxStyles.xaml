@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+   
+</ResourceDictionary>

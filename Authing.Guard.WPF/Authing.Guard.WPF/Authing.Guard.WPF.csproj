@@ -1,18 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0-windows;net45;net40</TargetFrameworks>
+		<TargetFrameworks>net5.0-windows;net45;net48;net40</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Infrastructures\" />
-		<Folder Include="Views\" />
+		<Folder Include="Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Authing.Library" Version="0.0.6" />
 		<PackageReference Include="NLog" Version="4.7.15" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Styles\ButtonStyles.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
 	</ItemGroup>
 
 </Project>
