@@ -1,15 +1,19 @@
-﻿<Window x:Class="Authing.Guard.WPF.Test.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Authing.Guard.WPF.Test"
-        mc:Ignorable="d"
-        xmlns:guard="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Window
+    x:Class="Authing.Guard.WPF.Test.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:guard="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
+    xmlns:local="clr-namespace:Authing.Guard.WPF.Test"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.Main;assembly=Authing.Guard.WPF"
+    Title="MainWindow"
+    Width="420"
+    Height="620"
+    mc:Ignorable="d">
     <Grid>
         <!--<guard:PasswordLoginView></guard:PasswordLoginView>-->
         <!--<guard:SMSCodeLoginView></guard:SMSCodeLoginView>-->
-        <guard:MainView AppId="13132132"></guard:MainView>
+        <main:MainView AppId="13132132" />
     </Grid>
 </Window>

@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach"
-    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
+    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
+    xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -246,6 +246,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
 </ResourceDictionary>

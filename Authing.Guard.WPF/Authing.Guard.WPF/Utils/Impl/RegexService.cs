@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace Authing.Guard.WPF.Utils.Impl
 {
@@ -38,13 +33,12 @@ namespace Authing.Guard.WPF.Utils.Impl
             {
                 return false;
             }
-
         }
 
         public bool PasswordMatch(string str)
         {
             var middleLevel = new Regex(@"((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))(?!^.*[\u4E00-\u9FA5].*$).{6,}",
-                                           RegexOptions.Multiline| RegexOptions.IgnorePatternWhitespace);
+                                           RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace);
 
             return middleLevel.IsMatch(str);
         }

@@ -25,6 +25,7 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             Margin="0"
+                            HorizontalAlignment="Center"
                             Panel.ZIndex="1"
                             Background="Transparent"
                             IsItemsHost="true"

@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authing.Guard.WPF", "Authin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authing.Guard.WPF.Test", "Authing.Guard.WPF.Test\Authing.Guard.WPF.Test.csproj", "{638B5E6A-2BA2-4D20-96FD-B587D4D917A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest", "UITest\UITest.csproj", "{132F85BF-F563-41DD-90C1-3A40AA773603}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{638B5E6A-2BA2-4D20-96FD-B587D4D917A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{638B5E6A-2BA2-4D20-96FD-B587D4D917A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{638B5E6A-2BA2-4D20-96FD-B587D4D917A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{132F85BF-F563-41DD-90C1-3A40AA773603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{132F85BF-F563-41DD-90C1-3A40AA773603}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{132F85BF-F563-41DD-90C1-3A40AA773603}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{132F85BF-F563-41DD-90C1-3A40AA773603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

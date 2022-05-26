@@ -7,7 +7,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryTextBrush}" />
         <Setter Property="Margin" Value="0" />
         <Setter Property="Padding" Value="20,0,20,0" />
-        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="MinHeight" Value="25" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
@@ -16,35 +16,49 @@
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="Bordershow">
                             <DoubleAnimation
-                                Storyboard.TargetName="mainBorder" Storyboard.TargetProperty="Width"
-                                From="0" To="25"
+                                Storyboard.TargetName="mainBorder"
+                                Storyboard.TargetProperty="Width"
+                                From="0"
+                                To="25"
                                 Duration="0:0:.25" />
                         </Storyboard>
                         <Storyboard x:Key="Borderhide">
                             <DoubleAnimation
-                                Storyboard.TargetName="mainBorder" Storyboard.TargetProperty="Width"
-                                From="25" To="0"
+                                Storyboard.TargetName="mainBorder"
+                                Storyboard.TargetProperty="Width"
+                                From="25"
+                                To="0"
                                 Duration="0:0:.25" />
                         </Storyboard>
                         <Storyboard x:Key="Fontscale">
                             <DoubleAnimation
-                                Storyboard.TargetName="templateRoot" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                To="1.1" Duration="0:0:.25" />
+                                Storyboard.TargetName="templateRoot"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                To="1.1"
+                                Duration="0:0:.25" />
                             <DoubleAnimation
-                                Storyboard.TargetName="templateRoot" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                To="1.1" Duration="0:0:.25" />
+                                Storyboard.TargetName="templateRoot"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                To="1.1"
+                                Duration="0:0:.25" />
                         </Storyboard>
                         <Storyboard x:Key="Fontrescale">
                             <DoubleAnimation
-                                Storyboard.TargetName="templateRoot" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                To="1" Duration="0:0:.25" />
+                                Storyboard.TargetName="templateRoot"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                To="1"
+                                Duration="0:0:.25" />
                             <DoubleAnimation
-                                Storyboard.TargetName="templateRoot" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                To="1" Duration="0:0:.25" />
+                                Storyboard.TargetName="templateRoot"
+                                Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                To="1"
+                                Duration="0:0:.25" />
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid
-                        x:Name="templateRoot" RenderTransformOrigin="0.5,0.5"
+                        x:Name="templateRoot"
+                        Background="Transparent"
+                        RenderTransformOrigin="0.5,0.5"
                         SnapsToDevicePixels="true">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -54,11 +68,13 @@
                         <ContentPresenter
                             x:Name="contentPresenter"
                             Margin="{TemplateBinding Padding}"
-                            ContentSource="Header" Focusable="False"
+                            ContentSource="Header"
+                            Focusable="False"
                             RecognizesAccessKey="True"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         <Border
-                            x:Name="mainBorder" Grid.Row="1"
+                            x:Name="mainBorder"
+                            Grid.Row="1"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="0,0,0,2" />

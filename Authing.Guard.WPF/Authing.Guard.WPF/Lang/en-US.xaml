@@ -11,4 +11,5 @@
     <system:String x:Key="ContinueWith">Continue With</system:String>
     <system:String x:Key="zhCN">中文</system:String>
     <system:String x:Key="enUS">English</system:String>
+    <system:String x:Key="QRCodeExpired">QR Code Expired</system:String>
 </ResourceDictionary>

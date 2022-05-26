@@ -4,21 +4,11 @@ using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -109,6 +99,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             tbAccount.Warn = false;
             tbAccountRemind.Visibility = Visibility.Collapsed;
         }
+
         private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordBoxHelper.SetWarn(tbPassword, false);

@@ -1,25 +1,15 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Factories;
-using Authing.Guard.WPF.Services;
+using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Authing.Guard.WPF.Infrastructures;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -30,6 +20,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
+
         public SMSCodeLoginView()
         {
             InitializeComponent();
@@ -85,7 +76,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false });
 
             if (user != null)
-            { 
+            {
                 //用户登录成功
             }
         }

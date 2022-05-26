@@ -3,9 +3,6 @@ using Authing.ApiClient.Domain.Model;
 using Authing.Guard.WPF.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Models
 {
@@ -93,10 +90,7 @@ namespace Authing.Guard.WPF.Models
         /// </summary>
         public string Host { get; set; }
 
-        #endregion
-
-
-
+        #endregion 属性
 
         #region 事件
 
@@ -180,6 +174,6 @@ namespace Authing.Guard.WPF.Models
         /// </summary>
         public Action<User, AuthenticationClient> RegisterInfoCompletedError;
 
-        #endregion
+        #endregion 事件
     }
 }
