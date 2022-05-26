@@ -1,16 +1,17 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    
-    <sys:Double x:Key="HugeSize" >30</sys:Double>
-    
-    <sys:Double x:Key="BigSize" >20</sys:Double>
-    
-    <sys:Double x:Key="ThanGeneralSzie" >18</sys:Double>
-    
-    <sys:Double x:Key="GeneralSize" >16</sys:Double>
-    
-    <sys:Double x:Key="MediumSize" >14</sys:Double>
-    
-    <sys:Double x:Key="SmallSize" >12</sys:Double>
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Double x:Key="HugeSize">30</sys:Double>
+
+    <sys:Double x:Key="BigSize">20</sys:Double>
+
+    <sys:Double x:Key="ThanGeneralSzie">18</sys:Double>
+
+    <sys:Double x:Key="GeneralSize">16</sys:Double>
+
+    <sys:Double x:Key="MediumSize">14</sys:Double>
+
+    <sys:Double x:Key="SmallSize">12</sys:Double>
 </ResourceDictionary>

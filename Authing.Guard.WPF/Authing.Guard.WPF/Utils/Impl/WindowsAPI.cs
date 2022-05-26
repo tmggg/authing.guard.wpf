@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
 namespace Authing.Guard.WPF.Utils.Impl
 {
@@ -24,6 +19,6 @@ namespace Authing.Guard.WPF.Utils.Impl
         /// <param name="directory">无</param>
         /// <param name="nShowCmd">SW_SHOWNORMAL SW_NORMAL 1</param>
         [DllImport("Shell32.dll")]
-        public extern static void ShellExecute(int hwnd, string operation, string file, string param, string directory, int nShowCmd);
+        public static extern void ShellExecute(int hwnd, string operation, string file, string param, string directory, int nShowCmd);
     }
 }

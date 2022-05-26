@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Authing.Guard.WPF.Utils
+﻿namespace Authing.Guard.WPF.Utils
 {
     public interface IRegexService
     {
@@ -28,6 +22,5 @@ namespace Authing.Guard.WPF.Utils
         /// <param name="str"></param>
         /// <returns></returns>
         bool PasswordMatch(string str);
-        
     }
 }

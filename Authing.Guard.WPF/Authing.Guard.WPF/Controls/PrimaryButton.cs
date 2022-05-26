@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Authing.Guard.WPF.Controls
 {
-   public class PrimaryButton:Button
+    public class PrimaryButton : Button
     {
         public CornerRadius CornerRadius
         {
@@ -22,7 +17,7 @@ namespace Authing.Guard.WPF.Controls
             }
         }
 
-        public static DependencyProperty CornerRadiusProperty = 
+        public static DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(PrimaryButton), new PropertyMetadata(new CornerRadius()));
     }
 }

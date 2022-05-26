@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Authing.Guard.WPF.Infrastructures
@@ -14,6 +9,7 @@ namespace Authing.Guard.WPF.Infrastructures
         {
             return (bool)dp.GetValue(WarnProperty);
         }
+
         public static void SetWarn(DependencyObject dp, bool value)
         {
             dp.SetValue(WarnProperty, value);
@@ -26,6 +22,7 @@ namespace Authing.Guard.WPF.Infrastructures
         {
             return (string)dp.GetValue(PasswordProperty);
         }
+
         public static void SetPassword(DependencyObject dp, string value)
         {
             dp.SetValue(PasswordProperty, value);
@@ -40,6 +37,7 @@ namespace Authing.Guard.WPF.Infrastructures
         {
             dp.SetValue(AttachProperty, value);
         }
+
         public static bool GetAttach(DependencyObject dp)
         {
             return (bool)dp.GetValue(AttachProperty);
@@ -49,6 +47,7 @@ namespace Authing.Guard.WPF.Infrastructures
         {
             return (bool)dp.GetValue(IsUpdatingProperty);
         }
+
         private static void SetIsUpdating(DependencyObject dp, bool value)
         {
             dp.SetValue(IsUpdatingProperty, value);
@@ -57,10 +56,11 @@ namespace Authing.Guard.WPF.Infrastructures
         public static readonly DependencyProperty AttachProperty =
             DependencyProperty.RegisterAttached("Attach",
             typeof(bool), typeof(PasswordBoxHelper), new PropertyMetadata(false, Attach));
+
         private static readonly DependencyProperty IsUpdatingProperty =
            DependencyProperty.RegisterAttached("IsUpdating", typeof(bool),
            typeof(PasswordBoxHelper));
-       
+
         private static void OnPasswordPropertyChanged(DependencyObject sender,
             DependencyPropertyChangedEventArgs e)
         {
@@ -72,6 +72,7 @@ namespace Authing.Guard.WPF.Infrastructures
             }
             passwordBox.PasswordChanged += PasswordChanged;
         }
+
         private static void Attach(DependencyObject sender,
             DependencyPropertyChangedEventArgs e)
         {
@@ -87,6 +88,7 @@ namespace Authing.Guard.WPF.Infrastructures
                 passwordBox.PasswordChanged += PasswordChanged;
             }
         }
+
         private static void PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox passwordBox = sender as PasswordBox;

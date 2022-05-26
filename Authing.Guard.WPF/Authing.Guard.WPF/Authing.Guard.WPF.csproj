@@ -6,12 +6,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Commons\Images\qrcode.png" />
+	  <None Remove="Commons\Images\qrcode2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Authing.Library" Version="0.0.6" />
 		<PackageReference Include="NLog" Version="4.7.15" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Commons\Images\qrcode.png" />
+	  <Resource Include="Commons\Images\qrcode2.png" />
 	</ItemGroup>
 
 	<ItemGroup>

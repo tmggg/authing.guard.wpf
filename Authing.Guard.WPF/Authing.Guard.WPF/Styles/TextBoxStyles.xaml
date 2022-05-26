@@ -6,8 +6,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-
     <Style x:Key="PlaceHolderStyle" TargetType="controls:PlaceHolderTextBox">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="PlaceHolderFontSize" Value="12"/>

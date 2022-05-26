@@ -11,4 +11,5 @@
     <system:String x:Key="ContinueWith">第三方账号登录</system:String>
     <system:String x:Key="zhCN">中文</system:String>
     <system:String x:Key="enUS">English</system:String>
+    <system:String x:Key="QRCodeExpired">二维码已过期</system:String>
 </ResourceDictionary>
