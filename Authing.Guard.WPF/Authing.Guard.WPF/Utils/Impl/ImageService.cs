@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Utils.Impl
 {
-    class ImageService : IImageService
+    internal class ImageService : IImageService
     {
         public byte[] GetImageFromResponse(string url, string cookie = null)
         {
             redo:
             try
             {
-               
                 WebRequest request = WebRequest.Create(url);
                 if (!string.IsNullOrWhiteSpace(cookie))
                 {
@@ -28,7 +23,7 @@ namespace Authing.Guard.WPF.Utils.Impl
                 {
                     using (MemoryStream ms = new MemoryStream())
                     {
-                        Byte[] buffer = new byte[1024*10];
+                        Byte[] buffer = new byte[1024 * 10];
                         int current = 0;
                         do
                         {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Authing.Guard.WPF.Infrastructures
 {
@@ -19,7 +14,6 @@ namespace Authing.Guard.WPF.Infrastructures
             obj.SetValue(PlaceHolderProperty, value);
         }
 
-        
         public static readonly DependencyProperty PlaceHolderProperty =
             DependencyProperty.RegisterAttached("PlaceHolder", typeof(string), typeof(ControlAttachProperty), new PropertyMetadata(string.Empty));
     }

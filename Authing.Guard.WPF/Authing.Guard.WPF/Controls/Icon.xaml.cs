@@ -89,6 +89,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(FillProperty, value);
             }
         }
+
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(Icon), new PropertyMetadata(null, FillChanged));
 
         private static void TypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

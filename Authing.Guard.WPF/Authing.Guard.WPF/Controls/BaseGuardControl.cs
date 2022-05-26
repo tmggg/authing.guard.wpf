@@ -1,9 +1,4 @@
 ﻿using Authing.Guard.WPF.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,7 +6,8 @@ namespace Authing.Guard.WPF.Controls
 {
     public class BaseGuardControl : UserControl
     {
-       public BaseGuardControl() { }
+        public BaseGuardControl()
+        { }
 
         /// <summary>
         /// 在 Console 中配置应用 ID
@@ -27,6 +23,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(AppIdProperty, value);
             }
         }
+
         public static DependencyProperty AppIdProperty =
              DependencyProperty.Register(nameof(AppId), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
 
@@ -44,6 +41,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(TenantIdProperty, value);
             }
         }
+
         public static DependencyProperty TenantIdProperty =
             DependencyProperty.Register(nameof(TenentId), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
 
@@ -61,10 +59,8 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(ConfigProperty, value);
             }
         }
+
         public static DependencyProperty ConfigProperty =
             DependencyProperty.Register(nameof(Config), typeof(GuardConfig), typeof(BaseGuardControl), new PropertyMetadata(new GuardConfig()));
-
-
-
     }
 }

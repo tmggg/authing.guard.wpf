@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="PasswordLogin">Password</system:String>
+    <system:String x:Key="PhoneLogin">Phone</system:String>
+    <system:String x:Key="AppScanLogin">App QR code</system:String>
+    <system:String x:Key="SendCode">Send Code</system:String>
+    <system:String x:Key="SendCodeTip">S Retry</system:String>
+    <system:String x:Key="UseAppScan">use APP scan code login</system:String>
+    <system:String x:Key="ContinueWith">Continue With</system:String>
+    <system:String x:Key="zhCN">中文</system:String>
+    <system:String x:Key="enUS">English</system:String>
+    <system:String x:Key="QRCodeExpired">QR Code Expired</system:String>
+</ResourceDictionary>

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Authing.Guard.WPF.Controls
 {
@@ -38,7 +32,6 @@ namespace Authing.Guard.WPF.Controls
             //}
 
             //   (d as PasswordHolderTextBox).PlaceHolderShowText = password;
-
         }
 
         /// <summary>
@@ -55,6 +48,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(ShowPasswordProperty, value);
             }
         }
+
         public static DependencyProperty ShowPasswordProperty = DependencyProperty.Register(nameof(ShowPassword), typeof(bool), typeof(PasswordHolderTextBox), new PropertyMetadata(false, ShowPasswordPropertyChanged));
 
         private static void ShowPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -79,7 +73,7 @@ namespace Authing.Guard.WPF.Controls
         {
             //if (ShowPassword)
             //{
-               // PlaceHolderShowText = Text;
+            // PlaceHolderShowText = Text;
             //}
             //else
             //{

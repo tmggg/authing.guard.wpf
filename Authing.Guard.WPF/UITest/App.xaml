@@ -8,8 +8,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Generic.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/UITest;component/Lang/en-US.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/UITest;component/Lang/zh-CN.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Lang/en-US.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Lang/zh-CN.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

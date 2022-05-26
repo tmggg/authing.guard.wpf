@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Media;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Authing.Guard.WPF.Enums;
 using System.Windows;
 using System.Windows.Controls;
-using Authing.Guard.WPF.Enums;
+using System.Windows.Media;
 
 namespace Authing.Guard.WPF.Controls
 {
@@ -24,7 +19,7 @@ namespace Authing.Guard.WPF.Controls
             }
         }
 
-        public static DependencyProperty PlaceHolderProperty = 
+        public static DependencyProperty PlaceHolderProperty =
             DependencyProperty.Register(nameof(PlaceHolder), typeof(string), typeof(PlaceHolderTextBox), new PropertyMetadata(string.Empty));
 
         public double PlaceHolderFontSize
@@ -38,7 +33,8 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(PlaceHolderFontSizeProperty, value);
             }
         }
-        public static DependencyProperty PlaceHolderFontSizeProperty = 
+
+        public static DependencyProperty PlaceHolderFontSizeProperty =
             DependencyProperty.Register(nameof(PlaceHolderFontSize), typeof(double), typeof(PlaceHolderTextBox), new PropertyMetadata(12.0));
 
         public Brush PlaceHolderForeground
@@ -52,7 +48,8 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(PlaceHolderForegroundProperty, value);
             }
         }
-        public static DependencyProperty PlaceHolderForegroundProperty = 
+
+        public static DependencyProperty PlaceHolderForegroundProperty =
             DependencyProperty.Register(nameof(PlaceHolderForeground), typeof(Brush), typeof(PlaceHolderTextBox), new PropertyMetadata(null));
 
         public VerticalAlignment PlaceHolderVerticalAlignment
@@ -66,6 +63,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(PlaceHolderVerticalAlignmentProperty, value);
             }
         }
+
         public static DependencyProperty PlaceHolderVerticalAlignmentProperty =
             DependencyProperty.Register(nameof(PlaceHolderVerticalAlignment), typeof(VerticalAlignment), typeof(PlaceHolderTextBox), new PropertyMetadata(VerticalAlignment.Center));
 
@@ -80,7 +78,8 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(PlacelHolderHorizontalAlignmentProperty, value);
             }
         }
-        public static DependencyProperty PlacelHolderHorizontalAlignmentProperty = 
+
+        public static DependencyProperty PlacelHolderHorizontalAlignmentProperty =
             DependencyProperty.Register(nameof(PlacelHolderHorizontalAlignment), typeof(HorizontalAlignment), typeof(PlaceHolderTextBox), new PropertyMetadata(HorizontalAlignment.Center));
 
         public CornerRadius CornerRadius
@@ -91,10 +90,11 @@ namespace Authing.Guard.WPF.Controls
             }
             set
             {
-                SetValue(CornerRadiusProperty, value);  
+                SetValue(CornerRadiusProperty, value);
             }
         }
-        public static DependencyProperty CornerRadiusProperty = 
+
+        public static DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(PlaceHolderTextBox), new PropertyMetadata(new CornerRadius()));
 
         public IconType IconType
@@ -108,7 +108,8 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(IconTypeProperty, value);
             }
         }
-        public static DependencyProperty IconTypeProperty = 
+
+        public static DependencyProperty IconTypeProperty =
             DependencyProperty.Register(nameof(IconType), typeof(IconType), typeof(PlaceHolderTextBox), new PropertyMetadata(IconType.Blank));
 
         public bool Warn
@@ -122,6 +123,7 @@ namespace Authing.Guard.WPF.Controls
                 SetValue(WarnProperty, value);
             }
         }
+
         public static DependencyProperty WarnProperty =
             DependencyProperty.Register(nameof(Warn), typeof(bool), typeof(PlaceHolderTextBox), new PropertyMetadata(false));
     }

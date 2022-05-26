@@ -6,6 +6,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Commons\Images\qrcode.png" />
+	  <None Remove="Commons\Images\qrcode2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="Converters\" />
 	</ItemGroup>
 
@@ -15,6 +20,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Commons\Images\qrcode.png" />
+	  <Resource Include="Commons\Images\qrcode2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Lang\en-US.xaml">
+	    <SubType>Designer</SubType>
+	  </Page>
+	  <Page Update="Lang\zh-CN.xaml">
+	    <SubType>Designer</SubType>
+	  </Page>
 	  <Page Update="Styles\ButtonStyles.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>

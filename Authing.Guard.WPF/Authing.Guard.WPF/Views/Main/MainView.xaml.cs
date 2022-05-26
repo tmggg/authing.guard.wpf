@@ -1,25 +1,16 @@
 ﻿using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
-using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Views.LoginView;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Authing.Guard.WPF.Views.LoginView
+namespace Authing.Guard.WPF.Views.Main
 {
     /// <summary>
     /// MainView.xaml 的交互逻辑
@@ -27,7 +18,6 @@ namespace Authing.Guard.WPF.Views.LoginView
     public partial class MainView : BaseGuardControl
     {
         private IImageService m_ImageService;
-
 
         private LoginPage m_CurrentLoginPage;//当前的页面
 
@@ -39,7 +29,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             m_ImageService = new Utils.Impl.ImageService();
         }
-
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -63,24 +52,21 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             InitRegisterMethod();
 
-
-
             //根据配置显示界面
         }
 
         private void SimulationData()
         {
-
             Config.LoginMethods = new List<LoginMethods>();
             Config.RegisterMethods = new List<RegisterMethods>();
 
             Config.LoginMethods.Add(LoginMethods.Password);
             Config.LoginMethods.Add(LoginMethods.PhoneCode);
+            Config.LoginMethods.Add(LoginMethods.AppQr);
         }
 
         private void InitLoginMethod()
         {
-
             foreach (var item in Config.LoginMethods)
             {
                 if (item == LoginMethods.AD)
@@ -90,6 +76,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                 else if (item == LoginMethods.AppQr)
                 {
                     //添加 App 扫码登录界面
+                    TabItem tabItem = new TabItem();
+                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
+                    tabItem.Content = new ScanCodeLoginView();
+
+                    loginViewTabControl.Items.Add(tabItem);
                 }
                 else if (item == LoginMethods.LDAP)
                 {
@@ -99,7 +90,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加账号+密码登录
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = "11231";
+                    tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
                     tabItem.Content = new PasswordLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -108,6 +99,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加手机号验证码登录
                     TabItem tabItem = new TabItem();
+                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
                 }
@@ -120,7 +112,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void InitRegisterMethod()
         {
-
             foreach (var item in Config.RegisterMethods)
             {
                 if (item == RegisterMethods.Email)
@@ -138,10 +129,32 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             if (btnSwitchLogin.IsChecked == true)
             {
-
             }
         }
 
-
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox)
+            {
+                if (((ComboBox)sender).SelectedItem is Label)
+                {
+                    var obj = ((ComboBox)sender).SelectedItem as Label;
+                    if (string.Equals(obj.Content.ToString(), "English", StringComparison.Ordinal))
+                    {
+                        var res = Application.Current.Resources.MergedDictionaries;
+                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
+                        Application.Current.Resources.MergedDictionaries.Remove(lang);
+                        Application.Current.Resources.MergedDictionaries.Add(lang);
+                    }
+                    if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
+                    {
+                        var res = Application.Current.Resources.MergedDictionaries;
+                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("zh-CN.xaml"));
+                        Application.Current.Resources.MergedDictionaries.Remove(lang);
+                        Application.Current.Resources.MergedDictionaries.Add(lang);
+                    }
+                }
+            }
+        }
     }
 }

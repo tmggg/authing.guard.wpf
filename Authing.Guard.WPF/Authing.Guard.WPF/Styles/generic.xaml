@@ -2,11 +2,10 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Colors/Color_Blue.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Brushes.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Tabitem.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TabControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/CountDownButton.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/QrCodeControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TabitemStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TabControlStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/QrCodeControlStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

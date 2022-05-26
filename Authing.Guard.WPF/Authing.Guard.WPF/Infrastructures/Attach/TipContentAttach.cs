@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Authing.Guard.WPF.Attach
+namespace Authing.Guard.WPF.Infrastructures.Attach
 {
     public class TipContentAttach
     {
