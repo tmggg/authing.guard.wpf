@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Authing.Guard.WPF.Views.LoginView.SMSCodeLoginView"
+﻿<controls:BaseLoginControl x:Class="Authing.Guard.WPF.Views.LoginView.SMSCodeLoginView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
               xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
              xmlns:ins="clr-namespace:Authing.Guard.WPF.Infrastructures"
              d:DesignHeight="230" d:DesignWidth="400">
-    <UserControl.Resources>
+    <controls:BaseLoginControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
@@ -260,7 +260,7 @@
 
             </Style>
         </ResourceDictionary>
-    </UserControl.Resources>
+    </controls:BaseLoginControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -333,4 +333,4 @@
         <controls:PrimaryButton x:Name="btnLogin" Grid.Row="3" Height="30" Width="280"  Content="登录" Click="btnLogin_Click"></controls:PrimaryButton>
 
     </Grid>
-</UserControl>
+</controls:BaseLoginControl>

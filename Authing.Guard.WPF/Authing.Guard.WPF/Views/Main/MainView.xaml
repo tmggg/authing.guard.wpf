@@ -7,7 +7,21 @@
              xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400">
-    <Grid>
+    <controls:BaseGuardControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ToggleButton" x:Key="SwitchPageToggleButtonStyle">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+        </ResourceDictionary>
+    </controls:BaseGuardControl.Resources>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -19,18 +33,21 @@
             <TextBlock Text="Authing" x:Name="tbTitle" ></TextBlock>
         </StackPanel>
         <Grid HorizontalAlignment="Right">
-            <ToggleButton Content="切换登录" x:Name="btnSwitchLogin" Click="btnSwitchLogin_Click"></ToggleButton>
+            <ToggleButton Content="切换登录" Style="{StaticResource SwitchPageToggleButtonStyle}" x:Name="btnSwitchLogin" Click="btnSwitchLogin_Click"></ToggleButton>
         </Grid>
         <Grid Grid.Row="1" x:Name="LoginContent">
             <Grid x:Name="moreLoginGrid">
-                <TabControl x:Name="loginViewTabControl">
-                    <!--<TabItem Header="密码登录">
-                        <login:PasswordLoginView></login:PasswordLoginView>
-                    </TabItem>
-                    <TabItem Header="短信验证码登录">
-                        <login:SMSCodeLoginView></login:SMSCodeLoginView>
-                    </TabItem>-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TabControl Style="{StaticResource AuthingTabControl}" x:Name="loginViewTabControl" SelectionChanged="loginViewTabControl_SelectionChanged">
+                  
                 </TabControl>
+                <Grid Grid.Row="1" Margin="5">
+                    <Button HorizontalAlignment="Left" Content="忘记密码" Style="{StaticResource LinkButtonStyle}" x:Name="btnForgetPassword" Click="btnForgetPassword_Click"/>
+                    <Button HorizontalAlignment="Right" Content="立即注册"  Style="{StaticResource LinkButtonStyle}" x:Name="btnRegister" Click="btnRegister_Click"></Button>
+                </Grid>
             </Grid>
             <Grid x:Name="QRCodeLoginGrid"/>
         </Grid>

@@ -2,6 +2,7 @@
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Views.LoginView;
 using System;
 using System.Collections.Generic;
@@ -98,17 +99,24 @@ namespace Authing.Guard.WPF.Views.LoginView
                 else if (item == LoginMethods.Password)
                 {
                     //添加账号+密码登录
+
+                    PasswordLoginView passwordLoginView = new PasswordLoginView();
+
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = "11231";
-                    tabItem.Content = new PasswordLoginView();
+
+                    tabItem.Content = passwordLoginView ;
+                    tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
 
                     loginViewTabControl.Items.Add(tabItem);
                 }
                 else if (item == LoginMethods.PhoneCode)
                 {
                     //添加手机号验证码登录
+                    SMSCodeLoginView sMSCodeLoginView= new SMSCodeLoginView(); 
+
                     TabItem tabItem = new TabItem();
-                    tabItem.Content = new SMSCodeLoginView();
+                    tabItem.Content = sMSCodeLoginView;
+                    tabItem.Header = sMSCodeLoginView.LoginMethod.GetDescription();
                     loginViewTabControl.Items.Add(tabItem);
                 }
                 else if (item == LoginMethods.WxMinQr)
@@ -138,10 +146,45 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             if (btnSwitchLogin.IsChecked == true)
             {
-
+                moreLoginGrid.Visibility = Visibility.Collapsed;
+                QRCodeLoginGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                moreLoginGrid.Visibility = Visibility.Visible;
+                QRCodeLoginGrid.Visibility = Visibility.Collapsed;
             }
         }
 
+        private void btnForgetPassword_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void loginViewTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BaseLoginControl loginControl = (e.AddedItems[0] as TabItem).Content as BaseLoginControl;
+
+            if (loginControl == null)
+            {
+                return;
+            }
+
+            if (loginControl.LoginMethod == LoginMethods.Password)
+            {
+                btnForgetPassword.Visibility = Visibility.Visible;
+                btnForgetPassword.Visibility = Visibility.Visible;
+            }
+            else if (loginControl.LoginMethod == LoginMethods.PhoneCode)
+            {
+                btnForgetPassword.Visibility = Visibility.Hidden;
+                btnRegister.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

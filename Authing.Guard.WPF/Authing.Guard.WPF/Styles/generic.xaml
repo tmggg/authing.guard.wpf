@@ -6,7 +6,6 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/CountDownButton.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/QrCodeControl.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
