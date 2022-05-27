@@ -6,7 +6,7 @@
     xmlns:guard="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
     xmlns:local="clr-namespace:Authing.Guard.WPF.Test"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.Main;assembly=Authing.Guard.WPF"
+    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
     Title="MainWindow"
     Width="420"
     Height="620"

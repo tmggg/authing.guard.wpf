@@ -1,16 +1,26 @@
 ﻿using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Views.LoginView;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace Authing.Guard.WPF.Views.Main
+namespace Authing.Guard.WPF.Views.LoginView
 {
     /// <summary>
     /// MainView.xaml 的交互逻辑
@@ -18,6 +28,7 @@ namespace Authing.Guard.WPF.Views.Main
     public partial class MainView : BaseGuardControl
     {
         private IImageService m_ImageService;
+
 
         private LoginPage m_CurrentLoginPage;//当前的页面
 
@@ -29,6 +40,7 @@ namespace Authing.Guard.WPF.Views.Main
 
             m_ImageService = new Utils.Impl.ImageService();
         }
+
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -52,11 +64,14 @@ namespace Authing.Guard.WPF.Views.Main
 
             InitRegisterMethod();
 
+
+
             //根据配置显示界面
         }
 
         private void SimulationData()
         {
+
             Config.LoginMethods = new List<LoginMethods>();
             Config.RegisterMethods = new List<RegisterMethods>();
 
@@ -67,6 +82,7 @@ namespace Authing.Guard.WPF.Views.Main
 
         private void InitLoginMethod()
         {
+
             foreach (var item in Config.LoginMethods)
             {
                 if (item == LoginMethods.AD)
@@ -81,6 +97,7 @@ namespace Authing.Guard.WPF.Views.Main
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
+
                 }
                 else if (item == LoginMethods.LDAP)
                 {
@@ -89,15 +106,23 @@ namespace Authing.Guard.WPF.Views.Main
                 else if (item == LoginMethods.Password)
                 {
                     //添加账号+密码登录
+
+                    PasswordLoginView passwordLoginView = new PasswordLoginView();
+
                     TabItem tabItem = new TabItem();
                     tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
                     tabItem.Content = new PasswordLoginView();
+
+                    tabItem.Content = passwordLoginView ;
+                    tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
 
                     loginViewTabControl.Items.Add(tabItem);
                 }
                 else if (item == LoginMethods.PhoneCode)
                 {
                     //添加手机号验证码登录
+                    SMSCodeLoginView sMSCodeLoginView= new SMSCodeLoginView(); 
+
                     TabItem tabItem = new TabItem();
                     tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
                     tabItem.Content = new SMSCodeLoginView();
@@ -112,6 +137,7 @@ namespace Authing.Guard.WPF.Views.Main
 
         private void InitRegisterMethod()
         {
+
             foreach (var item in Config.RegisterMethods)
             {
                 if (item == RegisterMethods.Email)
@@ -129,31 +155,44 @@ namespace Authing.Guard.WPF.Views.Main
         {
             if (btnSwitchLogin.IsChecked == true)
             {
+                moreLoginGrid.Visibility = Visibility.Collapsed;
+                QRCodeLoginGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                moreLoginGrid.Visibility = Visibility.Visible;
+                QRCodeLoginGrid.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnForgetPassword_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is ComboBox)
+
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void loginViewTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            BaseLoginControl loginControl = (e.AddedItems[0] as TabItem).Content as BaseLoginControl;
+
+            if (loginControl == null)
             {
-                if (((ComboBox)sender).SelectedItem is Label)
-                {
-                    var obj = ((ComboBox)sender).SelectedItem as Label;
-                    if (string.Equals(obj.Content.ToString(), "English", StringComparison.Ordinal))
-                    {
-                        var res = Application.Current.Resources.MergedDictionaries;
-                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
-                        Application.Current.Resources.MergedDictionaries.Remove(lang);
-                        Application.Current.Resources.MergedDictionaries.Add(lang);
-                    }
-                    if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
-                    {
-                        var res = Application.Current.Resources.MergedDictionaries;
-                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("zh-CN.xaml"));
-                        Application.Current.Resources.MergedDictionaries.Remove(lang);
-                        Application.Current.Resources.MergedDictionaries.Add(lang);
-                    }
-                }
+                return;
+            }
+
+            if (loginControl.LoginMethod == LoginMethods.Password)
+            {
+                btnForgetPassword.Visibility = Visibility.Visible;
+                btnForgetPassword.Visibility = Visibility.Visible;
+            }
+            else if (loginControl.LoginMethod == LoginMethods.PhoneCode)
+            {
+                btnForgetPassword.Visibility = Visibility.Hidden;
+                btnRegister.Visibility = Visibility.Visible;
             }
         }
     }

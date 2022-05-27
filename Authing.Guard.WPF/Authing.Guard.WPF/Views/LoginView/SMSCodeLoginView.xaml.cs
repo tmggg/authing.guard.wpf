@@ -1,5 +1,6 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Types;
+using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
@@ -16,7 +17,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// SMSCodeLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class SMSCodeLoginView : UserControl
+    public partial class SMSCodeLoginView : BaseLoginControl
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
@@ -29,6 +30,8 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             m_WindowsAPI = new WindowsAPI();
             m_RegexService = new RegexService();
+
+            LoginMethod = Enums.LoginMethods.PhoneCode;
         }
 
         private void SMSCodeLoginView_Loaded(object sender, RoutedEventArgs e)

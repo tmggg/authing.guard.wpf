@@ -1,17 +1,33 @@
 ﻿<controls:BaseGuardControl
-    x:Class="Authing.Guard.WPF.Views.Main.MainView"
+    x:Class="Authing.Guard.WPF.Views.LoginView.MainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="400"
     mc:Ignorable="d">
-    <Grid>
+    <controls:BaseGuardControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ToggleButton" x:Key="SwitchPageToggleButtonStyle">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+        </ResourceDictionary>
+    </controls:BaseGuardControl.Resources>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical">
@@ -22,37 +38,38 @@
             <TextBlock x:Name="tbTitle" Text="Authing" />
         </StackPanel>
         <Grid HorizontalAlignment="Right">
-            <ToggleButton
-                x:Name="btnSwitchLogin"
-                Width="60"
-                Height="60"
-                Margin="5"
-                Click="btnSwitchLogin_Click"
-                Style="{StaticResource Qr2ComputerToggleStyle}" />
+            <ToggleButton Content="切换登录" Style="{StaticResource SwitchPageToggleButtonStyle}" x:Name="btnSwitchLogin" Click="btnSwitchLogin_Click"></ToggleButton>
         </Grid>
         <Grid x:Name="LoginContent" Grid.Row="1">
             <Grid x:Name="moreLoginGrid">
-                <TabControl x:Name="loginViewTabControl" Style="{StaticResource TabControlStyle}">
-                    <!--<TabItem Header="密码登录">
-                        <login:PasswordLoginView></login:PasswordLoginView>
-                    </TabItem>
-                    <TabItem Header="短信验证码登录">
-                        <login:SMSCodeLoginView></login:SMSCodeLoginView>
-                    </TabItem>-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TabControl Style="{StaticResource TabControlStyle}" x:Name="loginViewTabControl" SelectionChanged="loginViewTabControl_SelectionChanged">
+                  
                 </TabControl>
+                <Grid Grid.Row="1" Margin="5">
+                    <Button HorizontalAlignment="Left" Content="忘记密码" Style="{StaticResource LinkButtonStyle}" x:Name="btnForgetPassword" Click="btnForgetPassword_Click"/>
+                    <Button HorizontalAlignment="Right" Content="立即注册"  Style="{StaticResource LinkButtonStyle}" x:Name="btnRegister" Click="btnRegister_Click"></Button>
+                </Grid>
             </Grid>
             <Grid x:Name="QRCodeLoginGrid" />
         </Grid>
-        <Grid Grid.Row="2">
-            <ComboBox
-                DockPanel.Dock="Left"
-                SelectedIndex="0"
-                SelectionChanged="Selector_OnSelectionChanged">
-                <ComboBox.Items>
-                    <Label Content="{StaticResource zhCN}" />
-                    <Label Content="{StaticResource enUS}" />
-                </ComboBox.Items>
-            </ComboBox>
+        <Grid x:Name="ThirdCottent" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <TextBlock Text="第三方账号登录" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListBox />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="3">
+            <ToggleButton x:Name="switchLanguage" Content="English" />
         </Grid>
     </Grid>
 </controls:BaseGuardControl>

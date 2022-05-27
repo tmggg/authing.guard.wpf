@@ -1,5 +1,7 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Types;
+using Authing.Guard.WPF.Controls;
+using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
@@ -15,10 +17,12 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// PasswordLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class PasswordLoginView : UserControl
+    public partial class PasswordLoginView : BaseLoginControl
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
+
+
 
         public PasswordLoginView()
         {
@@ -26,6 +30,8 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             m_WindowsAPI = new WindowsAPI();
             m_RegexService = new RegexService();
+
+            LoginMethod = LoginMethods.Password;
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
