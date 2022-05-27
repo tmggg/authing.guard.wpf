@@ -7,5 +7,6 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/QrCodeControlStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ToggleButtonStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
