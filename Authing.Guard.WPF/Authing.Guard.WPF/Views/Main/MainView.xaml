@@ -46,7 +46,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TabControl Style="{StaticResource AuthingTabControl}" x:Name="loginViewTabControl" SelectionChanged="loginViewTabControl_SelectionChanged">
+                <TabControl Style="{StaticResource TabControlStyle}" x:Name="loginViewTabControl" SelectionChanged="loginViewTabControl_SelectionChanged">
                   
                 </TabControl>
                 <Grid Grid.Row="1" Margin="5">
