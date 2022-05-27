@@ -24,8 +24,11 @@
         <Grid HorizontalAlignment="Right">
             <ToggleButton
                 x:Name="btnSwitchLogin"
+                Width="60"
+                Height="60"
+                Margin="5"
                 Click="btnSwitchLogin_Click"
-                Content="切换登录" />
+                Style="{StaticResource Qr2ComputerToggleStyle}" />
         </Grid>
         <Grid x:Name="LoginContent" Grid.Row="1">
             <Grid x:Name="moreLoginGrid">
