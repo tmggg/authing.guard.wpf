@@ -2,10 +2,13 @@
 using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,27 +45,65 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
 
             User user = null;
-            //判断输入的账号类型
-            if (m_RegexService.IsMail(tbAccount.Text.Trim()))
+            Exception currentExp = null;
+
+            try
             {
-                //邮箱登录
-                user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
-            }
-            else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
-            {
-                //手机登录
-                user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
-            }
-            else
-            {
-                //用户名登录
+                //最先用用户名登录，如果实在，再用其他方式登录，如果再失败，才判定为失败
                 user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
             }
-
-            if (user != null)
+            catch (Exception exp)
             {
-                //登录成功
+                currentExp = exp;
+               
+                if (exp.Message.Contains("密码不正确"))
+                {
+                    try
+                    {
+                        //判断输入的账号类型
+                        if (m_RegexService.IsMail(tbAccount.Text.Trim()))
+                        {
+                            //邮箱登录
+                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                        }
+
+                        else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
+                        {
+                            //手机登录
+                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        currentExp = exception;
+                    }
+                }
+                else
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
+                }
             }
+            finally
+            {
+                if (user != null)
+                {
+                    //登录成功
+
+                    IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
+                    EventManagement.Instance.Dispatch((int)EventId.Load, arg);
+                }
+
+                if (currentExp != null)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                }
+            }
+
+
+
+           
+
+           
         }
 
         private bool JudgeInput()

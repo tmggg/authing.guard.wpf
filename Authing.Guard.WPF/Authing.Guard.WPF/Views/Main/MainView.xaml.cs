@@ -1,6 +1,11 @@
-﻿using Authing.Guard.WPF.Controls;
+﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
+using Authing.ApiClient.Domain.Model;
+using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Views.LoginView;
@@ -25,7 +30,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// MainView.xaml 的交互逻辑
     /// </summary>
-    public partial class MainView : BaseGuardControl
+    public partial class MainView : BaseGuardControl, IEventListener
     {
         private IImageService m_ImageService;
 
@@ -37,13 +42,21 @@ namespace Authing.Guard.WPF.Views.LoginView
             InitializeComponent();
 
             Loaded += MainView_Loaded;
+            Unloaded += MainView_Unloaded;
 
             m_ImageService = new Utils.Impl.ImageService();
         }
 
+        private void MainView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            RemoveEvent();
+        }
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)
         {
+            InitConfig();
+            AddEvent();
+
             if (string.IsNullOrWhiteSpace(AppId))
             {
                 throw new Exception("请输入 AppId");
@@ -67,6 +80,31 @@ namespace Authing.Guard.WPF.Views.LoginView
 
 
             //根据配置显示界面
+        }
+
+        private void AddEvent()
+        {
+            foreach (EventId item in Enum.GetValues(typeof(EventId)))
+            {
+                EventManagement.Instance.AddListener((int)item, this);
+            }
+        }
+
+        private void RemoveEvent()
+        {
+            foreach (EventId item in Enum.GetValues(typeof(EventId)))
+            {
+                EventManagement.Instance.RemoveListener((int)item, this);
+            }
+        }
+
+        private void InitConfig()
+        {
+            ConfigService.AppId = AppId;
+            ConfigService.UserPoolId = UserPoolId;
+            ConfigService.SecretId = Secret;
+
+            Config = new Models.GuardConfig();
         }
 
         private void SimulationData()
@@ -113,7 +151,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
                     tabItem.Content = new PasswordLoginView();
 
-                    tabItem.Content = passwordLoginView ;
+                    tabItem.Content = passwordLoginView;
                     tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -121,7 +159,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 else if (item == LoginMethods.PhoneCode)
                 {
                     //添加手机号验证码登录
-                    SMSCodeLoginView sMSCodeLoginView= new SMSCodeLoginView(); 
+                    SMSCodeLoginView sMSCodeLoginView = new SMSCodeLoginView();
 
                     TabItem tabItem = new TabItem();
                     tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
@@ -167,7 +205,9 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void btnForgetPassword_Click(object sender, RoutedEventArgs e)
         {
-
+            btnSwitchLogin.Visibility = Visibility.Hidden;
+            LoginContent.Visibility = Visibility.Hidden;
+            resetPwdContent.Visibility = Visibility.Visible;
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -194,6 +234,70 @@ namespace Authing.Guard.WPF.Views.LoginView
                 btnForgetPassword.Visibility = Visibility.Hidden;
                 btnRegister.Visibility = Visibility.Visible;
             }
+        }
+
+        public void HandleEvent(int eventId, IEventArgs args)
+        {
+            switch (eventId)
+            {
+                case (int)EventId.Load:
+                    Config.Load?.Invoke(AuthClient.Instance);
+                    break;
+                case (int)EventId.LoadError:
+                    Config.LoadError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.Login:
+                    Config.Login?.Invoke(args.GetValue<User>(), AuthClient.Instance);
+                    break;
+                case (int)EventId.LoginError:
+                    Config.LoginError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.Register:
+                    Config.Register?.Invoke(args.GetValue<User>(), AuthClient.Instance);
+                    break;
+                case (int)EventId.RegisterError:
+                    Config.RegisterError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.PwdEmailSend:
+                    Config.PwdEmailSend?.Invoke();
+                    break;
+                case (int)EventId.PwdEmailSendError:
+                    Config.PwdEmailSendError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.PwdPhoneSend:
+                    Config.PwdPhoneSend?.Invoke();
+                    break;
+                case (int)EventId.PwdPhoneSendError:
+                    Config.PwdPhoneSendError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.PwdReset:
+                    Config.PwdReset?.Invoke();
+                    break;
+                case (int)EventId.PwdResetError:
+                    Config.PwdResetError?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.LoginTabChange:
+                    Config.LoginTabChange?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.RegisterTabChange:
+                    Config.RegisterTabChange?.Invoke(args.GetValue<string>());
+                    break;
+                case (int)EventId.RegisterInfoCompleted:
+                    Config.RegisterInfoCompleted?.Invoke(args.GetValue<User>(), AuthClient.Instance);
+                    break;
+                case (int)EventId.RegisterInfoCompletedError:
+                    Config.RegisterInfoCompletedError?.Invoke(args.GetValue<User>(), AuthClient.Instance);
+                    break;
+
+                default: break;
+            }
+        }
+
+        private void btnBackFromResetPwd_Click(object sender, RoutedEventArgs e)
+        {
+            resetPwdContent.Visibility = Visibility.Hidden;
+            btnSwitchLogin.Visibility = Visibility.Visible;
+            LoginContent.Visibility = Visibility.Visible;
         }
     }
 }
