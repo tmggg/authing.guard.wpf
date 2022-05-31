@@ -8,6 +8,13 @@ namespace Authing.Guard.WPF.Models
 {
     public class GuardConfig
     {
+        public GuardConfig()
+        {
+            LoginMethods = new List<LoginMethods>();
+            RegisterMethods = new List<RegisterMethods>();
+            SocialConnections = new List<SocialConnections>();
+        }
+
         #region 属性
 
         /// <summary>

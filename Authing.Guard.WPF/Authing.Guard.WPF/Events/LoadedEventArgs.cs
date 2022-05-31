@@ -1,4 +1,5 @@
 ﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
+using Authing.Guard.WPF.Events.EventAggreator;
 using System;
 
 namespace Authing.Guard.WPF.Events

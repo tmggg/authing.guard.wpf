@@ -28,6 +28,42 @@ namespace Authing.Guard.WPF.Controls
              DependencyProperty.Register(nameof(AppId), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
 
         /// <summary>
+        /// 在 Console 中配置用户池 ID
+        /// </summary>
+        public string UserPoolId
+        {
+            get
+            {
+                return (string)GetValue(UserPoolIdProperty);
+            }
+            set
+            {
+                SetValue(UserPoolIdProperty, value);
+            }
+        }
+
+        public static DependencyProperty UserPoolIdProperty =
+             DependencyProperty.Register(nameof(UserPoolId), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// 在 Console 中配置用户池密钥
+        /// </summary>
+        public string Secret
+        {
+            get
+            {
+                return (string)GetValue(SecretProperty);
+            }
+            set
+            {
+                SetValue(SecretProperty, value);
+            }
+        }
+
+        public static DependencyProperty SecretProperty =
+             DependencyProperty.Register(nameof(Secret), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
+
+        /// <summary>
         /// 租户 ID 使用租户相关功能时进行使用
         /// </summary>
         public string TenentId
