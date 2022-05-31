@@ -22,10 +22,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="10" HorizontalAlignment="Center">
+
+        <StackPanel Margin="10">
             <controls:PlaceHolderTextBox
                 x:Name="PhoneNumber"
-                Width="280"
                 Height="40"
                 CornerRadius="5"
                 IconType="Account"
@@ -56,41 +56,40 @@
                 Visibility="Collapsed" />
         </StackPanel>
 
-        <StackPanel
-            Grid.Row="1"
-            Margin="10"
-            HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
-                <controls:PasswordHolderTextBox
+        <StackPanel Grid.Row="1" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                    <controls:PasswordHolderTextBox
                     x:Name="ChallengeCode"
-                    Width="180"
                     Height="40"
                     CornerRadius="5"
                     IconType="VerifyCode"
                     PlaceHolder="请输入 4 位验证码"
                     Style="{StaticResource PlaceHolderStyle}"
                     TextChanged="ChallengeCode_OnTextChanged">
-                    <controls:PlaceHolderTextBox.Resources>
-                        <Storyboard x:Key="ShakeStoryboard">
-                            <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </controls:PlaceHolderTextBox.Resources>
-                    <controls:PlaceHolderTextBox.RenderTransform>
-                        <TranslateTransform X="0" Y="0" />
-                    </controls:PlaceHolderTextBox.RenderTransform>
-                </controls:PasswordHolderTextBox>
-                <controls:CoutDownButton
+                        <controls:PlaceHolderTextBox.Resources>
+                            <Storyboard x:Key="ShakeStoryboard">
+                                <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </controls:PlaceHolderTextBox.Resources>
+                        <controls:PlaceHolderTextBox.RenderTransform>
+                            <TranslateTransform X="0" Y="0" />
+                        </controls:PlaceHolderTextBox.RenderTransform>
+                    </controls:PasswordHolderTextBox>
+                    <controls:CoutDownButton
+                        Grid.Column="1"
                     x:Name="SendCodeBtn"
                     Margin="10 0 0 0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    attach:BorderAttach.CornerRadius="3"
+                        attach:BorderAttach.CornerRadius="3"
                     attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
                     attach:IconAttach.Height="24"
                     attach:IconAttach.Width="24"
@@ -99,7 +98,7 @@
                     Content="{DynamicResource SendCode}"
                     Count="3"
                     FontSize="14" />
-            </StackPanel>
+            </Grid>
             <TextBlock
                 x:Name="ChallengeCodeRemind"
                 Margin="0,2,0,0"
@@ -112,7 +111,6 @@
             x:Name="cbAgree"
             Grid.Row="2"
             Margin="10"
-            HorizontalAlignment="Center"
             Checked="cbAgree_Checked"
             Unchecked="cbAgree_Unchecked">
             <TextBlock>

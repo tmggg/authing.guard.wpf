@@ -38,8 +38,7 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             tbPhone.Warn = false;
             tbSMSCode.Warn = false;
-            tbPhoneRemind.Visibility = Visibility.Collapsed;
-            tbSMSCodeRemind.Visibility = Visibility.Collapsed;
+            tbPhoneRemind.Visibility = Visibility.Collapsed; 
         }
 
         private async void btnSendSMS_Click(object sender, RoutedEventArgs e)
@@ -138,18 +137,18 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void linkService_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkService.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
         }
 
         private void linkPrivacy_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkPrivacy.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
 
         private void tbSMSCode_TextChanged(object sender, TextChangedEventArgs e)
         {
             tbSMSCode.Warn = false;
-            tbSMSCodeRemind.Visibility = Visibility.Collapsed;
+            tbPhoneRemind.Visibility = Visibility.Collapsed;
         }
 
         private void tbPhone_TextChanged(object sender, TextChangedEventArgs e)

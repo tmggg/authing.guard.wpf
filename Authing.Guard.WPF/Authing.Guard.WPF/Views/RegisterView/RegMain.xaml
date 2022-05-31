@@ -7,6 +7,5 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <TabControl Style="{StaticResource TabControlStyle}" x:Name="RegMainTabControl">
-
     </TabControl>
 </UserControl>

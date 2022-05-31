@@ -24,17 +24,18 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="10" HorizontalAlignment="Center">
+
+        <StackPanel Margin="10">
             <controls:PlaceHolderTextBox
-                x:Name="MailBox"
-                Width="280"
-                Height="40"
-                CornerRadius="5"
-                IconType="Account"
-                MaxLength="11"
-                PlaceHolder="请输入邮箱"
-                Style="{StaticResource PlaceHolderStyle}"
-                TextChanged="MailBox_OnTextChanged">
+                    x:Name="MailBox"
+                    MinWidth="280"
+                    Height="40"
+                    CornerRadius="5"
+                    IconType="Account"
+                    MaxLength="11"
+                    PlaceHolder="请输入邮箱"
+                    Style="{StaticResource PlaceHolderStyle}"
+                    TextChanged="MailBox_OnTextChanged">
                 <controls:PlaceHolderTextBox.Resources>
                     <Storyboard x:Key="ShakeStoryboard">
                         <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
@@ -51,25 +52,24 @@
                 </controls:PlaceHolderTextBox.RenderTransform>
             </controls:PlaceHolderTextBox>
             <TextBlock
-                x:Name="MailBoxRemind"
-                Margin="0,2,0,0"
-                Foreground="{StaticResource AppRedBrush}"
-                Text="邮箱未填写"
-                Visibility="Collapsed" />
+                    x:Name="MailBoxRemind"
+                    Margin="0,2,0,0"
+                    Foreground="{StaticResource AppRedBrush}"
+                    Text="邮箱未填写"
+                    Visibility="Collapsed" />
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Margin="10">
             <PasswordBox
-                x:Name="FPasswod"
-                Grid.Row="1"
-                Width="280"
-                Height="40"
-                Margin="10"
-                infrastructures:ControlAttachProperty.PlaceHolder="请输入密码"
-                infrastructures:PasswordBoxHelper.Warn="False"
-                FontSize="15"
-                PasswordChanged="FPasswod_PasswordChanged"
-                Style="{StaticResource PasswordBoxStyle1}">
+                    x:Name="FPasswod"
+                    Grid.Row="1"
+                    MinWidth="280"
+                    Height="40"
+                    infrastructures:ControlAttachProperty.PlaceHolder="请输入密码"
+                    infrastructures:PasswordBoxHelper.Warn="False"
+                    FontSize="15"
+                    PasswordChanged="FPasswod_PasswordChanged"
+                    Style="{StaticResource PasswordBoxStyle}">
                 <PasswordBox.Resources>
                     <Storyboard x:Key="ShakeStoryboard">
                         <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
@@ -86,27 +86,26 @@
                 </PasswordBox.RenderTransform>
             </PasswordBox>
             <TextBlock
-                x:Name="FPasswodRemind"
-                Width="100"
-                Margin="10,2,0,0"
-                HorizontalAlignment="Left"
-                Foreground="{StaticResource AppRedBrush}"
-                Text="密码未填写"
-                Visibility="Collapsed" />
+                    x:Name="FPasswodRemind"
+                    Width="100"
+                    Margin="10,2,0,0"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource AppRedBrush}"
+                    Text="密码未填写"
+                    Visibility="Collapsed" />
         </StackPanel>
 
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2" Margin="10">
             <PasswordBox
-                x:Name="SPasswod"
-                Grid.Row="1"
-                Width="280"
-                Height="40"
-                Margin="10"
-                infrastructures:ControlAttachProperty.PlaceHolder="请确认密码"
-                infrastructures:PasswordBoxHelper.Warn="False"
-                FontSize="15"
-                PasswordChanged="SPasswod_PasswordChanged"
-                Style="{StaticResource PasswordBoxStyle1}">
+                    x:Name="SPasswod"
+                    Grid.Row="1"
+                    MinWidth="280"
+                    Height="40"
+                    infrastructures:ControlAttachProperty.PlaceHolder="请确认密码"
+                    infrastructures:PasswordBoxHelper.Warn="False"
+                    FontSize="15"
+                    PasswordChanged="SPasswod_PasswordChanged"
+                    Style="{StaticResource PasswordBoxStyle}">
                 <PasswordBox.Resources>
                     <Storyboard x:Key="ShakeStoryboard">
                         <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
@@ -123,21 +122,19 @@
                 </PasswordBox.RenderTransform>
             </PasswordBox>
             <TextBlock
-                x:Name="SPasswodRemind"
-                Width="100"
-                Margin="10,2,0,0"
-                HorizontalAlignment="Left"
-                Foreground="{StaticResource AppRedBrush}"
-                Text="密码未填写"
-                Visibility="Collapsed" />
+                    x:Name="SPasswodRemind"
+                    Width="100"
+                    Margin="10,2,0,0"
+                    HorizontalAlignment="Left"
+                    Foreground="{StaticResource AppRedBrush}"
+                    Text="密码未填写"
+                    Visibility="Collapsed" />
         </StackPanel>
-
 
         <CheckBox
             x:Name="cbAgree"
             Grid.Row="3"
             Margin="10"
-            HorizontalAlignment="Center"
             Checked="cbAgree_Checked"
             Unchecked="cbAgree_Unchecked">
             <TextBlock>

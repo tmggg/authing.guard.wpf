@@ -20,7 +20,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// PasswordLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class PasswordLoginView : BaseLoginControl
+    public partial class PasswordLoginView : BaseLoginControl,IEventListener
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
@@ -169,12 +169,41 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void linkService_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkService.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
         }
 
         private void linkPrivacy_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkPrivacy.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
+
+
+
+        public void HandleEvent(int eventId, IEventArgs args)
+
+        {
+
+            switch (eventId)
+
+            {
+
+                case (int)EventId.LanguageChanged:break;
+
+                default:break;
+
+            }
+
+        }
+
+
+
+        private void SetLanguage()
+
+        {
+
+            tbAccount.PlaceHolder = Application.Current.Resources["SendCode"] as string;
+
+        }
+
     }
 }

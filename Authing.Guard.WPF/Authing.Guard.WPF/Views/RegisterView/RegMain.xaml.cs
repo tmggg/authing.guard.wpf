@@ -25,10 +25,12 @@ namespace Authing.Guard.WPF.Views.RegisterView
         {
             InitializeComponent();
             TabItem tabItem = new TabItem();
+            tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             tabItem.Header = Application.Current.Resources["RegByPhone"] as String;
             tabItem.Content = new PhoneReg();
             RegMainTabControl.Items.Add(tabItem); 
             tabItem = new TabItem();
+            tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             tabItem.Header = Application.Current.Resources["RegByMail"] as String;
             tabItem.Content = new MailReg();
             RegMainTabControl.Items.Add(tabItem);
