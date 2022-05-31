@@ -94,8 +94,9 @@
                 </controls:PasswordHolderTextBox>
                 <controls:CoutDownButton  
                     Grid.Column="1"
-                    x:Name="SendCodeBtn"  
+                    x:Name="btnSendSMS"  
                     Margin="10 0 0 0"  
+                    Width="100"
                     HorizontalAlignment="Center"  
                     VerticalAlignment="Center"  
                     attach:BorderAttach.CornerRadius="3"  
@@ -103,7 +104,7 @@
                     attach:IconAttach.Height="24"  
                     attach:IconAttach.Width="24"  
                     attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"  
-                    Click="SendCodeBtn_OnClick"  
+                    Click="btnSendSMS_OnClick"  
                     Content="{DynamicResource SendCode}"  
                     Count="3"  
                     FontSize="14" />
@@ -114,23 +115,8 @@
                 Foreground="{StaticResource AppRedBrush}"
                 Text="{DynamicResource PhoneCodeError}"
                 Visibility="Collapsed" />
-            </StackPanel>
-            <controls:CoutDownButton Grid.Column="1"
-                    x:Name="btnSendSMS"
-                    Width="100"
-                    Margin="20 0 0 0"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    attach:BorderAttach.CornerRadius="3"
-                    attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
-                    attach:IconAttach.Height="24"
-                    attach:IconAttach.Width="24"
-                    attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
-                    Click="btnSendSMS_OnClick"
-                    Content="{DynamicResource SendCode}"
-                    Count="3"
-                    FontSize="14" />
-        </Grid>
+        </StackPanel>
+        
         <CheckBox
             x:Name="cbAgree"
             Grid.Row="2"
@@ -160,7 +146,6 @@
                 <TranslateTransform X="0" Y="0" />
             </CheckBox.RenderTransform>
         </CheckBox>
-
         <controls:PrimaryButton  
             x:Name="btnLogin"  
             Grid.Row="3"  
@@ -170,6 +155,6 @@
             HorizontalAlignment="Stretch"  
             Click="btnLogin_Click"  
             Content="{DynamicResource Confirm}" />
-
     </Grid>
+
 </controls:BaseLoginControl>  
