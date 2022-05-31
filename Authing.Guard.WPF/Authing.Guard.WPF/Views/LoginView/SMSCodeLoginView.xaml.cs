@@ -158,12 +158,12 @@ namespace Authing.Guard.WPF.Views.LoginView
             tbPhoneRemind.Visibility = Visibility.Collapsed;
         }
 
-        private async void Testbtn_OnClick(object sender, RoutedEventArgs e)
+        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            Testbtn.IsBusy = Testbtn.IsBusy != true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
             await TaskExHelper.Delay(2000);
-            Testbtn.IsBusy = Testbtn.IsBusy != true;
-            Testbtn.StartCountDown = true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            SendCodeBtn.StartCountDown = true;
         }
     }
 }

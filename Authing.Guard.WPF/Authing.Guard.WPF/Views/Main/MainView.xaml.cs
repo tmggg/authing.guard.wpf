@@ -145,7 +145,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加 App 扫码登录界面
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
+                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -176,7 +176,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     SMSCodeLoginView sMSCodeLoginView = new SMSCodeLoginView();
 
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
+                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
                 }
@@ -226,7 +226,11 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            RegContent.Visibility = Visibility.Visible;
+            LoginContent.Visibility = Visibility.Hidden;
+            resetPwdContent.Visibility = Visibility.Hidden;
+            btnSwitchLogin.Visibility = Visibility.Hidden;
+            ThirdCottent.Visibility = Visibility.Hidden;
         }
 
         private void loginViewTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -348,6 +352,15 @@ namespace Authing.Guard.WPF.Views.LoginView
                     Process.Start(data.LoginUrl);
                 }
             }
+        }
+
+        private void RegReturn2Login_OnClick(object sender, RoutedEventArgs e)
+        {
+            RegContent.Visibility = Visibility.Hidden;
+            LoginContent.Visibility = Visibility.Visible;
+            resetPwdContent.Visibility = Visibility.Hidden;
+            btnSwitchLogin.Visibility = Visibility.Visible;
+            ThirdCottent.Visibility = Visibility.Visible;
         }
     }
 }

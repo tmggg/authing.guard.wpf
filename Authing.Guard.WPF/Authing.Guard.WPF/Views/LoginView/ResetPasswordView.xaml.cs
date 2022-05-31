@@ -150,5 +150,13 @@ namespace Authing.Guard.WPF.Views.LoginView
             PasswordBoxHelper.SetWarn(tbPassword, false);
             tbPasswordRemind.Visibility = Visibility.Collapsed;
         }
+
+        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            SendCodeBtn.StartCountDown = true;
+        }
     }
 }
