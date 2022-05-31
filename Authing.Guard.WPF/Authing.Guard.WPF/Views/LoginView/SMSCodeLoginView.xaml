@@ -98,11 +98,11 @@
                 x:Name="tbSMSCodeRemind"
                 Margin="0,2,0,0"
                 Foreground="{StaticResource AppRedBrush}"
-                Text="验证码未填写"
+                Text="{DynamicResource PhoneCodeError}"
                 Visibility="Collapsed" />
             </StackPanel>
             <controls:CoutDownButton Grid.Column="1"
-                    x:Name="Testbtn"
+                    x:Name="btnSendSMS"
                     Width="100"
                     Margin="20 0 0 0"
                     HorizontalAlignment="Center"
@@ -112,7 +112,7 @@
                     attach:IconAttach.Height="24"
                     attach:IconAttach.Width="24"
                     attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
-                    Click="Testbtn_OnClick"
+                    Click="btnSendSMS_OnClick"
                     Content="{DynamicResource SendCode}"
                     Count="3"
                     FontSize="14" />

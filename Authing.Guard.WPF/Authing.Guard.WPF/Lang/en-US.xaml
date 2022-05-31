@@ -24,10 +24,20 @@
     <system:String x:Key="BackFromResetPassword">Back</system:String>
     <system:String x:Key="Confirm">Confirm</system:String>
     <system:String x:Key="PasswordLoginAccountNotify">Enter Username / Phone number / Email</system:String>
+    <system:String x:Key="PasswordLoginAccountError">Account is missing</system:String>
     <system:String x:Key="PasswordLoginPasswordNotify">Enter Password</system:String>
+    <system:String x:Key="PasswordLoginPasswordError">Passowrd is missing</system:String>
     <system:String x:Key="PhoneCodeAccountNotify">Enter Phone Number</system:String>
+    <system:String x:Key="PhoneCodeAccountError">Phone number is missing</system:String>
+    <system:String x:Key="PhoneCodeAccountValid">Please verify your phone number first</system:String>
     <system:String x:Key="PhoneCodeNotify">4-digit code</system:String>
+    <system:String x:Key="PhoneCodeError">Digit code is missing</system:String>
     <system:String x:Key="ResetPasswordAccountNotify">Enter Email / Phone number</system:String>
+    <system:String x:Key="ResetPasswordAccountError">Phone / Email is missing</system:String>
     <system:String x:Key="ResetPasswordCodeNotify">4-digit code</system:String>
+    <system:String x:Key="ResetPasswordCodeError">Digit code is missing</system:String>
     <system:String x:Key="ResetPasswordNewNotify">Enter a new Password</system:String>
+    <system:String x:Key="ResetPasswordNewError">Password is missing</system:String>
+    <system:String x:Key="ResetPasswordAccountValid">Enter correct phone number or email address</system:String>
+    <system:String x:Key="ResetPasswordNewValid">The password must be at least 6 characters long and must contain two of English,numbers and symbols</system:String>
 </ResourceDictionary>

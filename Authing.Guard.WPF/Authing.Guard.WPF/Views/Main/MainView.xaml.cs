@@ -34,9 +34,6 @@ namespace Authing.Guard.WPF.Views.LoginView
     {
         private IImageService m_ImageService;
 
-
-        private LoginPage m_CurrentLoginPage;//当前的页面
-
         public MainView()
         {
             InitializeComponent();
@@ -54,6 +51,17 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void MainView_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                AuthClient.Init();
+                EventManagement.Instance.Dispatch((int)EventId.Load, EventArgs<AuthenticationClient>.CreateEventArgs(AuthClient.Instance));
+            }
+            catch (Exception exp)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(exp.Message));
+            }
+
+
             InitConfig();
             AddEvent();
 
