@@ -98,12 +98,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                     EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(currentExp.Message));
                 }
             }
-
-
-
-           
-
-           
         }
 
         private bool JudgeInput()

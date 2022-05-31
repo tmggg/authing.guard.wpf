@@ -25,10 +25,21 @@
     <system:String x:Key="BackFromResetPassword">返回登录</system:String>
     <system:String x:Key="Confirm">确认</system:String>
     <system:String x:Key="PasswordLoginAccountNotify">请输入用户名 / 手机号 / 邮箱</system:String>
+    <system:String x:Key="PasswordLoginAccountError">账号未填写</system:String>
     <system:String x:Key="PasswordLoginPasswordNotify">请输入登录密码</system:String>
+    <system:String x:Key="PasswordLoginPasswordError">密码未填写</system:String>
     <system:String x:Key="PhoneCodeAccountNotify">请输入手机号</system:String>
+    <system:String x:Key="PhoneCodeAccountError">手机号未填写</system:String>
+    <system:String x:Key="PhoneCodeAccountValid">输入有效的手机号</system:String>
     <system:String x:Key="PhoneCodeNotify">请输入 4 位验证码</system:String>
+    <system:String x:Key="PhoneCodeError">验证码未填写</system:String>
     <system:String x:Key="ResetPasswordAccountNotify">请输入邮箱 / 手机号</system:String>
+    <system:String x:Key="ResetPasswordAccountError">手机号 / 邮箱未填写</system:String>
     <system:String x:Key="ResetPasswordCodeNotify">请输入 4 位验证码</system:String>
+    <system:String x:Key="ResetPasswordCodeError">验证码未填写</system:String>
     <system:String x:Key="ResetPasswordNewNotify">请输入新密码</system:String>
+    <system:String x:Key="ResetPasswordNewError">密码未填写</system:String>
+    <system:String x:Key="ResetPasswordAccountValid">请输入正确的手机号或邮箱</system:String>
+    <system:String x:Key="ResetPasswordNewValid">密码长度至少为 6 位，且要包含英文、数字与符号中的两种</system:String>
+
 </ResourceDictionary>
