@@ -138,12 +138,12 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void linkService_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkService.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
         }
 
         private void linkPrivacy_Click(object sender, RoutedEventArgs e)
         {
-            m_WindowsAPI.ShellExecute("open", linkPrivacy.NavigateUri.AbsoluteUri);
+            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
 
         private void tbSMSCode_TextChanged(object sender, TextChangedEventArgs e)

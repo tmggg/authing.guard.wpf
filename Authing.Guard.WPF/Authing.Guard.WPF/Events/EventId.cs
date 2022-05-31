@@ -71,7 +71,11 @@ namespace Authing.Guard.WPF.Events
         /// <summary>
         /// 注册补充失败事件
         /// </summary>
-        RegisterInfoCompletedError
+        RegisterInfoCompletedError,
+        /// <summary>
+        /// 语言选择改变
+        /// </summary>
+        LanguageChanged,
 
     }
 }

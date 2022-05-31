@@ -131,7 +131,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加 App 扫码登录界面
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
+                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -148,6 +148,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     PasswordLoginView passwordLoginView = new PasswordLoginView();
 
                     TabItem tabItem = new TabItem();
+                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                     tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
                     tabItem.Content = new PasswordLoginView();
 
@@ -160,9 +161,9 @@ namespace Authing.Guard.WPF.Views.LoginView
                 {
                     //添加手机号验证码登录
                     SMSCodeLoginView sMSCodeLoginView = new SMSCodeLoginView();
-
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
+                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                    tabItem.Header = Application.Current.Resources["PhoneLogin"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
                 }
@@ -313,6 +314,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                         var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
+
                     }
                     if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
                     {

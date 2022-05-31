@@ -52,6 +52,11 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private async void btnSendCode_Click(object sender, RoutedEventArgs e)
         {
+            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
+            btnSendCode.StartCountDown = true;
+
             if (string.IsNullOrWhiteSpace(tbAccount.Text))
             {
                 tbAccount.Warn = true;

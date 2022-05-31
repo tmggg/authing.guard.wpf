@@ -53,14 +53,15 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TabControl Style="{StaticResource TabControlStyle}" x:Name="loginViewTabControl" SelectionChanged="loginViewTabControl_SelectionChanged">
-
                 </TabControl>
                 <Grid Grid.Row="1" Margin="5">
-                    <Button HorizontalAlignment="Left" Content="忘记密码" Style="{StaticResource LinkButtonStyle}" x:Name="btnForgetPassword" Click="btnForgetPassword_Click"/>
-                    <Button HorizontalAlignment="Right" Content="立即注册"  Style="{StaticResource LinkButtonStyle}" x:Name="btnRegister" Click="btnRegister_Click"></Button>
+                    <Button HorizontalAlignment="Left" Content="{DynamicResource ForgotPassword}" Style="{StaticResource LinkButtonStyle}" x:Name="btnForgetPassword" Click="btnForgetPassword_Click"/>
+                    <Button HorizontalAlignment="Right" Content="{DynamicResource SignUp}"  Style="{StaticResource LinkButtonStyle}" x:Name="btnRegister" Click="btnRegister_Click"></Button>
                 </Grid>
             </Grid>
-            <Grid x:Name="QRCodeLoginGrid" />
+            <Grid x:Name="QRCodeLoginGrid" >
+              
+            </Grid>
         </Grid>
         <Grid x:Name="resetPwdContent" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
@@ -68,7 +69,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <login:ResetPasswordView></login:ResetPasswordView>
-            <Button HorizontalAlignment="Right" Grid.Row="1" Content="返回登录" Style="{StaticResource LinkButtonStyle}" x:Name="btnBackFromResetPwd" Click="btnBackFromResetPwd_Click"></Button>
+            <Button HorizontalAlignment="Right" Grid.Row="1" Content="{DynamicResource BackFromResetPassword}" Style="{StaticResource LinkButtonStyle}" x:Name="btnBackFromResetPwd" Click="btnBackFromResetPwd_Click"></Button>
         </Grid>
         <Grid x:Name="ThirdCottent" Grid.Row="2">
             <Grid.RowDefinitions>

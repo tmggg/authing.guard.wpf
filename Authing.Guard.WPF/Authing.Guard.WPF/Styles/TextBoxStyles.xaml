@@ -30,7 +30,7 @@
                                     <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" BorderThickness="0" VerticalAlignment="Stretch" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}"/>
                                     <TextBlock Grid.Column="1" Text="{TemplateBinding PlaceHolder}" HorizontalAlignment="{TemplateBinding PlacelHolderHorizontalAlignment}" VerticalAlignment="{TemplateBinding PlaceHolderVerticalAlignment}"
-                                   FontSize="{TemplateBinding PlaceHolderFontSize}" Foreground="{TemplateBinding PlaceHolderForeground}" Margin="{TemplateBinding Padding}" x:Name="tbPlaceHolder"
+                                   FontSize="{TemplateBinding PlaceHolderFontSize}" Foreground="{TemplateBinding PlaceHolderForeground}" Margin="3 0 0 0" x:Name="tbPlaceHolder"
                                    Visibility="Collapsed"/>
                                 </Grid>
                             </Grid>
@@ -134,13 +134,17 @@
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-    <Style x:Key="PasswordBoxStyle1" TargetType="{x:Type PasswordBox}">
+    <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
         <Setter Property="ins:PasswordBoxHelper.Attach" Value="True"/>
         <Setter Property="PasswordChar" Value="*"/>
         <Setter Property="Background" Value="{StaticResource AppTextBoxNormalGrayBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ins:ControlAttachProperty.PlaceHolderFontSize" Value="12"/>
+        <Setter Property="ins:ControlAttachProperty.PlaceHolderForeground" Value="{StaticResource TextBoxPlaceHolderGrayBrush}"/>
+        <Setter Property="ins:ControlAttachProperty.PlacelHolderHorizontalAlignment" Value="Left"/>
+        <Setter Property="ins:ControlAttachProperty.PlaceHolderVerticalAlignment" Value="Center"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -165,11 +169,19 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <!--PasswordBox原有的显示节点-->
-                                    <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" IsTabStop="False" VerticalAlignment="Center" Background="{x:Null}" VerticalContentAlignment="Center" Margin="5,5"/>
+                                    <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" IsTabStop="False" VerticalAlignment="Center" Background="{x:Null}" VerticalContentAlignment="Center"
+                                                  Margin="{TemplateBinding Padding}"/>
                                     <!--创建明文显示的TextBox-->
-                                    <TextBox x:Name="PART_PasswordShower" Background="Transparent"  BorderBrush="Transparent" VerticalContentAlignment="Center" Text="{Binding Path=(ins:PasswordBoxHelper.Password),RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,5"/>
+                                    <TextBox x:Name="PART_PasswordShower" Background="Transparent"  BorderBrush="Transparent" VerticalContentAlignment="Center" 
+                                             Text="{Binding Path=(ins:PasswordBoxHelper.Password),RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,5"/>
                                     <!--创建提示字符-->
-                                    <TextBlock x:Name="PART_PlaceHolder" Text="{Binding Path=(ins:ControlAttachProperty.PlaceHolder),RelativeSource={RelativeSource TemplatedParent}}"  Visibility="Collapsed" Opacity="0.6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,5"/>
+                                    <TextBlock x:Name="PART_PlaceHolder" 
+                                               Foreground="{Binding Path=(ins:ControlAttachProperty.PlaceHolderForeground),RelativeSource={RelativeSource TemplatedParent}}"  
+                                               FontSize="{Binding Path=(ins:ControlAttachProperty.PlaceHolderFontSize),RelativeSource={RelativeSource TemplatedParent}}"
+                                               HorizontalAlignment="{Binding Path=(ins:ControlAttachProperty.PlacelHolderHorizontalAlignment),RelativeSource={RelativeSource TemplatedParent}}"
+                                               VerticalAlignment="{Binding Path=(ins:ControlAttachProperty.PlaceHolderVerticalAlignment),RelativeSource={RelativeSource TemplatedParent}}"
+                                               Text="{Binding Path=(ins:ControlAttachProperty.PlaceHolder),RelativeSource={RelativeSource TemplatedParent}}"  
+                                               Visibility="Collapsed"  Margin="3 0 0 0"/>
                                     <!--触发按钮显示样式-->
                                     <ToggleButton Style="{StaticResource PasswordToggleButtonStyle}" x:Name="PART_ToggleEye" Grid.Column="1" Width="40"  Margin="3,3" BorderThickness="0" >
 
@@ -180,6 +192,13 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+
+                        <Trigger Property="ins:PasswordBoxHelper.Password"  Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="PART_PlaceHolder" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="ins:PasswordBoxHelper.Password" Value="">
+                            <Setter Property="Visibility" TargetName="PART_PlaceHolder" Value="Visible"/>
+                        </Trigger>
                         <Trigger Property="ins:PasswordBoxHelper.Warn" Value="True">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource AppRedBrush}"/>
                         </Trigger>
@@ -191,10 +210,6 @@
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                        </Trigger>
-                        <!--密码框为空设置按钮禁用-->
-                        <Trigger Property="ins:PasswordBoxHelper.Password"  Value="">
-                            <Setter TargetName="PART_ToggleEye" Property="IsEnabled" Value="False"/>
                         </Trigger>
                         <!--按住按钮，更改按钮背景图片并设置明文框显示且密码框不显示且不占用-->
                         <Trigger Property="IsChecked" SourceName="PART_ToggleEye" Value="False">
@@ -210,13 +225,13 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AppTextBoxNormalGrayBrush}"/>
                         </Trigger>
                         <!--密码框为空不且没有获取焦点时，设置提示文字显示-->
-                        <MultiTrigger>
+                        <!--<MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="ins:PasswordBoxHelper.Password"  Value=""/>
                                 <Condition Property="IsFocused" Value="False"/>
                             </MultiTrigger.Conditions>
                             <Setter TargetName="PART_PlaceHolder" Property="Visibility" Value="Visible"/>
-                        </MultiTrigger>
+                        </MultiTrigger>-->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsFocused" Value="True"/>

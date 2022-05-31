@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="PasswordLogin">Password</system:String>
-    <system:String x:Key="PhoneLogin">Phone</system:String>
+    <system:String x:Key="PhoneLogin">Phone Code</system:String>
     <system:String x:Key="AppScanLogin">App QR code</system:String>
     <system:String x:Key="SendCode">Send Code</system:String>
     <system:String x:Key="SendCodeTip">S Retry</system:String>
@@ -12,4 +12,22 @@
     <system:String x:Key="zhCN">中文</system:String>
     <system:String x:Key="enUS">English</system:String>
     <system:String x:Key="QRCodeExpired">QR Code Expired</system:String>
+    <system:String x:Key="SMSCodeLogin">Phone Code</system:String>
+    <system:String x:Key="LogIn">Log In</system:String>
+    <system:String x:Key="ForgotPassword">Forgot Password</system:String>
+    <system:String x:Key="SignUp">Sign Up</system:String>
+    <system:String x:Key="Agreement">I have read and agree to Authing</system:String>
+    <system:String x:Key="ServiceAgreement">Service Agreement</system:String>
+    <system:String x:Key="And">and</system:String>
+    <system:String x:Key="PrivacyPolicy">Privacy Policy</system:String>
+    <system:String x:Key="ResetPasswordRemind">Enter your registered phone number/email,enter the verification code received,and we will reset your password.</system:String>
+    <system:String x:Key="BackFromResetPassword">Back</system:String>
+    <system:String x:Key="Confirm">Confirm</system:String>
+    <system:String x:Key="PasswordLoginAccountNotify">Enter Username / Phone number / Email</system:String>
+    <system:String x:Key="PasswordLoginPasswordNotify">Enter Password</system:String>
+    <system:String x:Key="PhoneCodeAccountNotify">Enter Phone Number</system:String>
+    <system:String x:Key="PhoneCodeNotify">4-digit code</system:String>
+    <system:String x:Key="ResetPasswordAccountNotify">Enter Email / Phone number</system:String>
+    <system:String x:Key="ResetPasswordCodeNotify">4-digit code</system:String>
+    <system:String x:Key="ResetPasswordNewNotify">Enter a new Password</system:String>
 </ResourceDictionary>
