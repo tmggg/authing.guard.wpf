@@ -40,12 +40,14 @@ namespace Authing.Guard.WPF.Views.RegisterView
 
         private void FPasswod_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            PasswordBoxHelper.SetWarn(FPasswod, false);
+            FPasswodRemind.Visibility = Visibility.Collapsed;
         }
 
         private void SPasswod_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            PasswordBoxHelper.SetWarn(SPasswod, false);
+            SPasswodRemind.Visibility = Visibility.Collapsed;
         }
         private void cbAgree_Checked(object sender, RoutedEventArgs e)
         {

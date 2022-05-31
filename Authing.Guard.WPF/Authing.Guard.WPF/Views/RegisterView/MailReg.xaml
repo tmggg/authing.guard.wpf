@@ -53,7 +53,7 @@
             </controls:PlaceHolderTextBox>
             <TextBlock
                     x:Name="MailBoxRemind"
-                    Margin="0,2,0,0"
+                    Margin="0,5,0,0"
                     Foreground="{StaticResource AppRedBrush}"
                     Text="邮箱未填写"
                     Visibility="Collapsed" />
@@ -88,7 +88,7 @@
             <TextBlock
                     x:Name="FPasswodRemind"
                     Width="100"
-                    Margin="10,2,0,0"
+                    Margin="0,5,0,0"
                     HorizontalAlignment="Left"
                     Foreground="{StaticResource AppRedBrush}"
                     Text="密码未填写"
@@ -124,7 +124,7 @@
             <TextBlock
                     x:Name="SPasswodRemind"
                     Width="100"
-                    Margin="10,2,0,0"
+                    Margin="0,5,0,0"
                     HorizontalAlignment="Left"
                     Foreground="{StaticResource AppRedBrush}"
                     Text="密码未填写"

@@ -50,7 +50,7 @@
             </controls:PlaceHolderTextBox>
             <TextBlock
                 x:Name="PhoneNumberRemind"
-                Margin="0,2,0,0"
+                Margin="0,5,0,0"
                 Foreground="{StaticResource AppRedBrush}"
                 Text="手机号未填写"
                 Visibility="Collapsed" />
@@ -101,7 +101,7 @@
             </Grid>
             <TextBlock
                 x:Name="ChallengeCodeRemind"
-                Margin="0,2,0,0"
+                Margin="0,5,0,0"
                 Foreground="{StaticResource AppRedBrush}"
                 Text="验证码未填写"
                 Visibility="Collapsed" />
