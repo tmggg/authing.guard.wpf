@@ -1,8 +1,6 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
-    xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach" xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -94,8 +92,7 @@
                                 Width="{TemplateBinding attach:IconAttach.Width}"
                                 Height="{TemplateBinding attach:IconAttach.Height}"
                                 Data="{TemplateBinding attach:IconAttach.Geometry}"
-                                SnapsToDevicePixels="True"
-                                Stretch="Uniform">
+                                SnapsToDevicePixels="True" Stretch="Uniform">
                                 <Path.Fill>
                                     <SolidColorBrush x:Name="FillBrush" Color="{DynamicResource SecondaryBorderColor}" />
                                 </Path.Fill>
@@ -138,8 +135,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="FillBrush"
-                                            Storyboard.TargetProperty="Color"
+                                            Storyboard.TargetName="FillBrush" Storyboard.TargetProperty="Color"
                                             From="{StaticResource SecondaryBorderColor}"
                                             To="{StaticResource PrimaryTextColor}"
                                             Duration="0:0:0.2" />
@@ -150,8 +146,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="FillBrush"
-                                            Storyboard.TargetProperty="Color"
+                                            Storyboard.TargetName="FillBrush" Storyboard.TargetProperty="Color"
                                             From="{StaticResource PrimaryTextColor}"
                                             To="{StaticResource SecondaryBorderColor}"
                                             Duration="0:0:0.2" />
@@ -276,4 +271,104 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Geometry x:Key="Icon">M512 907c-24.852 0-45-20.148-45-45s20.148-45 45-45c168.446 0 305-136.554 305-305S680.446 207 512 207 207 343.554 207 512c0 24.852-20.148 45-45 45S117 536.852 117 512c0-218.152 176.848-395 395-395S907 293.848 907 512 730.152 907 512 907z</Geometry>
+    <Style TargetType="controls:CoutDownButton">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <!--<Setter Property="HorizontalAlignment" Value="Center" /> 
+        <Setter Property="VerticalAlignment" Value="Center" /> 
+        <Setter Property="HorizontalContentAlignment" Value="Center" /> 
+        <Setter Property="VerticalContentAlignment" Value="Center" />-->
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SecondaryBorderBrush}" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CoutDownButton">
+
+                    <Border 
+                        Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="{Binding Path=(attach:BorderAttach.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid>
+                            <Border x:Name="PART_MainBorder">
+                                <ContentPresenter 
+                                    Margin="{TemplateBinding Padding}" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                    RecognizesAccessKey="True" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                            <DockPanel 
+                                x:Name="PART_TipDockPanel" 
+                                Margin="{TemplateBinding Padding}" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                Background="{TemplateBinding Background}" 
+                                Visibility="Collapsed">
+                                <TextBlock Margin="0,0,2,0" Text="{Binding Count, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding attach:TipContentAttach.TipContent}" />
+                            </DockPanel>
+                            <Border 
+                                x:Name="BusyBorder" 
+                                Background="{TemplateBinding Background}" 
+                                Visibility="Visible">
+                                <Path 
+                                    x:Name="PART_IconPath" 
+                                    Width="{TemplateBinding attach:IconAttach.Width}" 
+                                    Height="{TemplateBinding attach:IconAttach.Height}" 
+                                    Data="{TemplateBinding attach:IconAttach.Geometry}" 
+                                    Fill="{DynamicResource PrimaryBrush}" 
+                                    RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True" 
+                                    Stretch="Uniform">
+                                    <Path.RenderTransform>
+                                        <RotateTransform />
+                                    </Path.RenderTransform>
+                                </Path>
+                                <!--<Path 
+                                    x:Name="PART_IconPath" Width="24" 
+                                    Height="24" 
+                                    Data="{StaticResource Icon}" 
+                                    Fill="{DynamicResource PrimaryBrush}" 
+                                    RenderTransformOrigin="0.5,0.5" Stretch="Fill"> 
+                                    <Path.RenderTransform> 
+                                        <RotateTransform /> 
+                                    </Path.RenderTransform> 
+                                    <Path.Resources> 
+                                        <Storyboard x:Key="BusyStoryBoard"> 
+                                            <DoubleAnimation 
+                                                BeginTime="0:0:0" RepeatBehavior="Forever" 
+                                                Storyboard.TargetName="PART_IconPath" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" 
+                                                To="360" Duration="0:0:.5" /> 
+                                        </Storyboard> 
+                                    </Path.Resources> 
+                                </Path>-->
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_TipDockPanel" Property="Opacity" Value="0.5" />
+                        </Trigger>
+                        <Trigger Property="IsBusy" Value="True">
+                            <Setter TargetName="PART_MainBorder" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="PART_TipDockPanel" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="BusyBorder" Property="Visibility" Value="Visible" />
+                            <Setter Property="IsHitTestVisible" Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsBusy" Value="False">
+                            <Setter TargetName="PART_MainBorder" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_TipDockPanel" Property="Visibility" Value="Hidden" />
+                            <Setter TargetName="BusyBorder" Property="Visibility" Value="Hidden" />
+                            <Setter Property="IsHitTestVisible" Value="True" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>
