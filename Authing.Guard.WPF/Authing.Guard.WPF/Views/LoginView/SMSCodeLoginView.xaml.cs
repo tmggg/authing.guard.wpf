@@ -43,7 +43,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             tbPhoneRemind.Visibility = Visibility.Collapsed; 
         }
 
-        private async void btnSendSMS_Click(object sender, RoutedEventArgs e)
+        private async void btnSendSMS_OnClick(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbPhone.Text))
             {
