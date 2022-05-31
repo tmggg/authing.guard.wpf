@@ -4,26 +4,29 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid x:Name="GridTemp" Background="Transparent">
+                    <Grid x:Name="GridTemp">
+                        <Border
+                            x:Name="Qrcode" Background="Transparent"
+                            ToolTip="扫码登录">
+                            <Path
+                                Data="{DynamicResource Qrcode}"
+                                Fill="{DynamicResource PrimaryBrush}"
+                                Stretch="UniformToFill"
+                                Stroke="{DynamicResource PrimaryBrush}" />
+                        </Border>
+                        <Border
+                            x:Name="Computer" Background="Transparent"
+                            ToolTip="更多登录">
+                            <Path
+                                Data="{DynamicResource Computer}"
+                                Fill="{DynamicResource PrimaryBrush}"
+                                Stretch="UniformToFill"
+                                Stroke="{DynamicResource PrimaryBrush}" />
+                        </Border>
                         <Path
-                            x:Name="Qrcode"
-                            Data="{DynamicResource Qrcode}"
-                            Fill="{DynamicResource PrimaryBrush}"
-                            Stretch="UniformToFill"
-                            Stroke="{DynamicResource PrimaryBrush}" />
-                        <Path
-                            x:Name="Computer"
-                            Data="{DynamicResource Computer}"
-                            Fill="{DynamicResource PrimaryBrush}"
-                            Stretch="UniformToFill"
-                            Stroke="{DynamicResource PrimaryBrush}" />
-                        <Path
-                            x:Name="CoverPath"
-                            Margin="0,0,0,-0.5"
-                            Data="M16 48 L16 46 L18 48"
-                            Fill="White"
-                            RenderTransformOrigin="0 1"
-                            Stretch="UniformToFill">
+                            x:Name="CoverPath" Margin="0,0,0,-0.5"
+                            Data="M16 48 L16 46 L18 48" Fill="White"
+                            RenderTransformOrigin="0 1" Stretch="UniformToFill">
                             <Path.RenderTransform>
                                 <ScaleTransform x:Name="MovePath" />
                             </Path.RenderTransform>
@@ -42,15 +45,11 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                        Storyboard.TargetName="MovePath"
-                                        Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                        To="1"
-                                        Duration="0:0:0.2" />
+                                        Storyboard.TargetName="MovePath" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                        To="1" Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                        Storyboard.TargetName="MovePath"
-                                        Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
-                                        To="1"
-                                        Duration="0:0:0.2" />
+                                        Storyboard.TargetName="MovePath" Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                        To="1" Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -58,15 +57,11 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation
-                                        Storyboard.TargetName="MovePath"
-                                        Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                        To="0"
-                                        Duration="0:0:0.2" />
+                                        Storyboard.TargetName="MovePath" Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                        To="0" Duration="0:0:0.2" />
                                     <DoubleAnimation
-                                        Storyboard.TargetName="MovePath"
-                                        Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
-                                        To="0"
-                                        Duration="0:0:0.2" />
+                                        Storyboard.TargetName="MovePath" Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                        To="0" Duration="0:0:0.2" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

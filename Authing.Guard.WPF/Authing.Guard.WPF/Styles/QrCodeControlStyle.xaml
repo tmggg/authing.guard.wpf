@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
     <Style TargetType="controls:QrCodeControl">
         <Setter Property="Template">
@@ -8,10 +7,8 @@
                 <ControlTemplate TargetType="controls:QrCodeControl">
                     <Grid>
                         <Border
-                            x:Name="ExpiredBorder"
-                            Panel.ZIndex="1"
-                            Background="#AA7F7F7F"
-                            Visibility="Hidden">
+                            x:Name="ExpiredBorder" Panel.ZIndex="1"
+                            Background="#AA7F7F7F" Visibility="Hidden">
                             <Button x:Name="PART_RefreshBtn" Command="{Binding RefreshCommand, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -22,10 +19,8 @@
                                             <Setter.Value>
                                                 <ControlTemplate>
                                                     <TextBlock
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center"
-                                                        FontWeight="Bold"
-                                                        Foreground="White"
+                                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                        FontWeight="Bold" Foreground="White"
                                                         Text="{DynamicResource QRCodeExpired}">
                                                         <TextBlock.TextDecorations>
                                                             <TextDecorationCollection>
