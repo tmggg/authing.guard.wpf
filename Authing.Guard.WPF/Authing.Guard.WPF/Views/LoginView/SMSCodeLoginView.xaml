@@ -28,7 +28,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
         <StackPanel Margin="10" HorizontalAlignment="Stretch">
             <controls:PlaceHolderTextBox  
                 x:Name="tbPhone"  
@@ -65,11 +64,11 @@
 
         <StackPanel Grid.Row="1" Margin="10">
             <Grid HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <controls:PasswordHolderTextBox  
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <controls:PasswordHolderTextBox  
                     x:Name="tbSMSCode"  
                     Height="40"  
                     CornerRadius="5"  
@@ -77,22 +76,22 @@
                     PlaceHolder="{DynamicResource PhoneCodeNotify}"  
                     Style="{StaticResource PlaceHolderStyle}"  
                     TextChanged="tbSMSCode_TextChanged">
-                    <controls:PlaceHolderTextBox.Resources>
-                        <Storyboard x:Key="ShakeStoryboard">
-                            <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
-                                <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </controls:PlaceHolderTextBox.Resources>
-                    <controls:PlaceHolderTextBox.RenderTransform>
-                        <TranslateTransform X="0" Y="0" />
-                    </controls:PlaceHolderTextBox.RenderTransform>
-                </controls:PasswordHolderTextBox>
-                <controls:CoutDownButton  
+                <controls:PlaceHolderTextBox.Resources>
+                    <Storyboard x:Key="ShakeStoryboard">
+                        <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
+                            <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </controls:PlaceHolderTextBox.Resources>
+                <controls:PlaceHolderTextBox.RenderTransform>
+                    <TranslateTransform X="0" Y="0" />
+                </controls:PlaceHolderTextBox.RenderTransform>
+            </controls:PasswordHolderTextBox>
+            <controls:CoutDownButton  
                     Grid.Column="1"
                     x:Name="btnSendSMS"  
                     Margin="10 0 0 0"  
@@ -108,8 +107,8 @@
                     Content="{DynamicResource SendCode}"  
                     Count="3"  
                     FontSize="14" />
-            </Grid>
-            <TextBlock
+        </Grid>
+        <TextBlock
                 x:Name="tbSMSCodeRemind"
                 Margin="0,2,0,0"
                 Foreground="{StaticResource AppRedBrush}"
@@ -156,5 +155,6 @@
             Click="btnLogin_Click"  
             Content="{DynamicResource Confirm}" />
     </Grid>
+
 
 </controls:BaseLoginControl>  
