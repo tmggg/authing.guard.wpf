@@ -39,6 +39,9 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private IImageService m_ImageService;
 
+
+        private LoginPage m_CurrentLoginPage;//当前的页面
+
         public MainView()
         {
             InitializeComponent();
