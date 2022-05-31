@@ -1,6 +1,8 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Controls;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
@@ -45,19 +47,26 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             if (string.IsNullOrWhiteSpace(tbPhone.Text))
             {
+                tbPhoneRemind.Text = Application.Current.Resources["PhoneCodeAccountError"] as string;
                 tbPhone.Warn = true;
-                tbPhoneRemind.Text = "手机号未填写";
                 tbPhoneRemind.Visibility = Visibility.Visible;
+
                 return;
             }
 
             if (!m_RegexService.IsPhone(tbPhone.Text))
             {
+                tbPhoneRemind.Text = Application.Current.Resources["PhoneCodeAccountValid"] as string;
                 tbPhone.Warn = true;
-                tbPhoneRemind.Text = "输入有效的手机号";
                 tbPhoneRemind.Visibility = Visibility.Visible;
+
                 return;
             }
+
+            btnSendSMS.IsBusy = btnSendSMS.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            btnSendSMS.IsBusy = btnSendSMS.IsBusy != true;
+            btnSendSMS.StartCountDown = true;
 
             CommonMessage commonMessage = await AuthClient.Instance.SendSmsCode(tbPhone.Text);
 
@@ -75,11 +84,18 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
             User user = null;
 
-            user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false });
-
-            if (user != null)
+            try
             {
-                //用户登录成功
+                user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false });
+
+                if (user != null)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.Login, EventArgs<User>.CreateEventArgs(user));
+                }
+            }
+            catch (Exception exp)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
 
@@ -155,14 +171,6 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             tbPhone.Warn = false;
             tbPhoneRemind.Visibility = Visibility.Collapsed;
-        }
-
-        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            await TaskExHelper.Delay(2000);
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            SendCodeBtn.StartCountDown = true;
         }
     }
 }

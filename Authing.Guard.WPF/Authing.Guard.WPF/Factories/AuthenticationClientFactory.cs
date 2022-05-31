@@ -38,5 +38,25 @@ namespace Authing.Guard.WPF.Factories
 
         private AuthClient()
         { }
+
+        public static bool Init()
+        {
+            if (Client == null)
+            {
+                Client = new AuthenticationClient(otp =>
+                {
+                    otp.UserPoolId = ConfigService.UserPoolId;
+                    otp.Secret = ConfigService.SecretId;
+                    otp.AppId = ConfigService.AppId;
+                    otp.Host = ConfigService.Host;
+                });
+
+                if(Client!=null)
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
     }
 }
