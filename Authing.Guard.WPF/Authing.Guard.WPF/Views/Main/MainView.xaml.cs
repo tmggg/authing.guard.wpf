@@ -11,6 +11,8 @@ using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Views.LoginView;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Authing.Guard.WPF.Models;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -32,6 +35,8 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// </summary>
     public partial class MainView : BaseGuardControl, IEventListener
     {
+        private ObservableCollection<SocialLogin> DemoData;
+
         private IImageService m_ImageService;
 
 
@@ -116,6 +121,15 @@ namespace Authing.Guard.WPF.Views.LoginView
             Config.LoginMethods.Add(LoginMethods.Password);
             Config.LoginMethods.Add(LoginMethods.PhoneCode);
             Config.LoginMethods.Add(LoginMethods.AppQr);
+            DemoData = new ObservableCollection<SocialLogin>();
+            DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
+            DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
+            DemoData.Add(new SocialLogin("https://www.linkedin.cn", new SolidColorBrush(Colors.Yellow), Application.Current.Resources["Linkedin"] as Geometry));
+            DemoData.Add(new SocialLogin("https://www.weixin.com", new SolidColorBrush(Colors.Green), Application.Current.Resources["WeChat"] as Geometry));
+            DemoData.Add(new SocialLogin("https://www.facebook.com", new SolidColorBrush(Colors.Blue), Application.Current.Resources["FaceBook"] as Geometry));
+            DemoData.Add(new SocialLogin("https://www.github.com", new SolidColorBrush(Colors.Purple), Application.Current.Resources["GitHub"] as Geometry));
+            SocialloginControl.ItemsSource = DemoData;
+
         }
 
         private void InitLoginMethod()
@@ -321,6 +335,17 @@ namespace Authing.Guard.WPF.Views.LoginView
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
                     }
+                }
+            }
+        }
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button)
+            {
+                if (((Button)sender).DataContext is SocialLogin)
+                {
+                    SocialLogin data = ((Button)sender).DataContext as SocialLogin;
+                    Process.Start(data.LoginUrl);
                 }
             }
         }
