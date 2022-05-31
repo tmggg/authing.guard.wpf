@@ -299,5 +299,30 @@ namespace Authing.Guard.WPF.Views.LoginView
             btnSwitchLogin.Visibility = Visibility.Visible;
             LoginContent.Visibility = Visibility.Visible;
         }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox)
+            {
+                if (((ComboBox)sender).SelectedItem is Label)
+                {
+                    var obj = ((ComboBox)sender).SelectedItem as Label;
+                    if (string.Equals(obj.Content.ToString(), "English", StringComparison.Ordinal))
+                    {
+                        var res = Application.Current.Resources.MergedDictionaries;
+                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
+                        Application.Current.Resources.MergedDictionaries.Remove(lang);
+                        Application.Current.Resources.MergedDictionaries.Add(lang);
+                    }
+                    if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
+                    {
+                        var res = Application.Current.Resources.MergedDictionaries;
+                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("zh-CN.xaml"));
+                        Application.Current.Resources.MergedDictionaries.Remove(lang);
+                        Application.Current.Resources.MergedDictionaries.Add(lang);
+                    }
+                }
+            }
+        }
     }
 }
