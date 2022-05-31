@@ -8,6 +8,8 @@
     <system:String x:Key="SendCodeTip">秒后重试</system:String>
     <system:String x:Key="UseAppScan">使用 APP 扫码登录</system:String>
     <system:String x:Key="ContinueWith">第三方账号登录</system:String>
+    <system:String x:Key="RegByPhone">手机号</system:String>
+    <system:String x:Key="RegByMail">邮箱</system:String>
     <system:String x:Key="zhCN">中文</system:String>
     <system:String x:Key="enUS">English</system:String>
     <system:String x:Key="QRCodeExpired">二维码已过期</system:String>

@@ -52,10 +52,10 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private async void btnSendCode_Click(object sender, RoutedEventArgs e)
         {
-            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
             await TaskExHelper.Delay(2000);
-            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
-            btnSendCode.StartCountDown = true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            SendCodeBtn.StartCountDown = true;
 
             if (string.IsNullOrWhiteSpace(tbAccount.Text))
             {
@@ -154,6 +154,14 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             PasswordBoxHelper.SetWarn(tbPassword, false);
             tbPasswordRemind.Visibility = Visibility.Collapsed;
+        }
+
+        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            SendCodeBtn.StartCountDown = true;
         }
     }
 }

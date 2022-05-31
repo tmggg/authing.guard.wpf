@@ -177,18 +177,33 @@ namespace Authing.Guard.WPF.Views.LoginView
             m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
 
+
+
         public void HandleEvent(int eventId, IEventArgs args)
+
         {
+
             switch (eventId)
+
             {
+
                 case (int)EventId.LanguageChanged:break;
+
                 default:break;
+
             }
+
         }
 
+
+
         private void SetLanguage()
+
         {
+
             tbAccount.PlaceHolder = Application.Current.Resources["SendCode"] as string;
+
         }
+
     }
 }

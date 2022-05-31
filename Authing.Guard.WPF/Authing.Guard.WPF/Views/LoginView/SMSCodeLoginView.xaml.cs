@@ -38,8 +38,7 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             tbPhone.Warn = false;
             tbSMSCode.Warn = false;
-            tbPhoneRemind.Visibility = Visibility.Collapsed;
-            tbSMSCodeRemind.Visibility = Visibility.Collapsed;
+            tbPhoneRemind.Visibility = Visibility.Collapsed; 
         }
 
         private async void btnSendSMS_Click(object sender, RoutedEventArgs e)
@@ -149,7 +148,7 @@ namespace Authing.Guard.WPF.Views.LoginView
         private void tbSMSCode_TextChanged(object sender, TextChangedEventArgs e)
         {
             tbSMSCode.Warn = false;
-            tbSMSCodeRemind.Visibility = Visibility.Collapsed;
+            tbPhoneRemind.Visibility = Visibility.Collapsed;
         }
 
         private void tbPhone_TextChanged(object sender, TextChangedEventArgs e)
@@ -158,12 +157,12 @@ namespace Authing.Guard.WPF.Views.LoginView
             tbPhoneRemind.Visibility = Visibility.Collapsed;
         }
 
-        private async void Testbtn_OnClick(object sender, RoutedEventArgs e)
+        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
         {
-            Testbtn.IsBusy = Testbtn.IsBusy != true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
             await TaskExHelper.Delay(2000);
-            Testbtn.IsBusy = Testbtn.IsBusy != true;
-            Testbtn.StartCountDown = true;
+            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
+            SendCodeBtn.StartCountDown = true;
         }
     }
 }

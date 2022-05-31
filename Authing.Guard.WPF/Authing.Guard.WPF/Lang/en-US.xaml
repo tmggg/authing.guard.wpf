@@ -9,6 +9,8 @@
     <system:String x:Key="SendCodeTip">S Retry</system:String>
     <system:String x:Key="UseAppScan">use APP scan code login</system:String>
     <system:String x:Key="ContinueWith">Continue With</system:String>
+    <system:String x:Key="RegByPhone">Phone</system:String>
+    <system:String x:Key="RegByMail">Mail</system:String>
     <system:String x:Key="zhCN">中文</system:String>
     <system:String x:Key="enUS">English</system:String>
     <system:String x:Key="QRCodeExpired">QR Code Expired</system:String>
