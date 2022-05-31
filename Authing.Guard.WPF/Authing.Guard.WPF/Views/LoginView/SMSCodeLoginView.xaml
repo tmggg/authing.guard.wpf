@@ -112,16 +112,31 @@
                 x:Name="tbSMSCodeRemind"
                 Margin="0,2,0,0"
                 Foreground="{StaticResource AppRedBrush}"
-                Text="验证码未填写"
+                Text="{DynamicResource PhoneCodeError}"
                 Visibility="Collapsed" />
-        </StackPanel>
-
-        <CheckBox  
-            x:Name="cbAgree"  
-            Grid.Row="2"  
-            Margin="10"  
-            HorizontalAlignment="Stretch"  
-            Checked="cbAgree_Checked"  
+            </StackPanel>
+            <controls:CoutDownButton Grid.Column="1"
+                    x:Name="btnSendSMS"
+                    Width="100"
+                    Margin="20 0 0 0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    attach:BorderAttach.CornerRadius="3"
+                    attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
+                    attach:IconAttach.Height="24"
+                    attach:IconAttach.Width="24"
+                    attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
+                    Click="btnSendSMS_OnClick"
+                    Content="{DynamicResource SendCode}"
+                    Count="3"
+                    FontSize="14" />
+        </Grid>
+        <CheckBox
+            x:Name="cbAgree"
+            Grid.Row="2"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            Checked="cbAgree_Checked"
             Unchecked="cbAgree_Unchecked">
             <TextBlock >  
                 <TextBlock Text="{DynamicResource Agreement}" />  

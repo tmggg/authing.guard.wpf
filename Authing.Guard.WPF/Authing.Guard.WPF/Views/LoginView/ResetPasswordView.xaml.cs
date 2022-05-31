@@ -1,4 +1,6 @@
 ﻿using Authing.ApiClient.Domain.Model;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
@@ -30,37 +32,42 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             CommonMessage commonMessage = null;
 
-            if (m_RegexService.IsMail(tbAccount.Text))
+            try
             {
-                commonMessage = await AuthClient.Instance.ResetPasswordByEmailCode(tbAccount.Text, tbCode.Text, tbPassword.Password);
-            }
-            else if (m_RegexService.IsPhone(tbAccount.Text))
-            {
-                commonMessage = await AuthClient.Instance.ResetPasswordByPhoneCode(tbAccount.Text, tbCode.Text, tbPassword.Password);
-            }
 
-            if (commonMessage != null)
+                if (m_RegexService.IsMail(tbAccount.Text))
+                {
+                    commonMessage = await AuthClient.Instance.ResetPasswordByEmailCode(tbAccount.Text, tbCode.Text, tbPassword.Password);
+                }
+                else if (m_RegexService.IsPhone(tbAccount.Text))
+                {
+                    commonMessage = await AuthClient.Instance.ResetPasswordByPhoneCode(tbAccount.Text, tbCode.Text, tbPassword.Password);
+                }
+
+                if (commonMessage != null)
+                {
+                    if (commonMessage.Code.Value == 200)
+                    {
+                    }
+                    else
+                    {
+                    }
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.PwdReset);
+            }
+            catch (Exception exp)
             {
-                if (commonMessage.Code.Value == 200)
-                {
-                }
-                else
-                {
-                }
+                EventManagement.Instance.Dispatch((int)EventId.PwdResetError,EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
 
         private async void btnSendCode_Click(object sender, RoutedEventArgs e)
         {
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            await TaskExHelper.Delay(2000);
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            SendCodeBtn.StartCountDown = true;
-
             if (string.IsNullOrWhiteSpace(tbAccount.Text))
             {
                 tbAccount.Warn = true;
-                tbAccountRemind.Text = "手机号 / 邮箱未填写";
+                tbAccountRemind.Text =Application.Current.Resources["ResetPasswordAccountError"] as string;
                 tbAccountRemind.Visibility = Visibility.Visible;
                 return;
             }
@@ -68,20 +75,65 @@ namespace Authing.Guard.WPF.Views.LoginView
             if (!m_RegexService.IsPhone(tbAccount.Text) || !m_RegexService.IsMail(tbAccount.Text))
             {
                 tbAccount.Warn = true;
-                tbAccountRemind.Text = "请输入正确的手机号或邮箱";
+                tbAccountRemind.Text = Application.Current.Resources["ResetPasswordAccountValid"] as string;
                 tbAccountRemind.Visibility = Visibility.Visible;
                 return;
             }
+
+            if (string.IsNullOrWhiteSpace(tbPassword.Password))
+            {
+                PasswordBoxHelper.SetWarn(tbPassword, true);
+                tbPasswordRemind.Text = Application.Current.Resources["ResetPasswordNewError"] as string;
+                tbPasswordRemind.Visibility = Visibility.Visible;
+                return;
+            }
+            if (m_RegexService.PasswordMatch(tbPassword.Password))
+            {
+                PasswordBoxHelper.SetWarn(tbPassword, true);
+                tbPasswordRemind.Text = Application.Current.Resources["ResetPasswordNewValid"] as string;
+                tbPasswordRemind.Visibility = Visibility.Visible;
+                return;
+            }
+
+
+            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
+            await TaskExHelper.Delay(2000);
+            btnSendCode.IsBusy = btnSendCode.IsBusy != true;
+            btnSendCode.StartCountDown = true;
 
             CommonMessage commonMessage = null;
 
             if (m_RegexService.IsPhone(tbAccount.Text))
             {
-                commonMessage = await AuthClient.Instance.SendSmsCode(tbAccount.Text);
+                try
+                {
+                    commonMessage = await AuthClient.Instance.SendSmsCode(tbAccount.Text);
+
+                    if (commonMessage != null)
+                    {
+                        EventManagement.Instance.Dispatch((int)EventId.PwdEmailSend);
+                    }
+                }
+                catch (Exception exp)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.PwdEmailSendError, EventArgs<string>.CreateEventArgs(exp.Message));
+                }
             }
             else if (m_RegexService.IsMail(tbAccount.Text))
             {
-                commonMessage = await AuthClient.Instance.SendSmsCode(tbAccount.Text);
+                try
+                {
+                    commonMessage = await AuthClient.Instance.SendSmsCode(tbAccount.Text);
+
+                    if (commonMessage != null)
+                    {
+                        EventManagement.Instance.Dispatch((int)EventId.PwdPhoneSend);
+                    }
+                }
+                catch (Exception exp)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.PwdPhoneSendError, EventArgs<string>.CreateEventArgs(exp.Message));
+                }
             }
 
             if (commonMessage.Code.Value != 200)
@@ -154,14 +206,6 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             PasswordBoxHelper.SetWarn(tbPassword, false);
             tbPasswordRemind.Visibility = Visibility.Collapsed;
-        }
-
-        private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            await TaskExHelper.Delay(2000);
-            SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            SendCodeBtn.StartCountDown = true;
         }
     }
 }
