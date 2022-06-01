@@ -129,6 +129,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             Config.LoginMethods.Add(LoginMethods.Password);
             Config.LoginMethods.Add(LoginMethods.PhoneCode);
             Config.LoginMethods.Add(LoginMethods.AppQr);
+            Config.LoginMethods.Add(LoginMethods.AD);
             DemoData = new ObservableCollection<SocialLogin>();
             DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
             DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
@@ -148,6 +149,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                 if (item == LoginMethods.AD)
                 {
                     //添加 AD 登录
+                    TabItem tabItem = new TabItem();
+                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "LoginByAd");
+                    tabItem.Content = new LoginByAD();
+                    loginViewTabControl.Items.Add(tabItem);
                 }
                 else if (item == LoginMethods.AppQr)
                 {

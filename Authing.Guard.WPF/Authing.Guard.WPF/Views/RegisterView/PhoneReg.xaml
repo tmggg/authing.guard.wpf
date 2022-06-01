@@ -30,7 +30,7 @@
                 CornerRadius="5"
                 IconType="Account"
                 MaxLength="11"
-                PlaceHolder="请输入手机号"
+                PlaceHolder="{DynamicResource PhoneCodeAccountNotify}"
                 Style="{StaticResource PlaceHolderStyle}"
                 TextChanged="PhoneNumber_OnTextChanged">
                 <controls:PlaceHolderTextBox.Resources>
@@ -62,42 +62,42 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                    <controls:PasswordHolderTextBox
+                <controls:PasswordHolderTextBox
                     x:Name="ChallengeCode"
                     Height="40"
                     CornerRadius="5"
                     IconType="VerifyCode"
-                    PlaceHolder="请输入 4 位验证码"
+                    PlaceHolder="{DynamicResource ResetPasswordCodeNotify}"
                     Style="{StaticResource PlaceHolderStyle}"
                     TextChanged="ChallengeCode_OnTextChanged">
-                        <controls:PlaceHolderTextBox.Resources>
-                            <Storyboard x:Key="ShakeStoryboard">
-                                <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
-                                </DoubleAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </controls:PlaceHolderTextBox.Resources>
-                        <controls:PlaceHolderTextBox.RenderTransform>
-                            <TranslateTransform X="0" Y="0" />
-                        </controls:PlaceHolderTextBox.RenderTransform>
-                    </controls:PasswordHolderTextBox>
-                    <controls:CoutDownButton
+                    <controls:PlaceHolderTextBox.Resources>
+                        <Storyboard x:Key="ShakeStoryboard">
+                            <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </controls:PlaceHolderTextBox.Resources>
+                    <controls:PlaceHolderTextBox.RenderTransform>
+                        <TranslateTransform X="0" Y="0" />
+                    </controls:PlaceHolderTextBox.RenderTransform>
+                </controls:PasswordHolderTextBox>
+                <controls:CoutDownButton
                         Grid.Column="1"
-                    x:Name="SendCodeBtn"
-                    Margin="10 0 0 0"
+                        x:Name="SendCodeBtn"
+                        Margin="10 0 0 0"
                         attach:BorderAttach.CornerRadius="3"
-                    attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
-                    attach:IconAttach.Height="24"
-                    attach:IconAttach.Width="24"
-                    attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
-                    Click="SendCodeBtn_OnClick"
-                    Content="{DynamicResource SendCode}"
-                    Count="3"
-                    FontSize="14" />
+                        attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
+                        attach:IconAttach.Height="24"
+                        attach:IconAttach.Width="24"
+                        attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
+                        Click="SendCodeBtn_OnClick"
+                        Content="{DynamicResource SendCode}"
+                        Count="3"
+                        FontSize="14" />
             </Grid>
             <TextBlock
                 x:Name="ChallengeCodeRemind"
@@ -113,19 +113,12 @@
             Margin="10"
             Checked="cbAgree_Checked"
             Unchecked="cbAgree_Unchecked">
-            <TextBlock>
-                我已阅读并同意 Authing<Hyperlink
-                                   x:Name="linkService"
-                                   Click="linkService_Click"
-                                   NavigateUri="https://www.authing.cn/service-agreement.html">
-                    服务条款
-                </Hyperlink>
-                和<Hyperlink
-                     x:Name="linkPrivacy"
-                     Click="linkPrivacy_Click"
-                     NavigateUri="https://www.authing.cn/privacy-policy.html">
-                    隐私协议
-                </Hyperlink>
+            <TextBlock >
+                <TextBlock Text="{DynamicResource Agreement}" />
+                <Button Margin="0 0 0 -3" Style="{StaticResource LinkButtonStyle}" x:Name="linkService" Click="linkService_Click" Content="{DynamicResource ServiceAgreement}" />
+                <TextBlock Text="{DynamicResource And}"/>
+                <TextBlock Text="{DynamicResource PrivacyPolicy}"></TextBlock>
+                <Button Style="{StaticResource LinkButtonStyle}" Margin="0 0 0 -3" x:Name="linkPrivacy" Click="linkPrivacy_Click" Content="{DynamicResource PrivacyPolicy}"></Button>
             </TextBlock>
             <CheckBox.Resources>
                 <Storyboard x:Key="ShakeStoryboard">
@@ -149,6 +142,6 @@
             Height="40"
             Grid.Row="3"
             Click="BtnRegister_OnClick"
-            Content="注 册" />
+            Content="{DynamicResource Register}" />
     </Grid>
 </UserControl>

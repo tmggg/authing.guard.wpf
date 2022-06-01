@@ -42,4 +42,9 @@
     <system:String x:Key="ResetPasswordNewError">Password is missing</system:String>
     <system:String x:Key="ResetPasswordAccountValid">Enter correct phone number or email address</system:String>
     <system:String x:Key="ResetPasswordNewValid">The password must be at least 6 characters long and must contain two of English,numbers and symbols</system:String>
+    <system:String x:Key="LoginByAd">AD Login</system:String>
+    <system:String x:Key="MainRegTipMail">Enter Your Email</system:String>
+    <system:String x:Key="MainRegTipFpasswd">Enter Your Password</system:String>
+    <system:String x:Key="MainRegTipSpasswd">Comfirm Your Password</system:String>
+
 </ResourceDictionary>
