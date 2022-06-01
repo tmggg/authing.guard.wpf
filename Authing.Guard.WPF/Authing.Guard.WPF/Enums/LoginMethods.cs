@@ -18,7 +18,7 @@ namespace Authing.Guard.WPF.Enums
         /// <summary>
         /// APP 扫码登录（需要接入 APP 扫码登录）
         /// </summary>
-        [EnumMember(Value = "app - qrcode")]
+        [EnumMember(Value = "app-qrcode")]
         [Description("APP 扫码")]
         AppQr,
 

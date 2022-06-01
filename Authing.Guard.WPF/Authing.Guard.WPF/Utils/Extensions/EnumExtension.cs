@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Utils.Extensions
 {
-  public static  class EnumExtension
+    public static class EnumExtension
     {
         public static string GetDescription(this Enum value, bool nameInstead = true)
         {
