@@ -41,5 +41,9 @@
     <system:String x:Key="ResetPasswordNewError">密码未填写</system:String>
     <system:String x:Key="ResetPasswordAccountValid">请输入正确的手机号或邮箱</system:String>
     <system:String x:Key="ResetPasswordNewValid">密码长度至少为 6 位，且要包含英文、数字与符号中的两种</system:String>
-
+    <system:String x:Key="LoginByAd">AD 登录</system:String>
+    <system:String x:Key="MainRegTipMail">请输入邮箱</system:String>
+    <system:String x:Key="MainRegTipFpasswd">请输入密码</system:String>
+    <system:String x:Key="MainRegTipSpasswd">请确认密码</system:String>
+    <system:String x:Key="Register">注 册</system:String>
 </ResourceDictionary>
