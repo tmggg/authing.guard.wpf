@@ -1,4 +1,5 @@
 ﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
+using Authing.ApiClient.Domain.Client.Impl.ManagementBaseClient;
 using Authing.Guard.WPF.Services;
 using System;
 
@@ -51,7 +52,52 @@ namespace Authing.Guard.WPF.Factories
                     otp.Host = ConfigService.Host;
                 });
 
-                if(Client!=null)
+                if (Client != null)
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
+    }
+
+    public class AppManageClient
+    {
+        private static ManagementClient Client;
+
+        private static readonly Lazy<ManagementClient> lazy =
+            new Lazy<ManagementClient>(() =>
+            {
+                if (Client == null)
+                {
+                    Client = new ManagementClient(otp =>
+                    {
+                        otp.UserPoolId = ConfigService.UserPoolId;
+                        otp.Secret = ConfigService.SecretId;
+                        otp.Host = ConfigService.Host;
+                    });
+                }
+
+                return Client;
+            });
+
+        public static ManagementClient Instance
+        { get { return lazy.Value; } }
+
+        private AppManageClient()
+        { }
+
+        public static bool Init()
+        {
+            if (Client == null)
+            {
+                Client = new ManagementClient(otp =>
+                {
+                    otp.UserPoolId = ConfigService.UserPoolId;
+                    otp.Secret = ConfigService.SecretId;
+                    otp.Host = ConfigService.Host;
+                }) ;
+                if (Client != null)
                 {
                     return true;
                 }

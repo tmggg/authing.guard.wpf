@@ -80,7 +80,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 }
                 else
                 {
-                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
+                    
                 }
             }
             finally
@@ -90,12 +90,12 @@ namespace Authing.Guard.WPF.Views.LoginView
                     //登录成功
 
                     IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
-                    EventManagement.Instance.Dispatch((int)EventId.Load, arg);
+                    EventManagement.Instance.Dispatch((int)EventId.Login, arg);
                 }
 
                 if (currentExp != null)
                 {
-                    EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
                 }
             }
         }

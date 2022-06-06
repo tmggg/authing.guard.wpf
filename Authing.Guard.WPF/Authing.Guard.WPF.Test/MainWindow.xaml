@@ -8,12 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:main="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
     Title="MainWindow"
-    MinWidth="420"
-    MinHeight="620"
     mc:Ignorable="d">
     <Grid>
-        <!--<guard:PasswordLoginView></guard:PasswordLoginView>-->
-        <!--<guard:SMSCodeLoginView></guard:SMSCodeLoginView>-->
-        <main:MainView AppId="6215dd9277d6ef55dfab41f8"  Secret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e"/>
+        <main:MainView  x:Name="guardView" AppId="6215dd9277d6ef55dfab41f8"  Secret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e"/>
     </Grid>
 </Window>

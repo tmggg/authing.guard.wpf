@@ -38,6 +38,7 @@ namespace Authing.Guard.WPF.Views.LoginView
         private ObservableCollection<SocialLogin> DemoData;
 
         private IImageService m_ImageService;
+        private IJsonService m_JsonService;
 
         public MainView()
         {
@@ -47,6 +48,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             Unloaded += MainView_Unloaded;
 
             m_ImageService = new Utils.Impl.ImageService();
+            m_JsonService = new Utils.Impl.JsonService();
         }
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
@@ -54,45 +56,17 @@ namespace Authing.Guard.WPF.Views.LoginView
             RemoveEvent();
         }
 
-        private void MainView_Loaded(object sender, RoutedEventArgs e)
+        private async void MainView_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                AuthClient.Init();
-                EventManagement.Instance.Dispatch((int)EventId.Load, EventArgs<AuthenticationClient>.CreateEventArgs(AuthClient.Instance));
-            }
-            catch (Exception exp)
-            {
-                EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(exp.Message));
-            }
-
-
-            InitConfig();
             AddEvent();
 
-            if (string.IsNullOrWhiteSpace(AppId))
-            {
-                throw new Exception("请输入 AppId");
-            }
-
-            if (!string.IsNullOrWhiteSpace(Config.Logo))
-            {
-                byte[] byteArray = m_ImageService.GetImageFromResponse(Config.Logo);
-
-                MemoryStream ms = new MemoryStream(byteArray);
-
-                imgLogo.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.Default);
-            }
+            await InitConfig();
 
             SimulationData();
 
             InitLoginMethod();
 
             InitRegisterMethod();
-
-
-
-            //根据配置显示界面
         }
 
         private void AddEvent()
@@ -111,25 +85,73 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
         }
 
-        private void InitConfig()
+        private async Task InitConfig()
         {
+            if (string.IsNullOrWhiteSpace(AppId))
+            {
+                throw new Exception("请输入 AppId");
+            }
+            if (string.IsNullOrWhiteSpace(UserPoolId))
+            {
+                throw new Exception("请输入 UserPoolId");
+            }
+            if (string.IsNullOrWhiteSpace(Secret))
+            {
+                throw new Exception("请输入 Secret");
+            }
+
             ConfigService.AppId = AppId;
             ConfigService.UserPoolId = UserPoolId;
             ConfigService.SecretId = Secret;
 
-            Config = new Models.GuardConfig();
+            try
+            {
+                AuthClient.Init();
+                AppManageClient.Init();
+
+                var appInfo = await AppManageClient.Instance.Applications.FindById(AppId);
+                if (appInfo != null)
+                {
+
+                    Config.Title = appInfo.Identifier;
+                    Config.Logo = appInfo.Logo;
+                    Config.LoginMethods = m_JsonService.Deserialize<List<LoginMethods>>(appInfo.LoginTabs.ToString());
+                    Config.RegisterMethods = m_JsonService.Deserialize<List<RegisterMethods>>(appInfo.RegisterTabs.ToString());
+                    Config.DefaultRegisterMethod = (RegisterMethods)Enum.Parse(typeof(RegisterMethods), appInfo.DefaultRegisterTab.FirstCharToUpper());
+                    //Config.DefaultScences
+                    //Config.SocialConnections=m_JsonService.Deserialize<List<SocialConnections>>(appInfo.conn)
+                    Config.DefaultLoginMethod = (LoginMethods)Enum.Parse(typeof(LoginMethods), appInfo.DefaultLoginTab.FirstCharToUpper());
+                    //Config.AutoRegister=appInfo.
+                    Config.DisableRegister = appInfo.RegisterDisabled;
+                    //Config.DisableResetPwd=appInfo.p
+                    //Config.IsSSO = m_JsonService.Deserialize<bool>( appInfo.SsoPageCustomizationSettings.ToString());
+                    Config.AppHost = appInfo.Domain;
+                    //Config.Lang
+
+                    if (!string.IsNullOrWhiteSpace(Config.Logo))
+                    {
+                        byte[] byteArray = m_ImageService.GetImageFromResponse(Config.Logo);
+
+                        MemoryStream ms = new MemoryStream(byteArray);
+
+                        imgLogo.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.Default);
+                    }
+
+                    tbTitle.Text = Config.Title;
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.Load, EventArgs<AuthenticationClient>.CreateEventArgs(AuthClient.Instance));
+            }
+            catch (Exception exp)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(exp.Message));
+            }
+
+
         }
 
         private void SimulationData()
         {
-
-            Config.LoginMethods = new List<LoginMethods>();
-            Config.RegisterMethods = new List<RegisterMethods>();
-
-            Config.LoginMethods.Add(LoginMethods.Password);
-            Config.LoginMethods.Add(LoginMethods.PhoneCode);
-            Config.LoginMethods.Add(LoginMethods.AppQr);
-            Config.LoginMethods.Add(LoginMethods.AD);
             DemoData = new ObservableCollection<SocialLogin>();
             DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
             DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
@@ -138,7 +160,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             DemoData.Add(new SocialLogin("https://www.facebook.com", new SolidColorBrush(Colors.Blue), Application.Current.Resources["FaceBook"] as Geometry));
             DemoData.Add(new SocialLogin("https://www.github.com", new SolidColorBrush(Colors.Purple), Application.Current.Resources["GitHub"] as Geometry));
             SocialloginControl.ItemsSource = DemoData;
-
         }
 
         private void InitLoginMethod()
@@ -154,6 +175,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "LoginByAd");
                     tabItem.Content = new LoginByAD();
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.AppQr)
                 {
@@ -163,6 +189,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
 
                 }
                 else if (item == LoginMethods.LDAP)
@@ -184,6 +215,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
 
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.PhoneCode)
                 {
@@ -194,6 +230,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Header = Application.Current.Resources["SendCode"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.WxMinQr)
                 {

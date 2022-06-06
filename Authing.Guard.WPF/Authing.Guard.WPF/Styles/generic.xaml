@@ -8,5 +8,6 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ToggleButtonStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/FontSizeStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
