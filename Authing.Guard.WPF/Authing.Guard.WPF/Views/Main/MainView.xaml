@@ -10,7 +10,8 @@
     xmlns:registerView="clr-namespace:Authing.Guard.WPF.Views.RegisterView"
     d:DesignHeight="450"
     d:DesignWidth="400"
-    mc:Ignorable="d">
+    MinHeight="200"
+    mc:Ignorable="d" Background="White">
     <controls:BaseGuardControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,11 +26,11 @@
             </Style>
         </ResourceDictionary>
     </controls:BaseGuardControl.Resources>
-    <Grid Background="White">
+    <Grid Background="Transparent" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical">
@@ -39,7 +40,7 @@
                 Height="50" />
             <TextBlock Margin="0 10 0 20" x:Name="tbTitle" Text="Authing" HorizontalAlignment="Center" FontWeight="Bold" FontSize="{StaticResource MediumSize}"/>
         </StackPanel>
-        <Grid HorizontalAlignment="Right">
+        <Grid HorizontalAlignment="Right" Visibility="Collapsed">
             <ToggleButton
                 x:Name="btnSwitchLogin"
                 Width="48"

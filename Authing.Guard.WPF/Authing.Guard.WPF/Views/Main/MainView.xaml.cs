@@ -104,8 +104,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             ConfigService.UserPoolId = UserPoolId;
             ConfigService.SecretId = Secret;
 
-            Config = new Models.GuardConfig();
-
             try
             {
                 AuthClient.Init();
@@ -114,6 +112,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 var appInfo = await AppManageClient.Instance.Applications.FindById(AppId);
                 if (appInfo != null)
                 {
+
                     Config.Title = appInfo.Identifier;
                     Config.Logo = appInfo.Logo;
                     Config.LoginMethods = m_JsonService.Deserialize<List<LoginMethods>>(appInfo.LoginTabs.ToString());
@@ -121,7 +120,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                     Config.DefaultRegisterMethod = (RegisterMethods)Enum.Parse(typeof(RegisterMethods), appInfo.DefaultRegisterTab.FirstCharToUpper());
                     //Config.DefaultScences
                     //Config.SocialConnections=m_JsonService.Deserialize<List<SocialConnections>>(appInfo.conn)
-                    //Config.DefaultLoginMethod=m_JsonService.Deserialize<Login>
                     Config.DefaultLoginMethod = (LoginMethods)Enum.Parse(typeof(LoginMethods), appInfo.DefaultLoginTab.FirstCharToUpper());
                     //Config.AutoRegister=appInfo.
                     Config.DisableRegister = appInfo.RegisterDisabled;
@@ -154,8 +152,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void SimulationData()
         {
-            Config.LoginMethods.Add(LoginMethods.AD);
-            Config.LoginMethods.Add(LoginMethods.AD);
             DemoData = new ObservableCollection<SocialLogin>();
             DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
             DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
@@ -179,6 +175,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "LoginByAd");
                     tabItem.Content = new LoginByAD();
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.AppQr)
                 {
@@ -188,6 +189,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
 
                 }
                 else if (item == LoginMethods.LDAP)
@@ -209,6 +215,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
 
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.PhoneCode)
                 {
@@ -219,6 +230,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                     tabItem.Header = Application.Current.Resources["SendCode"] as String;
                     tabItem.Content = new SMSCodeLoginView();
                     loginViewTabControl.Items.Add(tabItem);
+
+                    if (Config.DefaultLoginMethod == item)
+                    {
+                        tabItem.IsSelected = true;
+                    }
                 }
                 else if (item == LoginMethods.WxMinQr)
                 {

@@ -18,10 +18,20 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
-                        <Path
-                            Data="M923.3 754.7c-22.4-50-54.4-94.8-95.2-133.2-40.6-38.3-87.8-68.3-140.4-89.3-11-4.4-22.1-8.3-33.4-11.8 12.7-8.7 24.6-18.6 35.7-29.7 47.1-47.1 73-109.6 73-176.2 0-66.5-25.9-129.1-73-176.2-47.1-47.1-109.6-73-176.2-73s-129.1 25.9-176.2 73c-47.1 47.1-73 109.6-73 176.2 0 66.5 25.9 129.1 73 176.2 10.8 10.8 22.3 20.4 34.6 28.9-12.1 3.7-24.1 7.9-36 12.6-52.6 21-99.8 51-140.4 89.3-40.8 38.4-72.8 83.2-95.2 133.2-23.3 51.9-35.1 107-35.1 163.9 0 22.1 17.9 40 40 40s40-17.9 40-40c0-186.9 162.4-339 361.9-339h8.9c199.6 0 361.9 152.1 361.9 339 0 22.1 17.9 40 40 40s40-17.9 40-40c0.2-56.8-11.6-112-34.9-163.9zM513.9 145.4c93.3 0 169.1 75.9 169.1 169.1s-75.9 169.1-169.1 169.1-169.1-75.9-169.1-169.1 75.8-169.1 169.1-169.1z"
-                            Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                            Stretch="Fill" />
+                        <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                            <Canvas Name="svg152" Width="1024" Height="1024">
+                                <Canvas.RenderTransform>
+                                    <TranslateTransform X="0" Y="0"/>
+                                </Canvas.RenderTransform>
+                                <Canvas.Resources/>
+                                <!--Unknown tag: sodipodi:namedview-->
+                                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path150"  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                    <Path.Data>
+                                        <PathGeometry Figures="M923.3 754.7c-22.4-50-54.4-94.8-95.2-133.2-40.6-38.3-87.8-68.3-140.4-89.3-11-4.4-22.1-8.3-33.4-11.8 12.7-8.7 24.6-18.6 35.7-29.7 47.1-47.1 73-109.6 73-176.2 0-66.5-25.9-129.1-73-176.2-47.1-47.1-109.6-73-176.2-73s-129.1 25.9-176.2 73c-47.1 47.1-73 109.6-73 176.2 0 66.5 25.9 129.1 73 176.2 10.8 10.8 22.3 20.4 34.6 28.9-12.1 3.7-24.1 7.9-36 12.6-52.6 21-99.8 51-140.4 89.3-40.8 38.4-72.8 83.2-95.2 133.2-23.3 51.9-35.1 107-35.1 163.9 0 22.1 17.9 40 40 40s40-17.9 40-40c0-186.9 162.4-339 361.9-339h8.9c199.6 0 361.9 152.1 361.9 339 0 22.1 17.9 40 40 40s40-17.9 40-40c0.2-56.8-11.6-112-34.9-163.9zM513.9 145.4c93.3 0 169.1 75.9 169.1 169.1s-75.9 169.1-169.1 169.1-169.1-75.9-169.1-169.1 75.8-169.1 169.1-169.1z" FillRule="NonZero"/>
+                                    </Path.Data>
+                                </Path>
+                            </Canvas>
+                        </Viewbox>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -34,10 +44,25 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Grid>
-                            <Path
-                                Data="M776.157285 504.597403c-0.11768-37.684274-30.636764-68.232011-68.49193-68.774363l0-26.980491c0-110.316501-90.320075-195.666378-195.665355-195.666378-106.691951 0-195.666378 88.977497-195.666378 195.666378l0 26.980491c-37.854143 0.542352-68.373227 31.089066-68.49193 68.774363l-0.005117 0 0 237.208517c0 38.125319 31.116695 69.01791 69.51626 69.01791l389.292284 0c38.400588 0 69.517283-30.893614 69.517283-69.01791l0-19.200294L776.162402 504.815367l0-0.217964L776.157285 504.597403zM512 261.502829c73.293283 0 138.142244 60.483536 138.142244 138.145313l0 36.149315L373.854687 435.797457l0-36.149315C373.854687 324.531328 436.892395 261.502829 512 261.502829zM717.870788 732.97581c0 13.933337-11.529591 25.270547-25.735128 25.270547L331.863317 758.246357c-14.19121 0-25.734104-11.337209-25.734104-25.270547l0-17.772782 0 0L306.129212 513.645476c0-13.933337 11.542894-25.270547 25.734104-25.270547l360.272343 0c14.205537 0 25.734104 11.335163 25.735128 25.267477L717.870788 732.97581z"
-                                Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}"
-                                Stretch="Fill" />
+                            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                <Canvas Name="svg10" Width="1024" Height="1024">
+                                    <Canvas.RenderTransform>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </Canvas.RenderTransform>
+                                    <Canvas.Resources/>
+                                    <!--Unknown tag: sodipodi:namedview-->
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M880 384H764V240c0-70.7-57.3-128-128-128H388c-70.7 0-128 57.3-128 128v144H144c-17.7 0-32 14.3-32 32v464c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32zM332 240c0-30.9 25.1-56 56-56h248c30.9 0 56 25.1 56 56v144H332V240z m508 600H184V456h656v384z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M484 661v53c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-53c12.1-8.7 20-22.9 20-39 0-26.5-21.5-48-48-48s-48 21.5-48 48c0 16.1 7.9 30.3 20 39z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
@@ -51,14 +76,24 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Grid>
-                            <Path
-                                Data="M817.38 255.79L525.52 120.28a31.862 31.862 0 0 0-15.97-2.05c-3.23 0.23-6.47 0.96-9.63 2.23l-294.87 135.5a32.01 32.01 0 0 0-20.07 29.69v319.82c0 5.07 1.21 10.07 3.52 14.59 1.19 2.33 36.8 57.63 92.61 118.61 32.9 35.95 68.59 66.58 106.08 91.05 37.17 24.26 74.17 42.47 114.35 54.36 4.16 1.23 8.35 1.56 12.39 1.12 3.27 0.1 6.62-0.31 9.95-1.3 40.17-11.89 81.18-30.11 118.35-54.36 37.49-24.47 73.18-55.1 106.08-91.05 55.81-60.98 84.42-116.29 85.61-118.61 2.31-4.52 3.52-9.52 3.52-14.59V285.48a31.975 31.975 0 0 0-20.06-29.69z m-43.93 332.62c0 5.8-1.57 11.48-4.55 16.46-11.36 18.91-34.58 54.38-69.01 91.76-29.2 31.7-60.66 58.59-93.52 79.91-29.57 19.19-62.36 33.9-93.91 43.94-31.36-10.03-59.97-24.68-89.37-43.76-32.86-21.33-64.32-48.21-93.52-79.91-34.43-37.38-64.65-72.85-76.01-91.76a31.91 31.91 0 0 1-4.55-16.46V308.9c0-0.98 0.59-1.86 1.5-2.22L512.94 184.2l259 122.3c0.91 0.36 1.5 1.25 1.5 2.22v279.69z"
-                                Stretch="Fill"
-                                Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}" />
-                            <Path
-                                Data="M458.66 607.79l-79.89-71.77c-13.15-11.81-14.23-32.04-2.42-45.19 11.81-13.15 32.04-14.23 45.19-2.42l56.07 50.37 148-148.54c12.47-12.52 32.74-12.56 45.25-0.08 12.52 12.47 12.56 32.73 0.08 45.25l-170.6 171.22c-11.37 11.42-29.69 11.93-41.68 1.16z"
-                                Stretch="Fill"
-                                Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}" />
+                            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                <Canvas Name="svg22" Width="1024" Height="1024">
+                                    <Canvas.RenderTransform>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </Canvas.RenderTransform>
+                                    <Canvas.Resources/>
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path18" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M505.46 890.45a26.37 26.37 0 0 1-5.93-0.67c-3.2-0.74-79.37-18.74-156.08-74.57-45.51-33.12-81.85-72.76-108-117.8C202.7 641 186.1 576.35 186.1 505.18V270.79a26.39 26.39 0 0 1 17.05-24.68l293-110.86a26.47 26.47 0 0 1 18.68 0l293 110.86a26.38 26.38 0 0 1 17.06 24.68v234.39c0 71.17-16.6 135.84-49.35 192.23-26.15 45-62.49 84.68-108 117.8C590.77 871 514.6 889 511.39 889.78a26.37 26.37 0 0 1-5.93 0.67zM238.89 289v216.18c0 111.27 45.14 200.87 134.17 266.29 56.53 41.53 114.08 60.09 132.4 65.29 18.32-5.2 75.88-23.76 132.41-65.29 89-65.42 134.17-155 134.17-266.29V289L505.46 188.16z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path20" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M485.67 616.26h-0.4a26.38 26.38 0 0 1-18.82-8.3L382 518.21A26.39 26.39 0 0 1 420.43 482l65.81 70 157.6-157.6a26.4 26.4 0 1 1 37.33 37.33L504.33 608.52a26.37 26.37 0 0 1-18.66 7.74z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
@@ -72,14 +107,26 @@
                 <ControlTemplate TargetType="Button">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <Grid>
-                            <Path
-                                Data="M512.7 813.2h-0.6c-79.1-0.1-160.8-26.3-242.8-77.8-38.7-24.3-98.3-67.7-162.9-136.8-20.7-22.1-32.5-54.6-32.5-89 0.1-34.4 12-66.8 32.8-88.9 35.8-38 93.2-92.5 163.4-136.3 81.9-51.1 163.5-77 242.5-77h0.6c79.1 0.1 160.8 26.3 242.8 77.8 38.7 24.3 98.3 67.7 162.9 136.8 20.7 22.1 32.5 54.6 32.5 89s-12 66.8-32.8 88.9c-35.8 38-93.2 92.5-163.4 136.3-82 51.1-163.6 77-242.5 77z m-0.2-529.2C362.9 284 229 402.5 162.4 473.2c-7.3 7.8-11.9 21.8-11.9 36.5s4.5 28.7 11.8 36.5c66.4 71 200.2 190.1 349.9 190.4h0.5c149.5 0 283.5-118.5 350.1-189.2 7.3-7.8 11.9-21.8 12-36.5 0-14.7-4.5-28.7-11.8-36.5-66.5-71-200.3-190.1-350-190.4h-0.5z"
-                                Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}"
-                                Stretch="Fill" />
-                            <Path
-                                Data="M512.6 646h-0.2c-36.2-0.1-70.3-14.2-95.9-39.9-25.6-25.7-39.6-59.8-39.6-96 0.1-74.7 61-135.5 135.7-135.5h0.2c36.2 0.1 70.3 14.2 95.9 39.9s39.6 59.8 39.6 96l-32.6-0.1 32.6 0.1c-0.1 74.8-61 135.5-135.7 135.5z m0-206.2c-38.9 0-70.5 31.6-70.6 70.4 0 18.8 7.3 36.6 20.6 49.9 13.3 13.3 31 20.7 49.9 20.8h0.1c18.8 0 36.5-7.3 49.8-20.6 13.3-13.3 20.7-31 20.8-49.9 0-18.8-7.3-36.6-20.6-49.9-13.3-13.3-31-20.7-49.9-20.8 0 0.1-0.1 0.1-0.1 0.1z"
-                                Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}"
-                                Stretch="Fill" />
+                            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                <Canvas Name="svg22" Width="1024" Height="1024">
+                                    <Canvas.RenderTransform>
+                                        <TranslateTransform X="0" Y="0"/>
+                                    </Canvas.RenderTransform>
+                                    <Canvas.Resources/>
+                                    <!--Unknown tag: sodipodi:namedview-->
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path18" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M512.7 813.2h-0.6c-79.1-0.1-160.8-26.3-242.8-77.8-38.7-24.3-98.3-67.7-162.9-136.8-20.7-22.1-32.5-54.6-32.5-89 0.1-34.4 12-66.8 32.8-88.9 35.8-38 93.2-92.5 163.4-136.3 81.9-51.1 163.5-77 242.5-77h0.6c79.1 0.1 160.8 26.3 242.8 77.8 38.7 24.3 98.3 67.7 162.9 136.8 20.7 22.1 32.5 54.6 32.5 89s-12 66.8-32.8 88.9c-35.8 38-93.2 92.5-163.4 136.3-82 51.1-163.6 77-242.5 77z m-0.2-529.2C362.9 284 229 402.5 162.4 473.2c-7.3 7.8-11.9 21.8-11.9 36.5s4.5 28.7 11.8 36.5c66.4 71 200.2 190.1 349.9 190.4h0.5c149.5 0 283.5-118.5 350.1-189.2 7.3-7.8 11.9-21.8 12-36.5 0-14.7-4.5-28.7-11.8-36.5-66.5-71-200.3-190.1-350-190.4h-0.5z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path20" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}">
+                                        <Path.Data>
+                                            <PathGeometry Figures="M512.6 646h-0.2c-36.2-0.1-70.3-14.2-95.9-39.9-25.6-25.7-39.6-59.8-39.6-96 0.1-74.7 61-135.5 135.7-135.5h0.2c36.2 0.1 70.3 14.2 95.9 39.9s39.6 59.8 39.6 96l-32.6-0.1 32.6 0.1c-0.1 74.8-61 135.5-135.7 135.5z m0-206.2c-38.9 0-70.5 31.6-70.6 70.4 0 18.8 7.3 36.6 20.6 49.9 13.3 13.3 31 20.7 49.9 20.8h0.1c18.8 0 36.5-7.3 49.8-20.6 13.3-13.3 20.7-31 20.8-49.9 0-18.8-7.3-36.6-20.6-49.9-13.3-13.3-31-20.7-49.9-20.8 0 0.1-0.1 0.1-0.1 0.1z" FillRule="NonZero"/>
+                                        </Path.Data>
+                                    </Path>
+                                </Canvas>
+                            </Viewbox>
+
                         </Grid>
                     </Grid>
                 </ControlTemplate>

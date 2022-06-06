@@ -105,7 +105,7 @@
                     attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"  
                     Click="btnSendSMS_OnClick"  
                     Content="{DynamicResource SendCode}"  
-                    Count="3"  
+                    Count="60"  
                     FontSize="14" />
         </Grid>
         <TextBlock
@@ -153,7 +153,7 @@
             Margin="10"  
             HorizontalAlignment="Stretch"  
             Click="btnLogin_Click"  
-            Content="{DynamicResource Confirm}" />
+            Content="{DynamicResource LogIn}" />
     </Grid>
 
 
