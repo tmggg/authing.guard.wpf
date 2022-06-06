@@ -155,6 +155,7 @@ namespace Authing.Guard.WPF.Views.LoginView
         private void SimulationData()
         {
             Config.LoginMethods.Add(LoginMethods.AD);
+            Config.LoginMethods.Add(LoginMethods.AD);
             DemoData = new ObservableCollection<SocialLogin>();
             DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
             DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
