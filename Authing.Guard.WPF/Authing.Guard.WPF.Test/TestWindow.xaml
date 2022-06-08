@@ -6,107 +6,25 @@
     xmlns:local="clr-namespace:Authing.Guard.WPF.Test"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach;assembly=Authing.Guard.WPF"
     Title="TestWindow"
     Width="800"
     Height="450"
     mc:Ignorable="d">
+    <Window.Resources>
+    </Window.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ToggleButton>
-            <ToggleButton.Resources>
-                <Geometry x:Key="Qrcode">M320 64 64 64 64 320 320 320 320 64ZM384 0 384 0 384 384 0 384 0 0 384 0ZM128 128 256 128 256 256 128 256zM960 64 704 64 704 320 960 320 960 64ZM1024 0 1024 0 1024 384 640 384 640 0 1024 0ZM768 128 896 128 896 256 768 256zM320 704 64 704 64 960 320 960 320 704ZM384 640 384 640 384 1024 0 1024 0 640 384 640ZM128 768 256 768 256 896 128 896zM448 0 512 0 512 64 448 64zM512 64 576 64 576 128 512 128zM448 128 512 128 512 192 448 192zM512 192 576 192 576 256 512 256zM448 256 512 256 512 320 448 320zM512 320 576 320 576 384 512 384zM448 384 512 384 512 448 448 448zM448 512 512 512 512 576 448 576zM512 576 576 576 576 640 512 640zM448 640 512 640 512 704 448 704zM512 704 576 704 576 768 512 768zM448 768 512 768 512 832 448 832zM512 832 576 832 576 896 512 896zM448 896 512 896 512 960 448 960zM512 960 576 960 576 1024 512 1024zM960 512 1024 512 1024 576 960 576zM64 512 128 512 128 576 64 576zM128 448 192 448 192 512 128 512zM0 448 64 448 64 512 0 512zM256 448 320 448 320 512 256 512zM320 512 384 512 384 576 320 576zM384 448 448 448 448 512 384 512zM576 512 640 512 640 576 576 576zM640 448 704 448 704 512 640 512zM704 512 768 512 768 576 704 576zM768 448 832 448 832 512 768 512zM832 512 896 512 896 576 832 576zM896 448 960 448 960 512 896 512zM960 640 1024 640 1024 704 960 704zM576 640 640 640 640 704 576 704zM640 576 704 576 704 640 640 640zM704 640 768 640 768 704 704 704zM832 640 896 640 896 704 832 704zM896 576 960 576 960 640 896 640zM960 768 1024 768 1024 832 960 832zM576 768 640 768 640 832 576 832zM640 704 704 704 704 768 640 768zM768 704 832 704 832 768 768 768zM832 768 896 768 896 832 832 832zM896 704 960 704 960 768 896 768zM960 896 1024 896 1024 960 960 960zM640 832 704 832 704 896 640 896zM704 896 768 896 768 960 704 960zM768 832 832 832 832 896 768 896zM832 896 896 896 896 960 832 960zM640 960 704 960 704 1024 640 1024zM768 960 832 960 832 1024 768 1024zM896 960 960 960 960 1024 896 1024z</Geometry>
-                <Geometry x:Key="Computer">M810.551167 57.547768H213.847946C127.696233 57.547768 57.568888 127.674115 57.568888 213.827826v369.388137c0 86.209692 70.127346 156.280058 156.279058 156.280058h127.355226c-3.466781 45.518997-18.355547 118.090484-75.354508 146.618454a42.604022 42.604022 0 0 0 19.037307 80.69763h454.630169a42.585029 42.585029 0 0 0 19.037308-80.69763c-57.395822-28.698911-72.057667-101.154438-75.473467-146.618454h127.471186c86.209692 0 156.280058-70.070366 156.280058-156.280058V213.827826c0-86.152712-70.069366-156.280058-156.280058-156.280058z m-422.521457 824.020306c27.845211-48.645898 36.426194-103.996439 38.757374-142.072053h170.826944c2.330181 38.075614 10.969144 93.426155 38.814354 142.072053z m493.558483-298.352111a71.062017 71.062017 0 0 1-71.037026 71.037026H213.847946a71.098005 71.098005 0 0 1-71.032028-71.037026V213.827826a71.134992 71.134992 0 0 1 71.036026-71.037026h596.699223a71.099004 71.099004 0 0 1 71.037026 71.037026z</Geometry>
-            </ToggleButton.Resources>
-            <ToggleButton.Style>
-                <Style TargetType="ToggleButton">
-                    <Setter Property="Height" Value="120" />
-                    <Setter Property="Width" Value="120" />
-                    <Setter Property="IsChecked" Value="True" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                <Grid x:Name="GridTemp" Background="Transparent">
-                                    <Path
-                                        x:Name="Qrcode"
-                                        Data="{StaticResource Qrcode}"
-                                        Fill="{StaticResource PrimaryBrush}"
-                                        Stretch="UniformToFill"
-                                        Stroke="{StaticResource PrimaryBrush}"
-                                        StrokeThickness="3" />
-                                    <Path
-                                        x:Name="Computer"
-                                        Data="{StaticResource Computer}"
-                                        Fill="{StaticResource PrimaryBrush}"
-                                        Stretch="UniformToFill"
-                                        Stroke="{StaticResource PrimaryBrush}"
-                                        StrokeThickness="3" />
-                                    <Path
-                                        x:Name="CoverPath"
-                                        Margin="0,0,0,-0.5"
-                                        Data="M16 48 L16 46 L18 48"
-                                        Fill="White"
-                                        RenderTransformOrigin="0 1"
-                                        Stretch="UniformToFill">
-                                        <Path.RenderTransform>
-                                            <ScaleTransform x:Name="MovePath" />
-                                        </Path.RenderTransform>
-                                    </Path>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <!--<Trigger Property="IsChecked" Value="True">
-                                        <Setter TargetName="Computer" Property="Visibility" Value="Visible" />
-                                        <Setter TargetName="Qrcode" Property="Visibility" Value="Collapsed" />
-                                    </Trigger>
-                                    <Trigger Property="IsChecked" Value="False">
-                                        <Setter TargetName="Computer" Property="Visibility" Value="Collapsed" />
-                                        <Setter TargetName="Qrcode" Property="Visibility" Value="Visible" />
-                                    </Trigger>-->
-                                    <EventTrigger RoutedEvent="MouseLeave">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                    Storyboard.TargetName="MovePath"
-                                                    Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                    To="1"
-                                                    Duration="0:0:0.2" />
-                                                <DoubleAnimation
-                                                    Storyboard.TargetName="MovePath"
-                                                    Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
-                                                    To="1"
-                                                    Duration="0:0:0.2" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                    <EventTrigger RoutedEvent="MouseEnter">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation
-                                                    Storyboard.TargetName="MovePath"
-                                                    Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
-                                                    To="0"
-                                                    Duration="0:0:0.2" />
-                                                <DoubleAnimation
-                                                    Storyboard.TargetName="MovePath"
-                                                    Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
-                                                    To="0"
-                                                    Duration="0:0:0.2" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                    <Trigger Property="IsChecked" Value="True">
-                                        <Setter TargetName="Computer" Property="Visibility" Value="Visible" />
-                                        <Setter TargetName="Qrcode" Property="Visibility" Value="Collapsed" />
-                                    </Trigger>
-                                    <Trigger Property="IsChecked" Value="False">
-                                        <Setter TargetName="Computer" Property="Visibility" Value="Collapsed" />
-                                        <Setter TargetName="Qrcode" Property="Visibility" Value="Visible" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers />
-                </Style>
-            </ToggleButton.Style>
-        </ToggleButton>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBox Style="{StaticResource InputTextBoxStyle}" />
+        <ComboBox Grid.Row="1" Margin="0 10 0 0" Style="{StaticResource ComboBoxStyle}">
+            <Label Content="123"></Label>
+            <Label Content="123"></Label>
+            <Label Content="123"></Label>
+            <Label Content="123"></Label>
+        </ComboBox>
     </Grid>
 </Window>

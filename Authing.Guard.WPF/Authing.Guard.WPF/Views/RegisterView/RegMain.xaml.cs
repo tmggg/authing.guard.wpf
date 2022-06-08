@@ -28,11 +28,16 @@ namespace Authing.Guard.WPF.Views.RegisterView
             tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByPhone");
             tabItem.Content = new PhoneReg();
-            RegMainTabControl.Items.Add(tabItem); 
+            RegMainTabControl.Items.Add(tabItem);
             tabItem = new TabItem();
             tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
             tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByMail");
             tabItem.Content = new MailReg();
+            RegMainTabControl.Items.Add(tabItem);
+            tabItem = new TabItem();
+            tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByMail");
+            tabItem.Content = new UserInfoReplenishView();
             RegMainTabControl.Items.Add(tabItem);
         }
     }

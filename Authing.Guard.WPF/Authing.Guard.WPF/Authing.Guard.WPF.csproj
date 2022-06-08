@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net5.0-windows;net45;net48;net40</TargetFrameworks>
@@ -8,10 +8,6 @@
 	<ItemGroup>
 	  <None Remove="Commons\Images\qrcode.png" />
 	  <None Remove="Commons\Images\qrcode2.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Converters\" />
 	</ItemGroup>
 
 	<ItemGroup>

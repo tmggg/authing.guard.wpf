@@ -154,4 +154,13 @@
 
     <!--  显示密码按钮，鼠标 Cover 下的颜色  -->
     <SolidColorBrush x:Key="EyeIconOverBlackBrush" Color="{StaticResource EyeIconOverBlack}" />
+
+    <!-- ComboBox 按钮图标颜色 -->
+    <SolidColorBrush x:Key="ToggleButtonPathColor" Color="#BFBFBF" />
+
+    <!-- ComboBoxItem 鼠标经过颜色 -->
+    <SolidColorBrush x:Key="ComboBoxMouseOverColor" Color="#F5F5F5" />
+
+    <!-- ComboBoxItem 选中颜色 -->
+    <SolidColorBrush x:Key="ComboBoxMouseSelectColor" Color="#F0F6FF" />
 </ResourceDictionary>
