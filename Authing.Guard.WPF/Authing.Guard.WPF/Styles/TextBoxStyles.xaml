@@ -277,17 +277,16 @@
                 ClipToBounds="True"
                 TransitionMode="Top2Bottom">
                 <TextBlock
-                    Margin="44,2,0,0"
-                    Foreground="Red"
+                    Margin="5,3,0,0"
+                    Foreground="{StaticResource AppRedBrush}"
                     Text="{Binding Path=AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=adornedElementPlaceholder}" />
             </controls:TransitioningContentControl>
         </Grid>
     </ControlTemplate>
 
     <Style x:Key="InputTextBoxStyle" TargetType="{x:Type TextBox}">
-        <Setter Property="MinHeight" Value="{StaticResource DefaultControlMinHeight}"></Setter>
-        <Setter Property="MinWidth" Value="{StaticResource DefaultControlMinWidth}"></Setter>
         <Setter Property="Padding" Value="{StaticResource DefaultControlPadding}"></Setter>
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InputElementErrorTemplate}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -407,6 +406,9 @@
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
+                        <Trigger Property="Validation.HasError" Value="true">
+                            <Setter TargetName="OutBorder" Property="BorderBrush" Value="{StaticResource AppRedBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

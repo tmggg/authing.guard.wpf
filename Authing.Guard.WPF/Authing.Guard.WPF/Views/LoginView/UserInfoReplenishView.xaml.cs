@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Models;
 
 namespace Authing.Guard.WPF.Views.LoginView
@@ -35,7 +36,18 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             DataItems = new ObservableCollection<InfoReplenish>();
             DataItems.Add(new InfoReplenish() { Name = "姓名", IsNessary = true });
-            DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "男", "女" } });
+            DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "男", "女" }, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "男", "女" }, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "男", "女" }, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "手机号", InfoType = InfoType.Phone, IsNessary = true, });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true });
         }
     }
 }

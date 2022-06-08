@@ -46,5 +46,7 @@
     <system:String x:Key="MainRegTipMail">Enter Your Email</system:String>
     <system:String x:Key="MainRegTipFpasswd">Enter Your Password</system:String>
     <system:String x:Key="MainRegTipSpasswd">Comfirm Your Password</system:String>
-
+    <system:String x:Key="MailFormatError">Mail format error</system:String>
+    <system:String x:Key="EmptyError">Field can not empty</system:String>
+    <system:String x:Key="PhoneError">Phone format error</system:String>
 </ResourceDictionary>
