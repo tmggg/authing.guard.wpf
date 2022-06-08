@@ -9,5 +9,9 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ToggleButtonStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/FontSizeStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/DefaultValues.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Storyboard.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

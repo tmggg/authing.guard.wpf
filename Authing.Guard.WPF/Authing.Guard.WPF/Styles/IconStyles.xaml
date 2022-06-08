@@ -21,13 +21,13 @@
                         <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                             <Canvas Name="svg152" Width="1024" Height="1024">
                                 <Canvas.RenderTransform>
-                                    <TranslateTransform X="0" Y="0"/>
+                                    <TranslateTransform X="0" Y="0" />
                                 </Canvas.RenderTransform>
-                                <Canvas.Resources/>
+                                <Canvas.Resources />
                                 <!--Unknown tag: sodipodi:namedview-->
                                 <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path150"  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                     <Path.Data>
-                                        <PathGeometry Figures="M923.3 754.7c-22.4-50-54.4-94.8-95.2-133.2-40.6-38.3-87.8-68.3-140.4-89.3-11-4.4-22.1-8.3-33.4-11.8 12.7-8.7 24.6-18.6 35.7-29.7 47.1-47.1 73-109.6 73-176.2 0-66.5-25.9-129.1-73-176.2-47.1-47.1-109.6-73-176.2-73s-129.1 25.9-176.2 73c-47.1 47.1-73 109.6-73 176.2 0 66.5 25.9 129.1 73 176.2 10.8 10.8 22.3 20.4 34.6 28.9-12.1 3.7-24.1 7.9-36 12.6-52.6 21-99.8 51-140.4 89.3-40.8 38.4-72.8 83.2-95.2 133.2-23.3 51.9-35.1 107-35.1 163.9 0 22.1 17.9 40 40 40s40-17.9 40-40c0-186.9 162.4-339 361.9-339h8.9c199.6 0 361.9 152.1 361.9 339 0 22.1 17.9 40 40 40s40-17.9 40-40c0.2-56.8-11.6-112-34.9-163.9zM513.9 145.4c93.3 0 169.1 75.9 169.1 169.1s-75.9 169.1-169.1 169.1-169.1-75.9-169.1-169.1 75.8-169.1 169.1-169.1z" FillRule="NonZero"/>
+                                        <PathGeometry Figures="M923.3 754.7c-22.4-50-54.4-94.8-95.2-133.2-40.6-38.3-87.8-68.3-140.4-89.3-11-4.4-22.1-8.3-33.4-11.8 12.7-8.7 24.6-18.6 35.7-29.7 47.1-47.1 73-109.6 73-176.2 0-66.5-25.9-129.1-73-176.2-47.1-47.1-109.6-73-176.2-73s-129.1 25.9-176.2 73c-47.1 47.1-73 109.6-73 176.2 0 66.5 25.9 129.1 73 176.2 10.8 10.8 22.3 20.4 34.6 28.9-12.1 3.7-24.1 7.9-36 12.6-52.6 21-99.8 51-140.4 89.3-40.8 38.4-72.8 83.2-95.2 133.2-23.3 51.9-35.1 107-35.1 163.9 0 22.1 17.9 40 40 40s40-17.9 40-40c0-186.9 162.4-339 361.9-339h8.9c199.6 0 361.9 152.1 361.9 339 0 22.1 17.9 40 40 40s40-17.9 40-40c0.2-56.8-11.6-112-34.9-163.9zM513.9 145.4c93.3 0 169.1 75.9 169.1 169.1s-75.9 169.1-169.1 169.1-169.1-75.9-169.1-169.1 75.8-169.1 169.1-169.1z" FillRule="NonZero" />
                                     </Path.Data>
                                 </Path>
                             </Canvas>
@@ -47,18 +47,18 @@
                             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                 <Canvas Name="svg10" Width="1024" Height="1024">
                                     <Canvas.RenderTransform>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <TranslateTransform X="0" Y="0" />
                                     </Canvas.RenderTransform>
-                                    <Canvas.Resources/>
+                                    <Canvas.Resources />
                                     <!--Unknown tag: sodipodi:namedview-->
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M880 384H764V240c0-70.7-57.3-128-128-128H388c-70.7 0-128 57.3-128 128v144H144c-17.7 0-32 14.3-32 32v464c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32zM332 240c0-30.9 25.1-56 56-56h248c30.9 0 56 25.1 56 56v144H332V240z m508 600H184V456h656v384z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M880 384H764V240c0-70.7-57.3-128-128-128H388c-70.7 0-128 57.3-128 128v144H144c-17.7 0-32 14.3-32 32v464c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V416c0-17.7-14.3-32-32-32zM332 240c0-30.9 25.1-56 56-56h248c30.9 0 56 25.1 56 56v144H332V240z m508 600H184V456h656v384z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path8"  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M484 661v53c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-53c12.1-8.7 20-22.9 20-39 0-26.5-21.5-48-48-48s-48 21.5-48 48c0 16.1 7.9 30.3 20 39z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M484 661v53c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-53c12.1-8.7 20-22.9 20-39 0-26.5-21.5-48-48-48s-48 21.5-48 48c0 16.1 7.9 30.3 20 39z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                 </Canvas>
@@ -79,17 +79,17 @@
                             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                 <Canvas Name="svg22" Width="1024" Height="1024">
                                     <Canvas.RenderTransform>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <TranslateTransform X="0" Y="0" />
                                     </Canvas.RenderTransform>
-                                    <Canvas.Resources/>
+                                    <Canvas.Resources />
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path18" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M505.46 890.45a26.37 26.37 0 0 1-5.93-0.67c-3.2-0.74-79.37-18.74-156.08-74.57-45.51-33.12-81.85-72.76-108-117.8C202.7 641 186.1 576.35 186.1 505.18V270.79a26.39 26.39 0 0 1 17.05-24.68l293-110.86a26.47 26.47 0 0 1 18.68 0l293 110.86a26.38 26.38 0 0 1 17.06 24.68v234.39c0 71.17-16.6 135.84-49.35 192.23-26.15 45-62.49 84.68-108 117.8C590.77 871 514.6 889 511.39 889.78a26.37 26.37 0 0 1-5.93 0.67zM238.89 289v216.18c0 111.27 45.14 200.87 134.17 266.29 56.53 41.53 114.08 60.09 132.4 65.29 18.32-5.2 75.88-23.76 132.41-65.29 89-65.42 134.17-155 134.17-266.29V289L505.46 188.16z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M505.46 890.45a26.37 26.37 0 0 1-5.93-0.67c-3.2-0.74-79.37-18.74-156.08-74.57-45.51-33.12-81.85-72.76-108-117.8C202.7 641 186.1 576.35 186.1 505.18V270.79a26.39 26.39 0 0 1 17.05-24.68l293-110.86a26.47 26.47 0 0 1 18.68 0l293 110.86a26.38 26.38 0 0 1 17.06 24.68v234.39c0 71.17-16.6 135.84-49.35 192.23-26.15 45-62.49 84.68-108 117.8C590.77 871 514.6 889 511.39 889.78a26.37 26.37 0 0 1-5.93 0.67zM238.89 289v216.18c0 111.27 45.14 200.87 134.17 266.29 56.53 41.53 114.08 60.09 132.4 65.29 18.32-5.2 75.88-23.76 132.41-65.29 89-65.42 134.17-155 134.17-266.29V289L505.46 188.16z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path20" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon, Mode=FindAncestor}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M485.67 616.26h-0.4a26.38 26.38 0 0 1-18.82-8.3L382 518.21A26.39 26.39 0 0 1 420.43 482l65.81 70 157.6-157.6a26.4 26.4 0 1 1 37.33 37.33L504.33 608.52a26.37 26.37 0 0 1-18.66 7.74z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M485.67 616.26h-0.4a26.38 26.38 0 0 1-18.82-8.3L382 518.21A26.39 26.39 0 0 1 420.43 482l65.81 70 157.6-157.6a26.4 26.4 0 1 1 37.33 37.33L504.33 608.52a26.37 26.37 0 0 1-18.66 7.74z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                 </Canvas>
@@ -110,23 +110,22 @@
                             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                 <Canvas Name="svg22" Width="1024" Height="1024">
                                     <Canvas.RenderTransform>
-                                        <TranslateTransform X="0" Y="0"/>
+                                        <TranslateTransform X="0" Y="0" />
                                     </Canvas.RenderTransform>
-                                    <Canvas.Resources/>
+                                    <Canvas.Resources />
                                     <!--Unknown tag: sodipodi:namedview-->
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path18" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M512.7 813.2h-0.6c-79.1-0.1-160.8-26.3-242.8-77.8-38.7-24.3-98.3-67.7-162.9-136.8-20.7-22.1-32.5-54.6-32.5-89 0.1-34.4 12-66.8 32.8-88.9 35.8-38 93.2-92.5 163.4-136.3 81.9-51.1 163.5-77 242.5-77h0.6c79.1 0.1 160.8 26.3 242.8 77.8 38.7 24.3 98.3 67.7 162.9 136.8 20.7 22.1 32.5 54.6 32.5 89s-12 66.8-32.8 88.9c-35.8 38-93.2 92.5-163.4 136.3-82 51.1-163.6 77-242.5 77z m-0.2-529.2C362.9 284 229 402.5 162.4 473.2c-7.3 7.8-11.9 21.8-11.9 36.5s4.5 28.7 11.8 36.5c66.4 71 200.2 190.1 349.9 190.4h0.5c149.5 0 283.5-118.5 350.1-189.2 7.3-7.8 11.9-21.8 12-36.5 0-14.7-4.5-28.7-11.8-36.5-66.5-71-200.3-190.1-350-190.4h-0.5z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M512.7 813.2h-0.6c-79.1-0.1-160.8-26.3-242.8-77.8-38.7-24.3-98.3-67.7-162.9-136.8-20.7-22.1-32.5-54.6-32.5-89 0.1-34.4 12-66.8 32.8-88.9 35.8-38 93.2-92.5 163.4-136.3 81.9-51.1 163.5-77 242.5-77h0.6c79.1 0.1 160.8 26.3 242.8 77.8 38.7 24.3 98.3 67.7 162.9 136.8 20.7 22.1 32.5 54.6 32.5 89s-12 66.8-32.8 88.9c-35.8 38-93.2 92.5-163.4 136.3-82 51.1-163.6 77-242.5 77z m-0.2-529.2C362.9 284 229 402.5 162.4 473.2c-7.3 7.8-11.9 21.8-11.9 36.5s4.5 28.7 11.8 36.5c66.4 71 200.2 190.1 349.9 190.4h0.5c149.5 0 283.5-118.5 350.1-189.2 7.3-7.8 11.9-21.8 12-36.5 0-14.7-4.5-28.7-11.8-36.5-66.5-71-200.3-190.1-350-190.4h-0.5z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                     <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path20" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=control:Icon}}">
                                         <Path.Data>
-                                            <PathGeometry Figures="M512.6 646h-0.2c-36.2-0.1-70.3-14.2-95.9-39.9-25.6-25.7-39.6-59.8-39.6-96 0.1-74.7 61-135.5 135.7-135.5h0.2c36.2 0.1 70.3 14.2 95.9 39.9s39.6 59.8 39.6 96l-32.6-0.1 32.6 0.1c-0.1 74.8-61 135.5-135.7 135.5z m0-206.2c-38.9 0-70.5 31.6-70.6 70.4 0 18.8 7.3 36.6 20.6 49.9 13.3 13.3 31 20.7 49.9 20.8h0.1c18.8 0 36.5-7.3 49.8-20.6 13.3-13.3 20.7-31 20.8-49.9 0-18.8-7.3-36.6-20.6-49.9-13.3-13.3-31-20.7-49.9-20.8 0 0.1-0.1 0.1-0.1 0.1z" FillRule="NonZero"/>
+                                            <PathGeometry Figures="M512.6 646h-0.2c-36.2-0.1-70.3-14.2-95.9-39.9-25.6-25.7-39.6-59.8-39.6-96 0.1-74.7 61-135.5 135.7-135.5h0.2c36.2 0.1 70.3 14.2 95.9 39.9s39.6 59.8 39.6 96l-32.6-0.1 32.6 0.1c-0.1 74.8-61 135.5-135.7 135.5z m0-206.2c-38.9 0-70.5 31.6-70.6 70.4 0 18.8 7.3 36.6 20.6 49.9 13.3 13.3 31 20.7 49.9 20.8h0.1c18.8 0 36.5-7.3 49.8-20.6 13.3-13.3 20.7-31 20.8-49.9 0-18.8-7.3-36.6-20.6-49.9-13.3-13.3-31-20.7-49.9-20.8 0 0.1-0.1 0.1-0.1 0.1z" FillRule="NonZero" />
                                         </Path.Data>
                                     </Path>
                                 </Canvas>
                             </Viewbox>
-
                         </Grid>
                     </Grid>
                 </ControlTemplate>

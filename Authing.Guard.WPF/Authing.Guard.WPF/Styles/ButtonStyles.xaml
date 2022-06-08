@@ -3,21 +3,22 @@
     xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach" xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Button" x:Key="BaseButtonStyle">
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
     </Style>
 
     <Style TargetType="Button" x:Key="LinkButtonStyle" BasedOn="{StaticResource BaseButtonStyle}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource AppBlueBrush}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource AppBlueBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Border Background="{TemplateBinding Background}"/>
+                        <Border Background="{TemplateBinding Background}" />
                         <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
                     </Grid>
                 </ControlTemplate>
@@ -31,7 +32,7 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="CornerRadius" Value="2" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PrimaryButton">
@@ -272,12 +273,11 @@
         </Setter>
     </Style>
 
-    <Geometry x:Key="Icon">M512 907c-24.852 0-45-20.148-45-45s20.148-45 45-45c168.446 0 305-136.554 305-305S680.446 207 512 207 207 343.554 207 512c0 24.852-20.148 45-45 45S117 536.852 117 512c0-218.152 176.848-395 395-395S907 293.848 907 512 730.152 907 512 907z</Geometry>
     <Style TargetType="controls:CoutDownButton">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <!--<Setter Property="HorizontalAlignment" Value="Center" /> 
-        <Setter Property="VerticalAlignment" Value="Center" /> 
-        <Setter Property="HorizontalContentAlignment" Value="Center" /> 
+        <!--<Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />-->
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
@@ -288,63 +288,63 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CoutDownButton">
 
-                    <Border 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        BorderThickness="{TemplateBinding BorderThickness}" 
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{Binding Path=(attach:BorderAttach.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
                         <Grid>
                             <Border x:Name="PART_MainBorder">
-                                <ContentPresenter 
-                                    Margin="{TemplateBinding Padding}" 
-                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                    RecognizesAccessKey="True" 
+                                <ContentPresenter
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    RecognizesAccessKey="True"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Border>
-                            <DockPanel 
-                                x:Name="PART_TipDockPanel" 
-                                Margin="{TemplateBinding Padding}" 
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
-                                Background="{TemplateBinding Background}" 
+                            <DockPanel
+                                x:Name="PART_TipDockPanel"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Background="{TemplateBinding Background}"
                                 Visibility="Collapsed">
                                 <TextBlock Margin="0,0,2,0" Text="{Binding Count, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
                                 <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding attach:TipContentAttach.TipContent}" />
                             </DockPanel>
-                            <Border 
-                                x:Name="BusyBorder" 
-                                Background="{TemplateBinding Background}" 
+                            <Border
+                                x:Name="BusyBorder"
+                                Background="{TemplateBinding Background}"
                                 Visibility="Visible">
-                                <Path 
-                                    x:Name="PART_IconPath" 
-                                    Width="{TemplateBinding attach:IconAttach.Width}" 
-                                    Height="{TemplateBinding attach:IconAttach.Height}" 
-                                    Data="{TemplateBinding attach:IconAttach.Geometry}" 
-                                    Fill="{DynamicResource PrimaryBrush}" 
-                                    RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True" 
+                                <Path
+                                    x:Name="PART_IconPath"
+                                    Width="{TemplateBinding attach:IconAttach.Width}"
+                                    Height="{TemplateBinding attach:IconAttach.Height}"
+                                    Data="{TemplateBinding attach:IconAttach.Geometry}"
+                                    Fill="{DynamicResource PrimaryBrush}"
+                                    RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True"
                                     Stretch="Uniform">
                                     <Path.RenderTransform>
                                         <RotateTransform />
                                     </Path.RenderTransform>
                                 </Path>
-                                <!--<Path 
-                                    x:Name="PART_IconPath" Width="24" 
-                                    Height="24" 
-                                    Data="{StaticResource Icon}" 
-                                    Fill="{DynamicResource PrimaryBrush}" 
-                                    RenderTransformOrigin="0.5,0.5" Stretch="Fill"> 
-                                    <Path.RenderTransform> 
-                                        <RotateTransform /> 
-                                    </Path.RenderTransform> 
-                                    <Path.Resources> 
-                                        <Storyboard x:Key="BusyStoryBoard"> 
-                                            <DoubleAnimation 
-                                                BeginTime="0:0:0" RepeatBehavior="Forever" 
-                                                Storyboard.TargetName="PART_IconPath" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" 
-                                                To="360" Duration="0:0:.5" /> 
-                                        </Storyboard> 
-                                    </Path.Resources> 
+                                <!--<Path
+                                    x:Name="PART_IconPath" Width="24"
+                                    Height="24"
+                                    Data="{StaticResource Icon}"
+                                    Fill="{DynamicResource PrimaryBrush}"
+                                    RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                                    <Path.RenderTransform>
+                                        <RotateTransform />
+                                    </Path.RenderTransform>
+                                    <Path.Resources>
+                                        <Storyboard x:Key="BusyStoryBoard">
+                                            <DoubleAnimation
+                                                BeginTime="0:0:0" RepeatBehavior="Forever"
+                                                Storyboard.TargetName="PART_IconPath" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)"
+                                                To="360" Duration="0:0:.5" />
+                                        </Storyboard>
+                                    </Path.Resources>
                                 </Path>-->
                             </Border>
                         </Grid>
@@ -370,5 +370,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>
