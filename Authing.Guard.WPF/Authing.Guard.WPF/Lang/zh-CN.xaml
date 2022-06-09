@@ -48,5 +48,5 @@
     <system:String x:Key="Register">注 册</system:String>
     <system:String x:Key="MailFormatError">邮箱格式错误</system:String>
     <system:String x:Key="EmptyError">字段不能为空</system:String>
-    <system:String x:Key="PhoneError">手机号格式错误</system:String>
+    <system:String x:Key="PhoneFormatError">手机号格式错误</system:String>
 </ResourceDictionary>

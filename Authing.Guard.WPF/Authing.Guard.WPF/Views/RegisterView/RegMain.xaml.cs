@@ -36,7 +36,6 @@ namespace Authing.Guard.WPF.Views.RegisterView
             RegMainTabControl.Items.Add(tabItem);
             tabItem = new TabItem();
             tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-            tabItem.VerticalContentAlignment = VerticalAlignment.Stretch;
             tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByMail");
             tabItem.Content = new UserInfoReplenishView();
             RegMainTabControl.Items.Add(tabItem);

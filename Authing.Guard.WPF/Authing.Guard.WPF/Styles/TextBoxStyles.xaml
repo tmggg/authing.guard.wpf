@@ -328,7 +328,7 @@
                         <Trigger Property="Text" Value="">
                             <Setter Property="Visibility" TargetName="PlaceHolder" Value="Visible" />
                         </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter Property="Visibility" TargetName="PlaceHolder" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
@@ -336,8 +336,8 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsKeyboardFocused" Value="False"></Condition>
                                 <Condition Property="IsMouseOver" Value="True"></Condition>
+                                <Condition Property="IsKeyboardFocusWithin" Value="False"></Condition>
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
@@ -356,7 +356,7 @@
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
-                        <Trigger Property="IsFocused" Value="True">
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -376,7 +376,7 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsKeyboardFocused" Value="True" />
+                                <Condition Property="IsKeyboardFocusWithin" Value="True" />
                                 <Condition Property="IsMouseOver" Value="False" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
@@ -390,6 +390,29 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" To="Transparent" Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocusWithin" Value="False" />
+                                <Condition Property="IsFocused" Value="False" />
+                                <Condition Property="Validation.HasError" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="#FF4E50" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="#FFDBDC" Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxInnerBorderBlue}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="{StaticResource AppBlueBorder}" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>

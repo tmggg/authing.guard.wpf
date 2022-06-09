@@ -13,7 +13,7 @@ namespace Authing.Guard.WPF.Test
         {
             InitializeComponent();
 
-           Loaded += MainWindow_Loaded;
+            Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -22,7 +22,7 @@ namespace Authing.Guard.WPF.Test
             guardView.Config.LoginError += LoginError;
         }
 
-        private void Login(User user,AuthenticationClient authenticationClient)
+        private void Login(User user, AuthenticationClient authenticationClient)
         {
             MessageBox.Show("登录成功");
         }

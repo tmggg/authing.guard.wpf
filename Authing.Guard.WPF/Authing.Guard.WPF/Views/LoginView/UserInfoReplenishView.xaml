@@ -9,6 +9,7 @@
              xmlns:validations="clr-namespace:Authing.Guard.WPF.Infrastructures.Validations"
              xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
              mc:Ignorable="d"
+             MaxHeight="500"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,7 +19,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate x:Key="InfoWithTextBox" DataType="{x:Type models:InfoReplenish}">
-                <Grid Margin="0 0 0 20">
+                <Grid Margin="5 0 5 20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -28,10 +29,18 @@
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
                     <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox.Resources>
+                            <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
+                            <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
+                        </TextBox.Resources>
                         <TextBox.Text>
                             <Binding Path="Data" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:EmptyValidation />
+                                    <validations:EmptyValidation>
+                                        <validations:ComparisonValue
+                                            DataName="{Binding Data, Source={StaticResource NameProxy}}"
+                                            IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}"></validations:ComparisonValue>
+                                    </validations:EmptyValidation>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -40,7 +49,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="InfoWithComboBox" DataType="{x:Type models:InfoReplenish}">
-                <Grid Margin="0 0 0 20">
+                <Grid Margin="5 0 5 20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -49,12 +58,12 @@
                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5 0  0 5"  Text="{Binding Name}" />
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
-                    <ComboBox Grid.Row="1" ItemsSource="{Binding Items}" Style="{StaticResource ComboBoxStyle}" />
+                    <ComboBox Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Items}" Style="{StaticResource ComboBoxStyle}" />
                 </Grid>
             </DataTemplate>
 
             <DataTemplate x:Key="PhoneReplenish" DataType="{x:Type models:InfoReplenish}">
-                <Grid Margin="0 0 0 20">
+                <Grid Margin="5 0 5 20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -65,15 +74,23 @@
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
                     <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox.Resources>
+                            <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
+                            <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
+                        </TextBox.Resources>
                         <TextBox.Text>
                             <Binding Path="Data" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:EmptyValidation />
+                                    <validations:PhoneValidation>
+                                        <validations:ComparisonValue
+                                            DataName="{Binding Data, Source={StaticResource NameProxy}}"
+                                            IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}" />
+                                    </validations:PhoneValidation>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Grid Grid.Row="2" Margin="0 5 0 0 ">
+                    <Grid Grid.Row="2" Margin="0 20 0 0 ">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
@@ -82,7 +99,7 @@
                             <TextBox.Text>
                                 <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <validations:PhoneValidation />
+                                        <validations:EmptyValidation />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -104,7 +121,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="MailReplenish" DataType="{x:Type models:InfoReplenish}">
-                <Grid Margin="0 0 0 20">
+                <Grid Margin="5 0 5 20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -115,15 +132,23 @@
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
                     <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox.Resources>
+                            <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
+                            <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
+                        </TextBox.Resources>
                         <TextBox.Text>
-                            <Binding Path="Data" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="Data" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:MailValidation />
+                                    <validations:MailValidation>
+                                        <validations:ComparisonValue
+                                            DataName="{Binding Data, Source={StaticResource NameProxy}}"
+                                            IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}" />
+                                    </validations:MailValidation>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Grid Grid.Row="2" Margin="0 5 0 0">
+                    <Grid Grid.Row="2" Margin="0 20 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />

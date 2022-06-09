@@ -10,6 +10,6 @@
     Title="MainWindow"
     mc:Ignorable="d">
     <Grid>
-        <main:MainView  x:Name="guardView" AppId="6215dd9277d6ef55dfab41f8"  Secret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e"/>
+        <main:MainView  x:Name="guardView" AppId="6215dd9277d6ef55dfab41f8"  Secret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />
     </Grid>
 </Window>

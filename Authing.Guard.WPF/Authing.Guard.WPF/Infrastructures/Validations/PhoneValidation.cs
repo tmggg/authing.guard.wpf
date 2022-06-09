@@ -14,11 +14,11 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             var emptyCheck = base.Validate(value, cultureInfo);
             if (!emptyCheck.IsValid)
                 return emptyCheck;
-            if (!re.IsMatch(value as string ?? string.Empty))
+            if (re.IsMatch(value as string ?? string.Empty))
             {
-                return BuildResult(false, ResourceHelper.GetResource<string>("PhoneFormatError"));
+                return BuildResult(true);
             }
-            return BuildResult(true);
+            return BuildResult(false, ResourceHelper.GetResource<string>("PhoneFormatError"));
         }
     }
 }

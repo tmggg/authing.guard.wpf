@@ -93,7 +93,7 @@
                     Content="{DynamicResource ContinueWith}"
                     FontSize="16" Foreground="#888888" />
             </Grid>
-            <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                 <ItemsControl
                     x:Name="SocialloginControl" Grid.Row="3"
                     ItemsSource="{Binding DemoData}">
