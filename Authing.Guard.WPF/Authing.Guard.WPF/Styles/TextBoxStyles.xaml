@@ -278,7 +278,7 @@
                 TransitionMode="Top2Bottom">
                 <TextBlock
                     Margin="5,3,0,0"
-                    Foreground="{StaticResource AppRedBrush}"
+                    Foreground="#FF4E50"
                     Text="{Binding Path=AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=adornedElementPlaceholder}" />
             </controls:TransitioningContentControl>
         </Grid>
@@ -289,26 +289,25 @@
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource InputElementErrorTemplate}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
+                <ControlTemplate TargetType="TextBox">
                     <Border
                         x:Name="OutBorder"
-                        CornerRadius="5"
-                        BorderBrush="Transparent"
-                        SnapsToDevicePixels="True"
-                        BorderThickness="2">
+                        CornerRadius="{StaticResource DefaultCornerRadius}"
+                        BorderBrush="{DynamicResource AppTextBoxNormalGrayBrush}"
+                        Background="{DynamicResource AppTextBoxNormalGrayBrush}"
+                        BorderThickness="{StaticResource OutBorderThickness}">
                         <Border
                             x:Name="InBorder"
-                            BorderBrush="{DynamicResource AppTextBoxNormalGrayBrush}"
-                            BorderThickness="1"
-                            CornerRadius="5"
-                            Background="{DynamicResource AppTextBoxNormalGrayBrush}">
+                            BorderBrush="Transparent"
+                            BorderThickness="{StaticResource InBorderThickness}"
+                            CornerRadius="{StaticResource DefaultCornerRadius}"
+                            Background="Transparent">
                             <Grid>
                                 <TextBlock x:Name="PlaceHolder" Text="{Binding Path=(attach:TipContentAttach.TipContent),RelativeSource={RelativeSource TemplatedParent}}"
                                            VerticalAlignment="Center"
                                            Foreground="{StaticResource TextBoxPlaceHolderGrayBrush}"
                                            Padding="{TemplateBinding Padding}"
                                            FontSize="{TemplateBinding FontSize}"
-                                           Panel.ZIndex="1"
                                            Visibility="Collapsed"
                                            FontWeight="{TemplateBinding FontWeight}"></TextBlock>
                                 <ScrollViewer
@@ -332,63 +331,52 @@
                         <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter Property="Visibility" TargetName="PlaceHolder" Value="Collapsed" />
                         </Trigger>
-                        <!--<DataTrigger Binding="{Binding Path=(attach:TipContentAttach.TipContent),RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Null}">
-                            <Setter Property="Visibility" TargetName="PlaceHolder" Value="Collapsed" />
-                        </DataTrigger>-->
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" TargetName="InBorder" Value="White"></Setter>
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" Value="0.56" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="{StaticResource AppTextBoxCoverGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" To="{StaticResource AppTextBoxCoverGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" To="{StaticResource AppTextBoxCoverGray}" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxNormalGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxNormalGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxNormalGray}" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </Trigger.ExitActions>
-                        </Trigger>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="{StaticResource AppBlueBorder}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"  To="White" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="Transparent" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxNormalGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="OutBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"  To="{StaticResource AppTextBoxNormalGray}" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsFocused" Value="True" />
-                                <Condition Property="IsMouseOver" Value="True" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" To="{StaticResource AppTextBoxCoverGray}" Duration="0:0:0.3" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </MultiTrigger.EnterActions>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsFocused" Value="True" />
+                                <Condition Property="IsKeyboardFocused" Value="True" />
                                 <Condition Property="IsMouseOver" Value="False" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.EnterActions>
@@ -401,13 +389,14 @@
                             <MultiTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" To="{StaticResource AppTextBoxCoverGray}" Duration="0:0:0.3" />
+                                        <ColorAnimation Storyboard.TargetName="InBorder" Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" To="Transparent" Duration="0:0:0.3" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>
                         <Trigger Property="Validation.HasError" Value="true">
-                            <Setter TargetName="OutBorder" Property="BorderBrush" Value="{StaticResource AppRedBrush}" />
+                            <Setter TargetName="OutBorder" Property="BorderBrush" Value="#FFDBDC" />
+                            <Setter TargetName="InBorder" Property="BorderBrush" Value="#FF4E50" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
