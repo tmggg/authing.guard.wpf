@@ -163,4 +163,10 @@
 
     <!-- ComboBoxItem 选中颜色 -->
     <SolidColorBrush x:Key="ComboBoxMouseSelectColor" Color="#F0F6FF" />
+
+    <!-- ScrollViewer 默认颜色 -->
+    <SolidColorBrush x:Key="ScrollViewerHoverColor" Color="#a9a9a9" />
+
+    <!-- ScrollViewer 拖动颜色 -->
+    <SolidColorBrush x:Key="ScrollViewerSelectColor" Color="#696969" />
 </ResourceDictionary>

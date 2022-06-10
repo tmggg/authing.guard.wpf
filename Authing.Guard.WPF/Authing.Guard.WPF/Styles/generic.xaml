@@ -13,5 +13,6 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Storyboard.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ScrollViewerStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
