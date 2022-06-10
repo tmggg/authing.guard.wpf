@@ -218,7 +218,7 @@
                       ItemTemplateSelector="{StaticResource UserInfoSelector}">
             <ItemsControl.Template>
                 <ControlTemplate TargetType="ItemsControl">
-                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                    <ScrollViewer>
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>

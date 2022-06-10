@@ -122,6 +122,7 @@
             <ComboBox
                     DockPanel.Dock="Left"
                     SelectedIndex="0"
+                    Style="{StaticResource ComboBoxStyle}"
                     SelectionChanged="Selector_OnSelectionChanged">
                 <ComboBox.Items>
                     <Label Content="{StaticResource zhCN}" />
