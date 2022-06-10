@@ -38,6 +38,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             DataItems.Add(new InfoReplenish() { Name = "姓名", IsNessary = false });
             DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "未知", "男", "女" }, IsNessary = true });
             DataItems.Add(new InfoReplenish() { Name = "手机号", InfoType = InfoType.Phone, IsNessary = true, });
+            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true, });
             DataItems.Add(new InfoReplenish() { Name = "地址", IsNessary = true });
             DataItems.Add(new InfoReplenish() { Name = "座机", IsNessary = true });
             DataItems.Add(new InfoReplenish() { Name = "公司名", IsNessary = false });

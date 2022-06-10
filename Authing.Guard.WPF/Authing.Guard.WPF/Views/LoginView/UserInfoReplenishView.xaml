@@ -10,12 +10,14 @@
              xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
              mc:Ignorable="d"
              MaxHeight="500"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="350">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ComboBox.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconResource.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate x:Key="InfoWithTextBox" DataType="{x:Type models:InfoReplenish}">
@@ -95,7 +97,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
                                 <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -105,7 +107,7 @@
                             </TextBox.Text>
                         </TextBox>
                         <controls:CoutDownButton
-                            Grid.Column="1"
+                            Grid.Row="0" Grid.Column="1"
                             x:Name="SendCodeBtn"
                             Margin="10 0 0 0"
                             attach:BorderAttach.CornerRadius="3"
@@ -153,7 +155,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
                                 <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -163,7 +165,7 @@
                             </TextBox.Text>
                         </TextBox>
                         <controls:CoutDownButton
-                            Grid.Column="1"
+                            Grid.Row="0" Grid.Column="1"
                             x:Name="SendCodeBtn"
                             Margin="10 0 0 0"
                             attach:BorderAttach.CornerRadius="3"
@@ -186,11 +188,37 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Margin="5">
-        <ItemsControl ItemsSource="{Binding DataItems}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Rectangle HorizontalAlignment="Left" Fill="Gray" Width="42" Height="42"></Rectangle>
+            <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource LinkButtonStyle}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="20" Height="20" RenderTransformOrigin="0.5 0.5" Data="{StaticResource UpGeometry}" Stroke="{StaticResource AppBlueBrush}" Stretch="Uniform">
+                            <Path.RenderTransform>
+                                <RotateTransform Angle="90"></RotateTransform>
+                            </Path.RenderTransform>
+                        </Path>
+                        <Label Content="跳过" Foreground="{StaticResource AppBlueBrush}"></Label>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <TextBlock FontSize="24" Grid.Row="1" Text="完善用户信息" FontWeight="Bold" Margin="0 5" />
+            <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="2" Text="欢迎加入Authing，为了更好的使用体验，请先完善你的个人信息" />
+        </Grid>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding DataItems}"
                       ItemTemplateSelector="{StaticResource UserInfoSelector}">
             <ItemsControl.Template>
                 <ControlTemplate TargetType="ItemsControl">
-                    <ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden">
                         <ItemsPresenter />
                     </ScrollViewer>
                 </ControlTemplate>
