@@ -14,14 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Utils;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
     /// <summary>
     /// UserInfoReplenishView.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoReplenishView : UserControl
+    public partial class UserInfoReplenishView : UserControl, IEventListener
     {
         public ObservableCollection<InfoReplenish> DataItems { get; set; }
 
@@ -30,20 +33,63 @@ namespace Authing.Guard.WPF.Views.LoginView
             InitializeComponent();
             initDemoData();
             DataContext = this;
+            this.Unloaded += (sender, args) =>
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.LanguageChanged, this);
+            };
+            EventManagement.Instance.AddListener((int)EventId.LanguageChanged, this);
         }
 
         private void initDemoData()
         {
             DataItems = new ObservableCollection<InfoReplenish>();
-            DataItems.Add(new InfoReplenish() { Name = "姓名", IsNessary = false });
-            DataItems.Add(new InfoReplenish() { Name = "性别", Items = new List<string>() { "未知", "男", "女" }, IsNessary = true });
-            DataItems.Add(new InfoReplenish() { Name = "手机号", InfoType = InfoType.Phone, IsNessary = true, });
-            DataItems.Add(new InfoReplenish() { Name = "邮箱", InfoType = InfoType.Mail, IsNessary = true, });
-            DataItems.Add(new InfoReplenish() { Name = "地址", IsNessary = true });
-            DataItems.Add(new InfoReplenish() { Name = "座机", IsNessary = true });
-            DataItems.Add(new InfoReplenish() { Name = "公司名", IsNessary = false });
-            DataItems.Add(new InfoReplenish() { Name = "工号", IsNessary = true });
-            DataItems.Add(new InfoReplenish() { Name = "年龄", IsNessary = true });
+            FillData();
+        }
+
+        private void FillData()
+        {
+            DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoName"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoUserName"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoNickName"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            {
+                Name = ResourceHelper.GetResource<string>("UserInfoGender"),
+                Items = new List<string>() { "未知", "男", "女" },
+                IsNessary = true
+            });
+            DataItems.Add(
+                new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoBirthdate"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoPhone"), IsNessary = true, InfoType = InfoType.Phone });
+            DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoCountry"), IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoCompany"), IsNessary = true });
+            DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoCity"), IsNessary = true });
+            DataItems.Add(
+                new InfoReplenish() { Name = ResourceHelper.GetResource<string>("UserInfoCProvince"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoStreetAddress"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoStreetPostalCode"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoStreetformatted"), IsNessary = true });
+            DataItems.Add(new InfoReplenish()
+            { Name = ResourceHelper.GetResource<string>("UserInfoMail"), InfoType = InfoType.Mail, IsNessary = true, });
+        }
+
+        public void HandleEvent(int eventId, IEventArgs args)
+        {
+            switch (eventId)
+            {
+                case (int)EventId.LanguageChanged:
+                    DataItems.Clear();
+                    FillData();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

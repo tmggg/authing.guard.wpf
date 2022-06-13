@@ -112,7 +112,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                 var appInfo = await AppManageClient.Instance.Applications.FindById(AppId);
                 if (appInfo != null)
                 {
-
                     Config.Title = appInfo.Identifier;
                     Config.Logo = appInfo.Logo;
                     Config.LoginMethods = m_JsonService.Deserialize<List<LoginMethods>>(appInfo.LoginTabs.ToString());
@@ -146,8 +145,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
-
-
         }
 
         private void SimulationData()
@@ -164,7 +161,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void InitLoginMethod()
         {
-
             foreach (var item in Config.LoginMethods)
             {
                 if (item == LoginMethods.AD)
@@ -194,7 +190,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                     {
                         tabItem.IsSelected = true;
                     }
-
                 }
                 else if (item == LoginMethods.LDAP)
                 {
@@ -245,7 +240,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void InitRegisterMethod()
         {
-
             foreach (var item in Config.RegisterMethods)
             {
                 if (item == RegisterMethods.Email)
@@ -317,48 +311,63 @@ namespace Authing.Guard.WPF.Views.LoginView
                 case (int)EventId.Load:
                     Config.Load?.Invoke(AuthClient.Instance);
                     break;
+
                 case (int)EventId.LoadError:
                     Config.LoadError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.Login:
                     Config.Login?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
+
                 case (int)EventId.LoginError:
                     Config.LoginError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.Register:
                     Config.Register?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
+
                 case (int)EventId.RegisterError:
                     Config.RegisterError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.PwdEmailSend:
                     Config.PwdEmailSend?.Invoke();
                     break;
+
                 case (int)EventId.PwdEmailSendError:
                     Config.PwdEmailSendError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.PwdPhoneSend:
                     Config.PwdPhoneSend?.Invoke();
                     break;
+
                 case (int)EventId.PwdPhoneSendError:
                     Config.PwdPhoneSendError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.PwdReset:
                     Config.PwdReset?.Invoke();
                     break;
+
                 case (int)EventId.PwdResetError:
                     Config.PwdResetError?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.LoginTabChange:
                     Config.LoginTabChange?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.RegisterTabChange:
                     Config.RegisterTabChange?.Invoke(args.GetValue<string>());
                     break;
+
                 case (int)EventId.RegisterInfoCompleted:
                     Config.RegisterInfoCompleted?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
+
                 case (int)EventId.RegisterInfoCompletedError:
                     Config.RegisterInfoCompletedError?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
@@ -387,7 +396,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                         var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
-
                     }
                     if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
                     {
@@ -396,9 +404,11 @@ namespace Authing.Guard.WPF.Views.LoginView
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
                     }
+                    EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<string>.CreateEventArgs(""));
                 }
             }
         }
+
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (sender is Button)

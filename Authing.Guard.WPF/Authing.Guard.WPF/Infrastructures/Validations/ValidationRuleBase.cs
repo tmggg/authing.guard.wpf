@@ -31,7 +31,7 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             {
                 if (string.IsNullOrWhiteSpace(value as string))
                 {
-                    return BuildResult(false, ComparisonValue?.DataName + ResourceHelper.GetResource<string>("EmptyError"));
+                    return BuildResult(false, ComparisonValue?.DataName + " " + ResourceHelper.GetResource<string>("EmptyError"));
                 }
             }
             else

@@ -97,7 +97,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox attach:TipContentAttach.TipContent="{DynamicResource PhoneCodeNotify}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
                                 <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -155,7 +155,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Style="{StaticResource InputTextBoxStyle}">
+                        <TextBox attach:TipContentAttach.TipContent="{DynamicResource PhoneCodeNotify}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
                                 <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -207,12 +207,12 @@
                                 <RotateTransform Angle="90"></RotateTransform>
                             </Path.RenderTransform>
                         </Path>
-                        <Label Content="跳过" Foreground="{StaticResource AppBlueBrush}"></Label>
+                        <Label Content="{DynamicResource Skip}" Foreground="{StaticResource AppBlueBrush}"></Label>
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <TextBlock FontSize="24" Grid.Row="1" Text="完善用户信息" FontWeight="Bold" Margin="0 5" />
-            <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="2" Text="欢迎加入Authing，为了更好的使用体验，请先完善你的个人信息" />
+            <TextBlock FontSize="24" Grid.Row="1" Text="{DynamicResource ReplenishTitle}" FontWeight="Bold" Margin="0 5" />
+            <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="2" Text="{DynamicResource ReplenishTitleContent}" />
         </Grid>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding DataItems}"
                       ItemTemplateSelector="{StaticResource UserInfoSelector}">
