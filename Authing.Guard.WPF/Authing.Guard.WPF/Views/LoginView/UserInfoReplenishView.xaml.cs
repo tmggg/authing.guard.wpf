@@ -37,7 +37,10 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 EventManagement.Instance.RemoveListener((int)EventId.LanguageChanged, this);
             };
-            EventManagement.Instance.AddListener((int)EventId.LanguageChanged, this);
+            this.Loaded += (sender, args) =>
+            {
+                EventManagement.Instance.AddListener((int)EventId.LanguageChanged, this);
+            };
         }
 
         private void initDemoData()
