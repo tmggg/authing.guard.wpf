@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Utils;
 
 namespace Authing.Guard.WPF.Models
 {
@@ -16,7 +17,7 @@ namespace Authing.Guard.WPF.Models
         public InfoType InfoType { get; set; } = InfoType.Nomal;
 
         public string Name { get; set; }
-        public string TipContent => "请输入" + Name;
+        public string TipContent => ResourceHelper.GetResource<string>("PleaseInput") + " " + Name;
 
         public bool IsNessary { get; set; }
 

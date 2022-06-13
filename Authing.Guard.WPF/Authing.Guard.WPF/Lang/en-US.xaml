@@ -46,7 +46,26 @@
     <system:String x:Key="MainRegTipMail">Enter Your Email</system:String>
     <system:String x:Key="MainRegTipFpasswd">Enter Your Password</system:String>
     <system:String x:Key="MainRegTipSpasswd">Comfirm Your Password</system:String>
+    <system:String x:Key="Skip">Skip</system:String>
+    <system:String x:Key="ReplenishTitle">Replenish user information</system:String>
+    <system:String x:Key="ReplenishTitleContent">Welcome to Authing, for a better user experience, please complete your personal information first</system:String>
+    <system:String x:Key="Register">Register</system:String>
     <system:String x:Key="MailFormatError">Mail format error</system:String>
     <system:String x:Key="EmptyError">Field can not empty</system:String>
     <system:String x:Key="PhoneFormatError">Phone format error</system:String>
+    <system:String x:Key="UserInfoName">name</system:String>
+    <system:String x:Key="UserInfoUserName">username</system:String>
+    <system:String x:Key="UserInfoNickName">nickname</system:String>
+    <system:String x:Key="UserInfoGender">gender</system:String>
+    <system:String x:Key="UserInfoBirthdate">birthdate</system:String>
+    <system:String x:Key="UserInfoPhone">phone</system:String>
+    <system:String x:Key="UserInfoCountry">country</system:String>
+    <system:String x:Key="UserInfoCompany">company</system:String>
+    <system:String x:Key="UserInfoCity">city</system:String>
+    <system:String x:Key="UserInfoCProvince">province</system:String>
+    <system:String x:Key="UserInfoStreetAddress">streetaddress</system:String>
+    <system:String x:Key="UserInfoStreetPostalCode">postalCode</system:String>
+    <system:String x:Key="UserInfoStreetformatted">formatted</system:String>
+    <system:String x:Key="UserInfoMail">email</system:String>
+    <system:String x:Key="PleaseInput">Please Input</system:String>
 </ResourceDictionary>
