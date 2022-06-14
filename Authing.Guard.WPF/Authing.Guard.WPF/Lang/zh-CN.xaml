@@ -68,4 +68,8 @@
     <system:String x:Key="UserInfoStreetformatted">完整的邮寄地址 (formatted)</system:String>
     <system:String x:Key="UserInfoMail">邮箱 (email)</system:String>
     <system:String x:Key="PleaseInput">请输入</system:String>
+    <system:String x:Key="Undefined">未知</system:String>
+    <system:String x:Key="Male">男</system:String>
+    <system:String x:Key="FaMale">女</system:String>
+    <system:String x:Key="PassWordNotSame">密码不一致</system:String>
 </ResourceDictionary>

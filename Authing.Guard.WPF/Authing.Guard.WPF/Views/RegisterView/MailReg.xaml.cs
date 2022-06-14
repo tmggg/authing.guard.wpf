@@ -13,8 +13,15 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Authing.ApiClient.Domain.Model;
+using Authing.ApiClient.Domain.Model.Authentication;
+using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
+using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 
 namespace Authing.Guard.WPF.Views.RegisterView
@@ -49,6 +56,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
             PasswordBoxHelper.SetWarn(SPasswod, false);
             SPasswodRemind.Visibility = Visibility.Collapsed;
         }
+
         private void cbAgree_Checked(object sender, RoutedEventArgs e)
         {
             cbAgree.Foreground = new SolidColorBrush(Colors.Black);
@@ -73,41 +81,65 @@ namespace Authing.Guard.WPF.Views.RegisterView
             m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
 
-
-        private void BtnRegister_OnClick(object sender, RoutedEventArgs e)
+        private async void BtnRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            JudgeInput();
+            User user = null;
+            if (!JudgeInput()) return;
+            try
+            {
+                user = await AuthClient.Instance.RegisterByEmail(MailBox.Text, FPasswod.Password, null, null);
+            }
+            catch (Exception exception)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.RegisterError,
+                    EventArgs<string>.CreateEventArgs(exception.Message));
+            }
+            if (user != null)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.Register,
+                    EventArgs<User>.CreateEventArgs(user));
+            }
         }
 
         private bool JudgeInput()
         {
+            ValidationResult res = null;
             bool flag = true;
 
-            if (string.IsNullOrWhiteSpace(MailBox.Text))
+            res = MailBox.Text.ValidationData(ValidationType.Email);
+            if (!res.IsValid)
             {
+                MailBoxRemind.Text = res.ErrorContent.ToString();
                 MailBox.Warn = true;
                 MailBoxRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(MailBox);
                 flag = false;
             }
-            if (string.IsNullOrWhiteSpace(FPasswod.Password))
+            res = FPasswod.Password.ValidationData();
+            if (!res.IsValid)
             {
+                FPasswodRemind.Text = res.ErrorContent.ToString();
                 PasswordBoxHelper.SetWarn(FPasswod, true);
                 FPasswodRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(FPasswod);
                 flag = false;
-            }         
-            if (string.IsNullOrWhiteSpace(SPasswod.Password))
+            }
+            res = SPasswod.Password.ValidationData();
+            if (!res.IsValid)
             {
+                SPasswodRemind.Text = res.ErrorContent.ToString();
                 PasswordBoxHelper.SetWarn(SPasswod, true);
                 SPasswodRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(SPasswod);
                 flag = false;
             }
-            if (cbAgree.IsChecked == null || cbAgree.IsChecked == false)
+
+            if (!FPasswod.Password.CompareWith(SPasswod.Password))
             {
-                cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-                BeginStoryboard(cbAgree);
+                PasswordBoxHelper.SetWarn(SPasswod, true);
+                SPasswodRemind.Visibility = Visibility.Visible;
+                SPasswodRemind.Text = ResourceHelper.GetResource<string>("PassWordNotSame");
+                BeginStoryboard(SPasswod);
                 flag = false;
             }
 
@@ -120,6 +152,5 @@ namespace Authing.Guard.WPF.Views.RegisterView
             Storyboard.SetTarget(storyboard.Children.ElementAt(0) as DoubleAnimationUsingKeyFrames ?? throw new InvalidOperationException(), control);
             storyboard.Begin();
         }
-
     }
 }

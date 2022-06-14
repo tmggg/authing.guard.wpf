@@ -13,8 +13,16 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Authing.ApiClient.Domain.Model;
+using Authing.ApiClient.Domain.Model.Authentication;
+using Authing.ApiClient.Extensions;
+using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
+using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 
 namespace Authing.Guard.WPF.Views.RegisterView
@@ -41,7 +49,19 @@ namespace Authing.Guard.WPF.Views.RegisterView
         private async void SendCodeBtn_OnClick(object sender, RoutedEventArgs e)
         {
             SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
-            await TaskExHelper.Delay(2000);
+            try
+            {
+                await AuthClient.Instance.SendSmsCode(PhoneNumber.Text);
+            }
+            catch (Exception exception)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.RegisterError,
+                    EventArgs<string>.CreateEventArgs(exception.Message));
+            }
+            finally
+            {
+                await TaskExHelper.Delay(SendCodeBtn.Count);
+            }
             SendCodeBtn.IsBusy = SendCodeBtn.IsBusy != true;
             SendCodeBtn.StartCountDown = true;
         }
@@ -76,25 +96,47 @@ namespace Authing.Guard.WPF.Views.RegisterView
             m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
         }
 
-        private void BtnRegister_OnClick(object sender, RoutedEventArgs e)
+        private async void BtnRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            JudgeInput();
+            if (!JudgeInput()) return;
+            User user = null;
+            try
+            {
+                //user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, "", null, true);
+                user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, null, null, true);
+            }
+            catch (Exception exception)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.RegisterError,
+                    EventArgs<string>.CreateEventArgs(exception.Message));
+            }
+            if (user != null)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.Register,
+                    EventArgs<User>.CreateEventArgs(user));
+            }
         }
 
         private bool JudgeInput()
         {
+            ValidationResult res = null;
             bool flag = true;
 
-            if (string.IsNullOrWhiteSpace(PhoneNumber.Text))
+            res = PhoneNumber.Text.ValidationData(ValidationType.Phone);
+            if (!res.IsValid)
             {
+                PhoneNumberRemind.Text = res.ErrorContent.ToString();
                 PhoneNumber.Warn = true;
                 PhoneNumberRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(PhoneNumber);
                 flag = false;
             }
-            if (string.IsNullOrWhiteSpace(ChallengeCode.Text))
+
+            res = ChallengeCode.Text.ValidationData();
+            if (!res.IsValid)
             {
-                //PasswordBoxHelper.SetWarn(ChallengeCode, true);
+                ChallengeCodeRemind.Text = res.ErrorContent.ToString();
+                ChallengeCode.Warn = true;
                 ChallengeCodeRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(ChallengeCode);
                 flag = false;

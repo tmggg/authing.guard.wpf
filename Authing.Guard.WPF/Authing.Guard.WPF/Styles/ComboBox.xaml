@@ -82,7 +82,7 @@
                                 CornerRadius="{Binding Path=(attach:BorderAttach.CornerRadius),RelativeSource={RelativeSource TemplatedParent}}"
                                 x:Name="dropDownBorder" MinWidth="{Binding ActualWidth, ElementName=toggleButton}"
                                 MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <ScrollViewer Margin="0,4">
+                                <ScrollViewer Margin="0,5" Padding="0">
                                     <ItemsPresenter x:Name="ItemsPresenter"
                                                     KeyboardNavigation.DirectionalNavigation="Contained"
                                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />

@@ -18,11 +18,11 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <StackPanel Margin="10">
@@ -31,7 +31,6 @@
                     Height="40"
                     CornerRadius="5"
                     IconType="Account"
-                    MaxLength="11"
                     PlaceHolder="{DynamicResource MainRegTipMail}"
                     Style="{StaticResource PlaceHolderStyle}"
                     TextChanged="MailBox_OnTextChanged">
@@ -96,7 +95,7 @@
             <PasswordBox
                     x:Name="SPasswod"
                     Height="40"
-                    infrastructures:ControlAttachProperty.PlaceHolder="{DynamicResource MainRegTipFpasswd}"
+                    infrastructures:ControlAttachProperty.PlaceHolder="{DynamicResource MainRegTipSpasswd}"
                     infrastructures:PasswordBoxHelper.Warn="False"
                     FontSize="15"
                     PasswordChanged="SPasswod_PasswordChanged"
@@ -135,7 +134,7 @@
             <TextBlock>
                 <TextBlock Text="{DynamicResource Agreement}" />
                 <Button Margin="0 0 0 -3" Style="{StaticResource LinkButtonStyle}" x:Name="linkService" Click="linkService_Click" Content="{DynamicResource ServiceAgreement}" />
-                <TextBlock Text="{DynamicResource And}"/>
+                <TextBlock Text="{DynamicResource And}" />
                 <TextBlock Text="{DynamicResource PrivacyPolicy}"></TextBlock>
                 <Button Style="{StaticResource LinkButtonStyle}" Margin="0 0 0 -3" x:Name="linkPrivacy" Click="linkPrivacy_Click" Content="{DynamicResource PrivacyPolicy}"></Button>
             </TextBlock>
