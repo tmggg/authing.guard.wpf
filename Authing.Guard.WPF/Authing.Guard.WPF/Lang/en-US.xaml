@@ -68,4 +68,8 @@
     <system:String x:Key="UserInfoStreetformatted">formatted</system:String>
     <system:String x:Key="UserInfoMail">email</system:String>
     <system:String x:Key="PleaseInput">Please Input</system:String>
+    <system:String x:Key="Undefined">Undefined</system:String>
+    <system:String x:Key="Male">Male</system:String>
+    <system:String x:Key="FaMale">FaMale</system:String>
+    <system:String x:Key="PassWordNotSame">Password not match</system:String>
 </ResourceDictionary>

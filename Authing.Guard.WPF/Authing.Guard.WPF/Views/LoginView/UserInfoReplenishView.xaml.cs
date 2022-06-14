@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
@@ -24,14 +11,14 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// UserInfoReplenishView.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoReplenishView : UserControl, IEventListener
+    public partial class UserInfoReplenishView : IEventListener
     {
         public ObservableCollection<InfoReplenish> DataItems { get; set; }
 
         public UserInfoReplenishView()
         {
             InitializeComponent();
-            initDemoData();
+            InitDemoData();
             DataContext = this;
             this.Unloaded += (sender, args) =>
             {
@@ -43,7 +30,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             };
         }
 
-        private void initDemoData()
+        private void InitDemoData()
         {
             DataItems = new ObservableCollection<InfoReplenish>();
             FillData();
@@ -59,7 +46,12 @@ namespace Authing.Guard.WPF.Views.LoginView
             DataItems.Add(new InfoReplenish()
             {
                 Name = ResourceHelper.GetResource<string>("UserInfoGender"),
-                Items = new List<string>() { "未知", "男", "女" },
+                Items = new List<string>()
+                {
+                    ResourceHelper.GetResource<string>("Undefined"),
+                    ResourceHelper.GetResource<string>("Male"),
+                    ResourceHelper.GetResource<string>("FaMale")
+                },
                 IsNessary = true
             });
             DataItems.Add(
@@ -88,9 +80,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                 case (int)EventId.LanguageChanged:
                     DataItems.Clear();
                     FillData();
-                    break;
-
-                default:
                     break;
             }
         }

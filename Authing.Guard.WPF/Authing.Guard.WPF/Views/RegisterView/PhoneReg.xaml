@@ -4,6 +4,7 @@
     xmlns:local="clr-namespace:Authing.Guard.WPF.Views.RegisterView" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
     xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach"
+    xmlns:infrastructures="clr-namespace:Authing.Guard.WPF.Infrastructures"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,10 +18,10 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <StackPanel Margin="10">
@@ -52,15 +53,16 @@
                 x:Name="PhoneNumberRemind"
                 Margin="0,5,0,0"
                 Foreground="{StaticResource AppRedBrush}"
-                Text="手机号未填写"
+                Text="{DynamicResource PhoneCodeAccountValid}"
                 Visibility="Collapsed" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <controls:PasswordHolderTextBox
                     x:Name="ChallengeCode"
@@ -96,14 +98,14 @@
                         attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
                         Click="SendCodeBtn_OnClick"
                         Content="{DynamicResource SendCode}"
-                        Count="3"
+                        Count="60"
                         FontSize="14" />
             </Grid>
             <TextBlock
                 x:Name="ChallengeCodeRemind"
                 Margin="0,5,0,0"
                 Foreground="{StaticResource AppRedBrush}"
-                Text="验证码未填写"
+                Text="{DynamicResource PhoneCodeError}"
                 Visibility="Collapsed" />
         </StackPanel>
 
@@ -113,10 +115,10 @@
             Margin="10"
             Checked="cbAgree_Checked"
             Unchecked="cbAgree_Unchecked">
-            <TextBlock >
+            <TextBlock>
                 <TextBlock Text="{DynamicResource Agreement}" />
                 <Button Margin="0 0 0 -3" Style="{StaticResource LinkButtonStyle}" x:Name="linkService" Click="linkService_Click" Content="{DynamicResource ServiceAgreement}" />
-                <TextBlock Text="{DynamicResource And}"/>
+                <TextBlock Text="{DynamicResource And}" />
                 <TextBlock Text="{DynamicResource PrivacyPolicy}"></TextBlock>
                 <Button Style="{StaticResource LinkButtonStyle}" Margin="0 0 0 -3" x:Name="linkPrivacy" Click="linkPrivacy_Click" Content="{DynamicResource PrivacyPolicy}"></Button>
             </TextBlock>

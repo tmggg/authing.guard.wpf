@@ -34,7 +34,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             try
             {
-
                 if (m_RegexService.IsMail(tbAccount.Text))
                 {
                     commonMessage = await AuthClient.Instance.ResetPasswordByEmailCode(tbAccount.Text, tbCode.Text, tbPassword.Password);
@@ -58,7 +57,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
             catch (Exception exp)
             {
-                EventManagement.Instance.Dispatch((int)EventId.PwdResetError,EventArgs<string>.CreateEventArgs(exp.Message));
+                EventManagement.Instance.Dispatch((int)EventId.PwdResetError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
 
@@ -67,7 +66,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             if (string.IsNullOrWhiteSpace(tbAccount.Text))
             {
                 tbAccount.Warn = true;
-                tbAccountRemind.Text =Application.Current.Resources["ResetPasswordAccountError"] as string;
+                tbAccountRemind.Text = Application.Current.Resources["ResetPasswordAccountError"] as string;
                 tbAccountRemind.Visibility = Visibility.Visible;
                 return;
             }
@@ -95,9 +94,8 @@ namespace Authing.Guard.WPF.Views.LoginView
                 return;
             }
 
-
             btnSendCode.IsBusy = btnSendCode.IsBusy != true;
-            await TaskExHelper.Delay(2000);
+            await TaskExHelper.Delay(btnSendCode.Count);
             btnSendCode.IsBusy = btnSendCode.IsBusy != true;
             btnSendCode.StartCountDown = true;
 

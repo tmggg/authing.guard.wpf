@@ -43,10 +43,10 @@ namespace Authing.Guard.WPF.Infrastructures
             return tcs.Task;
         }
 
-        public static Task Delay(int milliseconds)
+        public static Task Delay(uint time)
         {
             var tcs = new TaskCompletionSource<object>();
-            var timer = new System.Timers.Timer(milliseconds) { AutoReset = false };
+            var timer = new System.Timers.Timer(time) { AutoReset = false };
             timer.Elapsed += delegate { timer.Dispose(); tcs.SetResult(null); };
             timer.Start();
             return tcs.Task;
