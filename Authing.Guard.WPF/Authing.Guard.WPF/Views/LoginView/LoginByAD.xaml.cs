@@ -22,6 +22,7 @@ using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 
 namespace Authing.Guard.WPF.Views.LoginView
@@ -42,32 +43,49 @@ namespace Authing.Guard.WPF.Views.LoginView
             LoginMethod = LoginMethods.AD;
         }
 
-        private void ADLoginButton_Click(object sender, RoutedEventArgs e)
+        private async void ADLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!JudgeInput())
+            User user = null;
+            if (!JudgeInput()) return;
+            try
             {
-                return;
+                user = await AuthClient.Instance.LoginByAd(AdName.Text, AdPassword.Password);
+            }
+            catch (Exception ex)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoginError,
+                    EventArgs<string>.CreateEventArgs(ex.Message));
+            }
+            if (user != null)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.Login,
+                    EventArgs<User>.CreateEventArgs(user));
             }
         }
 
         private bool JudgeInput()
         {
+            ValidationResult res = null;
             bool flag = true;
 
-            if (string.IsNullOrWhiteSpace(AdName.Text))
+            res = AdName.Text.ValidationData();
+            if (!res.IsValid)
             {
                 AdName.Warn = true;
                 AdNameRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(AdName);
                 flag = false;
             }
-            if (string.IsNullOrWhiteSpace(AdPassword.Password))
+
+            res = AdPassword.Password.ValidationData();
+            if (!res.IsValid)
             {
                 PasswordBoxHelper.SetWarn(AdPassword, true);
                 AdPasswordRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(AdPassword);
                 flag = false;
             }
+
             if (cbAgree.IsChecked == null || cbAgree.IsChecked == false)
             {
                 cbAgree.Foreground = new SolidColorBrush(Colors.Red);

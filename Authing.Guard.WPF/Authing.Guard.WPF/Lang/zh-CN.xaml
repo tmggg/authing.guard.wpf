@@ -72,4 +72,6 @@
     <system:String x:Key="Male">男</system:String>
     <system:String x:Key="FaMale">女</system:String>
     <system:String x:Key="PassWordNotSame">密码不一致</system:String>
+    <system:String x:Key="ADNameIsNull">AD 用户名不能为空</system:String>
+    <system:String x:Key="ADPassIsNull">AD 密码不能为空</system:String>
 </ResourceDictionary>

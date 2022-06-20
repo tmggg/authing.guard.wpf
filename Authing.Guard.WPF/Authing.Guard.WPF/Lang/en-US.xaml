@@ -72,4 +72,6 @@
     <system:String x:Key="Male">Male</system:String>
     <system:String x:Key="FaMale">FaMale</system:String>
     <system:String x:Key="PassWordNotSame">Password not match</system:String>
+    <system:String x:Key="ADNameIsNull">AD Name is null</system:String>
+    <system:String x:Key="ADPassIsNull">AD Password is null</system:String>
 </ResourceDictionary>
