@@ -352,7 +352,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_TipDockPanel" Property="Opacity" Value="0.5" />
+                            <Setter Property="Opacity" Value="0.5" />
                         </Trigger>
                         <Trigger Property="IsBusy" Value="True">
                             <Setter TargetName="PART_MainBorder" Property="Visibility" Value="Hidden" />

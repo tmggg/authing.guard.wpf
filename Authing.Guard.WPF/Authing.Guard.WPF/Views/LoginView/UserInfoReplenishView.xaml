@@ -117,6 +117,7 @@
                             attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
                             Content="{DynamicResource SendCode}"
                             Count="3"
+                            Click="PhoneSendCodeBtn_OnClick"
                             FontSize="14" />
                     </Grid>
                 </Grid>
@@ -172,6 +173,7 @@
                             attach:IconAttach.Geometry="{DynamicResource BusyIcon}"
                             attach:IconAttach.Height="24"
                             attach:IconAttach.Width="24"
+                            Click="MailSendCodeBtn_OnClick"
                             attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
                             Content="{DynamicResource SendCode}"
                             Count="3"

@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows;
+using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
+using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 
@@ -81,6 +85,31 @@ namespace Authing.Guard.WPF.Views.LoginView
                     DataItems.Clear();
                     FillData();
                     break;
+            }
+        }
+        private async void MailSendCodeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is CoutDownButton)
+            {
+                CoutDownButton btn = sender as CoutDownButton;
+                btn.IsBusy = true;
+                await TaskExHelper.Delay(1000);
+                btn.IsBusy = false;
+                btn.StartCountDown = true;
+                btn.Content = "已验证";
+            }
+        }
+
+        private async void PhoneSendCodeBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is CoutDownButton)
+            {
+                CoutDownButton btn = sender as CoutDownButton;
+                btn.IsBusy = true;
+                await TaskExHelper.Delay(1000);
+                btn.IsBusy = false;
+                btn.StartCountDown = true;
+                btn.Content = "已验证";
             }
         }
     }

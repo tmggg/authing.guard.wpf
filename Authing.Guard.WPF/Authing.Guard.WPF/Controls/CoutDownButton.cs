@@ -96,7 +96,7 @@ namespace Authing.Guard.WPF.Controls
             _defultCount = Count;
             _tipDockPanel.Visibility = Visibility.Visible;
             _mainBorder.Visibility = Visibility.Hidden;
-            IsEnabled = false;
+            IsHitTestVisible = false;
             _timer.Start();
         }
 
@@ -122,7 +122,7 @@ namespace Authing.Guard.WPF.Controls
                         _timer.Stop();
                         _tipDockPanel.Visibility = Visibility.Hidden;
                         _mainBorder.Visibility = Visibility.Visible;
-                        IsEnabled = true;
+                        IsHitTestVisible = true;
                         StartCountDown = false;
                     }
                 }
