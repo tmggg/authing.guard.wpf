@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -54,6 +55,20 @@ namespace Authing.Guard.WPF.Utils.Extensions
             }
 
             return res;
+        }
+
+        public static TEnum GetEnumByEnumMember<TEnum>(this string value) where TEnum : Enum
+        {
+            foreach (var item in typeof(TEnum).GetFields())
+            {
+                if (Attribute.GetCustomAttribute(item, typeof(EnumMemberAttribute)) is EnumMemberAttribute attribute)
+                {
+                    if (string.Equals(attribute.Value, value))
+                        return (TEnum)item.GetValue(null);
+                }
+            }
+
+            throw new Exception("");
         }
     }
 }

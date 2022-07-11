@@ -48,20 +48,20 @@ namespace Authing.Guard.WPF.Controls
         /// <summary>
         /// 在 Console 中配置用户池密钥
         /// </summary>
-        public string Secret
+        public string UserPoolSecret
         {
             get
             {
-                return (string)GetValue(SecretProperty);
+                return (string)GetValue(UserPoolSecretProperty);
             }
             set
             {
-                SetValue(SecretProperty, value);
+                SetValue(UserPoolSecretProperty, value);
             }
         }
 
-        public static DependencyProperty SecretProperty =
-             DependencyProperty.Register(nameof(Secret), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
+        public static DependencyProperty UserPoolSecretProperty =
+             DependencyProperty.Register(nameof(UserPoolSecret), typeof(string), typeof(BaseGuardControl), new PropertyMetadata(string.Empty));
 
         /// <summary>
         /// 租户 ID 使用租户相关功能时进行使用

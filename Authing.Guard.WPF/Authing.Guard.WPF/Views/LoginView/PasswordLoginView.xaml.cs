@@ -8,6 +8,7 @@ using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
+using Authing.Library.Domain.Model.Exceptions;
 using System;
 using System.Linq;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// PasswordLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class PasswordLoginView : BaseLoginControl,IEventListener
+    public partial class PasswordLoginView : BaseLoginControl, IEventListener
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
@@ -47,16 +48,23 @@ namespace Authing.Guard.WPF.Views.LoginView
             User user = null;
             Exception currentExp = null;
 
+            AuthingErrorBox errorBox = new AuthingErrorBox();
+
             try
             {
                 //最先用用户名登录，如果实在，再用其他方式登录，如果再失败，才判定为失败
-                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, errorBox);
+
+                if (user == null)
+                {
+                    throw new Exception(errorBox.Value.First().Message.Code.ToString());
+                }
             }
             catch (Exception exp)
             {
                 currentExp = exp;
-               
-                if (exp.Message.Contains("密码不正确"))
+
+                if (exp.Message.Contains("2004"))//账号或密码错误
                 {
                     try
                     {
@@ -80,7 +88,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 }
                 else
                 {
-                    
+
                 }
             }
             finally
@@ -92,10 +100,12 @@ namespace Authing.Guard.WPF.Views.LoginView
                     IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
                     EventManagement.Instance.Dispatch((int)EventId.Login, arg);
                 }
-
-                if (currentExp != null)
+                else
                 {
-                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                    if (currentExp != null)
+                    {
+                        EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                    }
                 }
             }
         }
@@ -181,9 +191,9 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             {
 
-                case (int)EventId.LanguageChanged:break;
+                case (int)EventId.LanguageChanged: break;
 
-                default:break;
+                default: break;
 
             }
 
