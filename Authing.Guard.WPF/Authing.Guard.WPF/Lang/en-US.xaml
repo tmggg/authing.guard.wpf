@@ -73,6 +73,10 @@
     <system:String x:Key="Male">Male</system:String>
     <system:String x:Key="FaMale">FaMale</system:String>
     <system:String x:Key="PassWordNotSame">Password not match</system:String>
+    <system:String x:Key="ResetPassword">Reset password</system:String>
+    <system:String x:Key="Cannotbeempty">Can not be empty</system:String>
     <system:String x:Key="ADNameIsNull">AD Name is null</system:String>
     <system:String x:Key="ADPassIsNull">AD Password is null</system:String>
+    <system:String x:Key="PwdCannotbeempty">Password can not be empty</system:String>
+    <system:String x:Key="Pwdneedsame">Password need be same</system:String>
 </ResourceDictionary>

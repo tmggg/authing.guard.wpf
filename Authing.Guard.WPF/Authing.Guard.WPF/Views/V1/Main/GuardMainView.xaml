@@ -81,7 +81,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <login:ResetPasswordView></login:ResetPasswordView>
+            <login:ResetPasswordV1View x:Name="resetpwdView"></login:ResetPasswordV1View>
             <Button HorizontalAlignment="Right" Grid.Row="1" Content="{DynamicResource BackFromResetPassword}" Style="{StaticResource LinkButtonStyle}" x:Name="btnBackFromResetPwd" Click="btnBackFromResetPwd_Click"></Button>
         </Grid>
         <Grid x:Name="RegContent" Grid.Row="1" Visibility="Collapsed">

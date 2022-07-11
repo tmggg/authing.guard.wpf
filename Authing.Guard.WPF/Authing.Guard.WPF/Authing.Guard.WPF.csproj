@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net5.0-windows;net45;net48;net40</TargetFrameworks>
@@ -36,6 +36,10 @@
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
 	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\V2\" />
 	</ItemGroup>
 
 </Project>
