@@ -96,6 +96,7 @@
                     x:Name="btnSendSMS"  
                     Margin="10 0 0 0"  
                     Width="100"
+                    Height="40"
                     HorizontalAlignment="Center"  
                     VerticalAlignment="Center"  
                     attach:BorderAttach.CornerRadius="3"  

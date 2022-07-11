@@ -17,6 +17,7 @@
     <system:String x:Key="SMSCodeLogin">Phone Code</system:String>
     <system:String x:Key="LogIn">Log In</system:String>
     <system:String x:Key="ForgotPassword">Forgot Password</system:String>
+    <system:String x:Key="NoAccountYet">No Account Yet</system:String>
     <system:String x:Key="SignUp">Sign Up</system:String>
     <system:String x:Key="Agreement">I have read and agree to Authing</system:String>
     <system:String x:Key="ServiceAgreement">Service Agreement</system:String>

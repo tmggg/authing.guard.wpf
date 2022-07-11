@@ -17,6 +17,7 @@
     <system:String x:Key="SMSCodeLogin">短信验证码</system:String>
     <system:String x:Key="LogIn">登录</system:String>
     <system:String x:Key="ForgotPassword">忘记密码</system:String>
+    <system:String x:Key="NoAccountYet">还没有账号</system:String>
     <system:String x:Key="SignUp">立即注册</system:String>
     <system:String x:Key="Agreement">我已阅读并同意 Authing</system:String>
     <system:String x:Key="ServiceAgreement">服务协议</system:String>
