@@ -109,6 +109,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 AuthClient.Init();
                 AppManageClient.Init();
 
+
                 var appInfo = await AppManageClient.Instance.Applications.FindByIdV2(AppId);
                 //var app = await AppManageClient.Instance.Applications.FindById(AppId);
                 if (appInfo != null)
@@ -116,9 +117,9 @@ namespace Authing.Guard.WPF.Views.LoginView
                     Config.Title = appInfo.Name;
                     Config.Logo = appInfo.Logo;
 
-                    Config.LoginMethods=appInfo.LoginTabs.List.ToList().GetEnumByEnumMember<LoginMethods>();
+                    Config.LoginMethods = appInfo.LoginTabs.List.ToList().GetEnumByEnumMember<LoginMethods>();
 
-                    Config.RegisterMethods = appInfo.RegisterTabs.List.ToList().GetEnumByEnumMember<RegisterMethods>(); 
+                    Config.RegisterMethods = appInfo.RegisterTabs.List.ToList().GetEnumByEnumMember<RegisterMethods>();
                     Config.DefaultRegisterMethod = (RegisterMethods)Enum.Parse(typeof(RegisterMethods), appInfo.RegisterTabs.Default.FirstCharToUpper());
                     //Config.DefaultScences
                     //Config.SocialConnections=m_JsonService.Deserialize<List<SocialConnections>>(appInfo.conn)
@@ -309,6 +310,21 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         public void HandleEvent(int eventId, IEventArgs args)
         {
+            if (CheckAccess())
+            {
+                HandleWithEvents(eventId, args);
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(new Action(() => 
+                {
+                    HandleWithEvents(eventId, args);
+                }));
+            }
+        }
+
+        private void HandleWithEvents(int eventId, IEventArgs args)
+        {
             switch (eventId)
             {
                 case (int)EventId.Load:
@@ -352,6 +368,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     break;
 
                 case (int)EventId.PwdReset:
+                    ResetPasswordSuccessed();
                     Config.PwdReset?.Invoke();
                     break;
 
@@ -379,6 +396,21 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
         }
 
+        private void ResetPasswordSuccessed()
+        {
+            if (CheckAccess())
+            {
+                resetpwdView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(new Action(() => 
+                {
+                    resetpwdView.Visibility = Visibility.Collapsed;
+                }));
+            }
+        }
+
         private void btnBackFromResetPwd_Click(object sender, RoutedEventArgs e)
         {
             resetPwdContent.Visibility = Visibility.Hidden;
@@ -399,6 +431,9 @@ namespace Authing.Guard.WPF.Views.LoginView
                         var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
+
+                        EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<int>.CreateEventArgs((int)Lang.enUs));
+
                     }
                     if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
                     {
@@ -406,8 +441,10 @@ namespace Authing.Guard.WPF.Views.LoginView
                         var lang = res.First(p => p.Source.AbsoluteUri.Contains("zh-CN.xaml"));
                         Application.Current.Resources.MergedDictionaries.Remove(lang);
                         Application.Current.Resources.MergedDictionaries.Add(lang);
+
+                        EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<int>.CreateEventArgs((int)Lang.zhCn));
+
                     }
-                    EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<string>.CreateEventArgs(""));
                 }
             }
         }

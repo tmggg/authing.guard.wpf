@@ -73,4 +73,8 @@
     <system:String x:Key="Male">男</system:String>
     <system:String x:Key="FaMale">女</system:String>
     <system:String x:Key="PassWordNotSame">密码不一致</system:String>
+    <system:String x:Key="ResetPassword">重置密码</system:String>
+    <system:String x:Key="Cannotbeempty">不能为空</system:String>
+    <system:String x:Key="PwdCannotbeempty">密码不能为空</system:String>
+    <system:String x:Key="Pwdneedsame">两次输入的密码需要一致</system:String>
 </ResourceDictionary>
