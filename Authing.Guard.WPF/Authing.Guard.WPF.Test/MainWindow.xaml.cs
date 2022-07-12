@@ -1,4 +1,5 @@
-﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
+﻿
+using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
 using Authing.ApiClient.Domain.Model;
 using System.Windows;
 
