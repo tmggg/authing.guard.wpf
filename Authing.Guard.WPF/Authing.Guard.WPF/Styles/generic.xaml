@@ -15,5 +15,6 @@
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/Storyboard.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/ScrollViewerStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Authing.Guard.WPF;component/Styles/SizeStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

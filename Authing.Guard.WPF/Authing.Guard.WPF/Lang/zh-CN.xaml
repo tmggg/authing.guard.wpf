@@ -16,7 +16,7 @@
     <system:String x:Key="QRCodeExpired">二维码已过期</system:String>
     <system:String x:Key="SMSCodeLogin">短信验证码</system:String>
     <system:String x:Key="LogIn">登录</system:String>
-    <system:String x:Key="ForgotPassword">忘记密码</system:String>
+    <system:String x:Key="ForgotPassword">忘记密码?</system:String>
     <system:String x:Key="NoAccountYet">还没有账号</system:String>
     <system:String x:Key="SignUp">立即注册</system:String>
     <system:String x:Key="Agreement">我已阅读并同意 Authing</system:String>
@@ -77,4 +77,12 @@
     <system:String x:Key="Cannotbeempty">不能为空</system:String>
     <system:String x:Key="PwdCannotbeempty">密码不能为空</system:String>
     <system:String x:Key="Pwdneedsame">两次输入的密码需要一致</system:String>
+    <system:String x:Key="Resetpassword">找回密码</system:String>
+    <system:String x:Key="Enterphonenumberoremail">请输入手机号或者邮箱</system:String>
+    <system:String x:Key="4digitverificationcode">4 位验证码</system:String>
+    <system:String x:Key="Pleaseenterpassword">请输入密码</system:String>
+    <system:String x:Key="Enterpasswordagain">请再一次输入密码</system:String>
+    <system:String x:Key="Resendpasswordresetemail">重发电子邮件</system:String>
+    <system:String x:Key="Switchaccount">其他账号登录</system:String>
+    <system:String x:Key="Help">遇到问题 ?</system:String>
 </ResourceDictionary>

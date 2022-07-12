@@ -16,7 +16,7 @@
     <system:String x:Key="QRCodeExpired">QR Code Expired</system:String>
     <system:String x:Key="SMSCodeLogin">Phone Code</system:String>
     <system:String x:Key="LogIn">Log In</system:String>
-    <system:String x:Key="ForgotPassword">Forgot Password</system:String>
+    <system:String x:Key="ForgotPassword">Forgot Password?</system:String>
     <system:String x:Key="NoAccountYet">No Account Yet</system:String>
     <system:String x:Key="SignUp">Sign Up</system:String>
     <system:String x:Key="Agreement">I have read and agree to Authing</system:String>
@@ -77,4 +77,12 @@
     <system:String x:Key="Cannotbeempty">Can not be empty</system:String>
     <system:String x:Key="PwdCannotbeempty">Password can not be empty</system:String>
     <system:String x:Key="Pwdneedsame">Password need be same</system:String>
+    <system:String x:Key="Resetpassword">Reset password</system:String>
+    <system:String x:Key="Enterphonenumberoremail">Enter phone number or email</system:String>
+    <system:String x:Key="4digitverificationcode">4-digit verification code</system:String>
+    <system:String x:Key="Pleaseenterpassword">Please enter password</system:String>
+    <system:String x:Key="Enterpasswordagain">Enter password again</system:String>
+    <system:String x:Key="Resendpasswordresetemail">Resend password reset email</system:String>
+    <system:String x:Key="Switchaccount">Switch account</system:String>
+    <system:String x:Key="Help">Help</system:String>
 </ResourceDictionary>

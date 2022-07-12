@@ -76,6 +76,23 @@ namespace Authing.Guard.WPF.Events
         /// 语言选择改变
         /// </summary>
         LanguageChanged,
+        /// <summary>
+        /// 跳转到登录界面
+        /// </summary>
+        ToLogin,
+        /// <summary>
+        /// 跳转到忘记密码界面
+        /// </summary>
+        ToResetPassword,
+        /// <summary>
+        /// 跳转到注册界面
+        /// </summary>
+        ToRegister,
+        /// <summary>
+        /// 跳转到问题反馈界面
+        /// </summary>
+        ToFeedback,
+
 
     }
 }

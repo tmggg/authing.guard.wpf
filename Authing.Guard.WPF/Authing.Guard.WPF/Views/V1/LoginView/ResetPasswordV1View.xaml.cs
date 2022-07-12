@@ -1,6 +1,7 @@
 ﻿using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
 using Authing.Library.Domain.Model.Exceptions;
@@ -25,7 +26,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// ResetPasswordV1View.xaml 的交互逻辑
     /// </summary>
-    public partial class ResetPasswordV1View : UserControl
+    public partial class ResetPasswordV1View : UserControl,IEventListener
     {
         private string account;//当前输入的账号
 
@@ -41,6 +42,9 @@ namespace Authing.Guard.WPF.Views.LoginView
             InitializeComponent();
 
             regexService = new RegexService();
+
+            EventManagement.Instance.AddListener((int)EventId.ToLogin, this);
+
         }
 
         private void btnResetPwd_Click(object sender, RoutedEventArgs e)
@@ -171,9 +175,9 @@ namespace Authing.Guard.WPF.Views.LoginView
             if (string.IsNullOrWhiteSpace(tbPhoneVerifyCode.Text))
             {
                 canReset = false;
-                tbVerifyCode.Warn = false;
-                tbVerifyCodeRemind.Visibility = Visibility.Visible;
-                tbVerifyCodeRemind.Text = ResourceHelper.GetResource<string>("Cannotbeempty");
+                tbPhoneVerifyCode.Warn = false;
+                tbPhoneVerifyCodeRemind.Visibility = Visibility.Visible;
+                tbPhoneVerifyCodeRemind.Text = ResourceHelper.GetResource<string>("Cannotbeempty");
             }
             if (string.IsNullOrWhiteSpace(tbPhonePwd.Password))
             {
@@ -233,10 +237,15 @@ namespace Authing.Guard.WPF.Views.LoginView
                 if (commonMessage.Code == 200)
                 {
                     EventManagement.Instance.Dispatch((int)EventId.PwdPhoneSend);
+
+                    btnSendSMS.IsBusy = btnSendSMS.IsBusy != true;
+                    await TaskExHelper.Delay(btnSendSMS.Count);
+                    btnSendSMS.IsBusy = btnSendSMS.IsBusy != true;
+                    btnSendSMS.StartCountDown = true;
                 }
                 else
                 {
-                    EventManagement.Instance.Dispatch((int)EventId.PwdPhoneSendError, EventArgs<string>.CreateEventArgs(authingErrorBox.Value.First().Message.Message));
+                    EventManagement.Instance.Dispatch((int)EventId.PwdPhoneSendError, EventArgs<string>.CreateEventArgs(commonMessage.Message));
                 }
             }
             else
@@ -254,12 +263,14 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private void tbPwd_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            PasswordBoxHelper.SetWarn(tbPhonePwd, false);
+            tbPhonePwdRemind.Visibility = Visibility.Collapsed;
         }
 
         private void tbPwdAgain_PasswordChanged(object sender, RoutedEventArgs e)
         {
-
+            PasswordBoxHelper.SetWarn(tbPhonePwdAgain, false);
+            tbPhonePwdAgainRemind.Visibility = Visibility.Collapsed;
         }
 
         private void LoginSuccessed()
@@ -288,6 +299,21 @@ namespace Authing.Guard.WPF.Views.LoginView
                 }));
             });
         }
+
+        private void tbPhoneVerifyCode_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbPhoneVerifyCode.Warn = false;
+            tbPhoneVerifyCodeRemind.Visibility = Visibility.Collapsed;
+        }
+
+        public void HandleEvent(int eventId, IEventArgs args)
+        {
+            switch (eventId)
+            {
+                case (int)EventId.ToLogin:break;
+            }
+        }
+
     }
 
     /// <summary>

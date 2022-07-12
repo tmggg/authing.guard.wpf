@@ -27,6 +27,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Views.V1.Main;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -62,11 +63,7 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             await InitConfig();
 
-            SimulationData();
-
-            InitLoginMethod();
-
-            InitRegisterMethod();
+            content.Children.Add(new LoginMainView(Config));
         }
 
         private void AddEvent()
@@ -131,16 +128,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     Config.AppHost = appInfo.RequestHostname;
                     //Config.Lang
 
-                    if (!string.IsNullOrWhiteSpace(Config.Logo))
-                    {
-                        byte[] byteArray = m_ImageService.GetImageFromResponse(Config.Logo);
 
-                        MemoryStream ms = new MemoryStream(byteArray);
-
-                        imgLogo.Source = BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.Default);
-                    }
-
-                    tbTitle.Text = Config.Title;
                 }
 
                 EventManagement.Instance.Dispatch((int)EventId.Load, EventArgs<AuthenticationClient>.CreateEventArgs(AuthClient.Instance));
@@ -151,162 +139,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
         }
 
-        private void SimulationData()
-        {
-            DemoData = new ObservableCollection<SocialLogin>();
-            DemoData.Add(new SocialLogin("https://www.qq.com", new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry));
-            DemoData.Add(new SocialLogin("https://www.google.com", new SolidColorBrush(Colors.Orange), Application.Current.Resources["Google"] as Geometry));
-            DemoData.Add(new SocialLogin("https://www.linkedin.cn", new SolidColorBrush(Colors.Yellow), Application.Current.Resources["Linkedin"] as Geometry));
-            DemoData.Add(new SocialLogin("https://www.weixin.com", new SolidColorBrush(Colors.Green), Application.Current.Resources["WeChat"] as Geometry));
-            DemoData.Add(new SocialLogin("https://www.facebook.com", new SolidColorBrush(Colors.Blue), Application.Current.Resources["FaceBook"] as Geometry));
-            DemoData.Add(new SocialLogin("https://www.github.com", new SolidColorBrush(Colors.Purple), Application.Current.Resources["GitHub"] as Geometry));
-            SocialloginControl.ItemsSource = DemoData;
-        }
-
-        private void InitLoginMethod()
-        {
-            foreach (var item in Config.LoginMethods)
-            {
-                if (item == LoginMethods.AD)
-                {
-                    //添加 AD 登录
-                    TabItem tabItem = new TabItem();
-                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "LoginByAd");
-                    tabItem.Content = new LoginByAD();
-                    loginViewTabControl.Items.Add(tabItem);
-
-                    if (Config.DefaultLoginMethod == item)
-                    {
-                        tabItem.IsSelected = true;
-                    }
-                }
-                else if (item == LoginMethods.AppQr)
-                {
-                    //添加 App 扫码登录界面
-                    TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
-                    tabItem.Content = new ScanCodeLoginView();
-
-                    loginViewTabControl.Items.Add(tabItem);
-
-                    if (Config.DefaultLoginMethod == item)
-                    {
-                        tabItem.IsSelected = true;
-                    }
-                }
-                else if (item == LoginMethods.LDAP)
-                {
-                    //添加 LDAP 目录身份登录
-                }
-                else if (item == LoginMethods.Password)
-                {
-                    //添加账号+密码登录
-
-                    PasswordLoginView passwordLoginView = new PasswordLoginView();
-
-                    TabItem tabItem = new TabItem();
-                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
-                    tabItem.Content = new PasswordLoginView();
-
-                    tabItem.Content = passwordLoginView;
-                    tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
-
-                    loginViewTabControl.Items.Add(tabItem);
-
-                    if (Config.DefaultLoginMethod == item)
-                    {
-                        tabItem.IsSelected = true;
-                    }
-                }
-                else if (item == LoginMethods.PhoneCode)
-                {
-                    //添加手机号验证码登录
-                    SMSCodeLoginView sMSCodeLoginView = new SMSCodeLoginView();
-                    TabItem tabItem = new TabItem();
-                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
-                    tabItem.Content = new SMSCodeLoginView();
-                    loginViewTabControl.Items.Add(tabItem);
-
-                    if (Config.DefaultLoginMethod == item)
-                    {
-                        tabItem.IsSelected = true;
-                    }
-                }
-                else if (item == LoginMethods.WxMinQr)
-                {
-                    //添加微信小程序扫码登录
-                }
-            }
-        }
-
-        private void InitRegisterMethod()
-        {
-            foreach (var item in Config.RegisterMethods)
-            {
-                if (item == RegisterMethods.Email)
-                {
-                    //添加邮箱注册
-                }
-                else if (item == RegisterMethods.Phone)
-                {
-                    //添加手机注册
-                }
-            }
-        }
-
-        private void btnSwitchLogin_Click(object sender, RoutedEventArgs e)
-        {
-            if (btnSwitchLogin.IsChecked == true)
-            {
-                moreLoginGrid.Visibility = Visibility.Collapsed;
-                QRCodeLoginGrid.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                moreLoginGrid.Visibility = Visibility.Visible;
-                QRCodeLoginGrid.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void btnForgetPassword_Click(object sender, RoutedEventArgs e)
-        {
-            btnSwitchLogin.Visibility = Visibility.Hidden;
-            LoginContent.Visibility = Visibility.Hidden;
-            resetPwdContent.Visibility = Visibility.Visible;
-        }
-
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
-        {
-            RegContent.Visibility = Visibility.Visible;
-            LoginContent.Visibility = Visibility.Hidden;
-            resetPwdContent.Visibility = Visibility.Hidden;
-            btnSwitchLogin.Visibility = Visibility.Hidden;
-            ThirdCottent.Visibility = Visibility.Hidden;
-        }
-
-        private void loginViewTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            BaseLoginControl loginControl = (e.AddedItems[0] as TabItem).Content as BaseLoginControl;
-
-            if (loginControl == null)
-            {
-                return;
-            }
-
-            if (loginControl.LoginMethod != LoginMethods.AppQr)
-            {
-                btnForgetPassword.Visibility = Visibility.Visible;
-                btnForgetPassword.Visibility = Visibility.Visible;
-            }
-            else if (loginControl.LoginMethod == LoginMethods.AppQr)
-            {
-                btnForgetPassword.Visibility = Visibility.Hidden;
-                btnRegister.Visibility = Visibility.Hidden;
-            }
-        }
 
         public void HandleEvent(int eventId, IEventArgs args)
         {
@@ -316,7 +148,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
             else
             {
-                Dispatcher.BeginInvoke(new Action(() => 
+                Dispatcher.BeginInvoke(new Action(() =>
                 {
                     HandleWithEvents(eventId, args);
                 }));
@@ -368,7 +200,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                     break;
 
                 case (int)EventId.PwdReset:
-                    ResetPasswordSuccessed();
                     Config.PwdReset?.Invoke();
                     break;
 
@@ -391,83 +222,42 @@ namespace Authing.Guard.WPF.Views.LoginView
                 case (int)EventId.RegisterInfoCompletedError:
                     Config.RegisterInfoCompletedError?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
+                case (int)EventId.ToResetPassword:
+                    ToResetPasswordView();
+                    break;
+                case (int)EventId.ToRegister:
+                    ToRegisterView();
+                    break;
+                case (int)EventId.ToLogin:
+                    ToLoginView();
+                    break;
+                case (int)EventId.ToFeedback:
+                    ToFeedbackView();
+                    break;
+
 
                 default: break;
             }
         }
 
-        private void ResetPasswordSuccessed()
+        private void ToResetPasswordView()
         {
-            if (CheckAccess())
-            {
-                resetpwdView.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                Dispatcher.BeginInvoke(new Action(() => 
-                {
-                    resetpwdView.Visibility = Visibility.Collapsed;
-                }));
-            }
+            content.Children.Clear();
+            content.Children.Add(new ResetPasswordMainView(Config));
         }
 
-        private void btnBackFromResetPwd_Click(object sender, RoutedEventArgs e)
+        private void ToRegisterView()
+        { }
+
+        private void ToLoginView()
         {
-            resetPwdContent.Visibility = Visibility.Hidden;
-            btnSwitchLogin.Visibility = Visibility.Visible;
-            LoginContent.Visibility = Visibility.Visible;
+            content.Children.Clear();
+            content.Children.Add(new LoginMainView(Config));
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is ComboBox)
-            {
-                if (((ComboBox)sender).SelectedItem is Label)
-                {
-                    var obj = ((ComboBox)sender).SelectedItem as Label;
-                    if (string.Equals(obj.Content.ToString(), "English", StringComparison.Ordinal))
-                    {
-                        var res = Application.Current.Resources.MergedDictionaries;
-                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("en-US.xaml"));
-                        Application.Current.Resources.MergedDictionaries.Remove(lang);
-                        Application.Current.Resources.MergedDictionaries.Add(lang);
-
-                        EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<int>.CreateEventArgs((int)Lang.enUs));
-
-                    }
-                    if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
-                    {
-                        var res = Application.Current.Resources.MergedDictionaries;
-                        var lang = res.First(p => p.Source.AbsoluteUri.Contains("zh-CN.xaml"));
-                        Application.Current.Resources.MergedDictionaries.Remove(lang);
-                        Application.Current.Resources.MergedDictionaries.Add(lang);
-
-                        EventManagement.Instance.Dispatch((int)EventId.LanguageChanged, EventArgs<int>.CreateEventArgs((int)Lang.zhCn));
-
-                    }
-                }
-            }
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button)
-            {
-                if (((Button)sender).DataContext is SocialLogin)
-                {
-                    SocialLogin data = ((Button)sender).DataContext as SocialLogin;
-                    Process.Start(data.LoginUrl);
-                }
-            }
-        }
-
-        private void RegReturn2Login_OnClick(object sender, RoutedEventArgs e)
-        {
-            RegContent.Visibility = Visibility.Hidden;
-            LoginContent.Visibility = Visibility.Visible;
-            resetPwdContent.Visibility = Visibility.Hidden;
-            btnSwitchLogin.Visibility = Visibility.Visible;
-            ThirdCottent.Visibility = Visibility.Visible;
+        private void ToFeedbackView()
+        { 
+            
         }
     }
 }
