@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
-                <ResourceDictionary Source="/Authing.Guard.WPF;component/Lang/zh-CN.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
 

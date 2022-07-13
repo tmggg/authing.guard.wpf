@@ -5,51 +5,37 @@ using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
-using Authing.Guard.WPF.Views.LoginView;
+using Authing.Guard.WPF.Utils.Impl;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Authing.Guard.WPF.Models;
-using Authing.Guard.WPF.Views.V1.Main;
 
-namespace Authing.Guard.WPF.Views.LoginView
+namespace Authing.Guard.WPF.Views.Classic.MainView
 {
     /// <summary>
     /// MainView.xaml 的交互逻辑
     /// </summary>
     public partial class GuardMainView : BaseGuardControl, IEventListener
     {
-        private ObservableCollection<SocialLogin> DemoData;
+        public static List<Agreement> Agreements { get; private set; }
 
-        private IImageService m_ImageService;
         private IJsonService m_JsonService;
 
         public GuardMainView()
         {
             InitializeComponent();
 
+            m_JsonService = new JsonService();
+
             Loaded += MainView_Loaded;
             Unloaded += MainView_Unloaded;
-
-            m_ImageService = new Utils.Impl.ImageService();
-            m_JsonService = new Utils.Impl.JsonService();
         }
 
         private void MainView_Unloaded(object sender, RoutedEventArgs e)
@@ -127,6 +113,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                     //Config.IsSSO = m_JsonService.Deserialize<bool>( appInfo.SsoPageCustomizationSettings.ToString());
                     Config.AppHost = appInfo.RequestHostname;
                     //Config.Lang
+                    Agreements = m_JsonService.Deserialize<List<Agreement>>(Newtonsoft.Json.JsonConvert.SerializeObject(appInfo.Agreements));
 
 
                 }
@@ -244,15 +231,24 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             content.Children.Clear();
             content.Children.Add(new ResetPasswordMainView(Config));
+
+            bottomView.Visibility = Visibility.Hidden;
         }
 
         private void ToRegisterView()
-        { }
+        {
+            content.Children.Clear();
+            content.Children.Add(new RegisterMainView(Config));
+
+            bottomView.Visibility = Visibility.Visible;
+        }
 
         private void ToLoginView()
         {
             content.Children.Clear();
             content.Children.Add(new LoginMainView(Config));
+
+            bottomView.Visibility = Visibility.Visible;
         }
 
         private void ToFeedbackView()

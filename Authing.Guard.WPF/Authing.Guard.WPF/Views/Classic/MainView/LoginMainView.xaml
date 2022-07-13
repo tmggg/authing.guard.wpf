@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Authing.Guard.WPF.Views.V1.Main.LoginMainView"
+﻿<UserControl x:Class="Authing.Guard.WPF.Views.Classic.MainView.LoginMainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Authing.Guard.WPF.Views.V1.Main"
+             xmlns:local="clr-namespace:Authing.Guard.WPF.Views.Classic.MainView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
-                <ResourceDictionary Source="/Authing.Guard.WPF;component/Lang/zh-CN.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="ToggleButton" x:Key="SwitchPageToggleButtonStyle">
                 <Setter Property="Cursor" Value="Hand" />
@@ -71,7 +70,7 @@
             </Grid>
         </Grid>
         <Grid x:Name="bottomGrid" Grid.Row="3">
-            <local:BottomContentView VerticalAlignment="Bottom"></local:BottomContentView>
+            <!--<local:BottomContentView VerticalAlignment="Bottom"></local:BottomContentView>-->
         </Grid>
     </Grid>
 </UserControl>

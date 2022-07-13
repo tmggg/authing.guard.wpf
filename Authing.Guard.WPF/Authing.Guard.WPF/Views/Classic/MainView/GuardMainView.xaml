@@ -1,11 +1,12 @@
 ﻿<controls:BaseGuardControl
-    x:Class="Authing.Guard.WPF.Views.LoginView.GuardMainView"
+    x:Class="Authing.Guard.WPF.Views.Classic.MainView.GuardMainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:login="clr-namespace:Authing.Guard.WPF.Views.LoginView"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
+    xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls" 
+    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.Classic.MainView"
     d:DesignHeight="450"
     d:DesignWidth="400"
     MinHeight="200"
@@ -24,6 +25,14 @@
             </Style>
         </ResourceDictionary>
     </controls:BaseGuardControl.Resources>
-    <Grid x:Name="content" Background="Transparent" VerticalAlignment="Stretch">
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="content"></Grid>
+        <Grid Grid.Row="1">
+            <main:BottomContentView x:Name="bottomView"></main:BottomContentView>
+        </Grid>
     </Grid>
 </controls:BaseGuardControl>

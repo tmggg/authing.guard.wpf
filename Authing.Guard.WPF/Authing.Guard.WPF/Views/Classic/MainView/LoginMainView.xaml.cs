@@ -23,7 +23,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Authing.Guard.WPF.Views.V1.Main
+namespace Authing.Guard.WPF.Views.Classic.MainView
 {
     /// <summary>
     /// LoginMainView.xaml 的交互逻辑
@@ -104,7 +104,6 @@ namespace Authing.Guard.WPF.Views.V1.Main
                     TabItem tabItem = new TabItem();
                     tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                     tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
-                    tabItem.Content = new PasswordLoginView();
 
                     tabItem.Content = passwordLoginView;
                     tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
@@ -123,7 +122,7 @@ namespace Authing.Guard.WPF.Views.V1.Main
                     TabItem tabItem = new TabItem();
                     tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
                     tabItem.Header = Application.Current.Resources["SendCode"] as String;
-                    tabItem.Content = new SMSCodeLoginView();
+                    tabItem.Content = sMSCodeLoginView;
                     loginViewTabControl.Items.Add(tabItem);
 
                     if (config.DefaultLoginMethod == item)
@@ -159,6 +158,7 @@ namespace Authing.Guard.WPF.Views.V1.Main
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
+            EventManagement.Instance.Dispatch((int)EventId.ToRegister);
         }
 
         private void loginViewTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -179,20 +179,6 @@ namespace Authing.Guard.WPF.Views.V1.Main
             {
                 btnForgetPassword.Visibility = Visibility.Hidden;
                 btnRegister.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void ResetPasswordSuccessed()
-        {
-            if (CheckAccess())
-            {
-            }
-            else
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-            
-                }));
             }
         }
 

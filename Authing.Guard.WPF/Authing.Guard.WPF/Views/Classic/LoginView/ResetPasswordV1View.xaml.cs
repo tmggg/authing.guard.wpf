@@ -33,8 +33,6 @@ namespace Authing.Guard.WPF.Views.LoginView
         private string emailAccount;
         private string phoneAccount;
 
-        private AccountType accountType;
-
         private IRegexService regexService;
 
         public ResetPasswordV1View()
@@ -62,7 +60,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             if (regexService.IsMail(account))
             {
-                accountType = AccountType.Email;
                 emailAccount = tbAccount.Text;
 
                 //发送邮箱验证码，并且跳转界面
@@ -74,7 +71,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
             else
             {
-                accountType = AccountType.Phone;
                 phoneAccount = tbAccount.Text;
 
                 //跳转界面

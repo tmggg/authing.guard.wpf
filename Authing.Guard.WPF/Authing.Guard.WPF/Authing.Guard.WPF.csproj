@@ -3,6 +3,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>net5.0-windows;net45;net48;net40</TargetFrameworks>
 		<UseWPF>true</UseWPF>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>SDKV3Demo</PackageId>
+		<Version>2.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -39,7 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\V2\" />
+	  <Folder Include="Views\Upgrade\" />
 	</ItemGroup>
 
 </Project>

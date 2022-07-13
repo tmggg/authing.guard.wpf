@@ -87,4 +87,6 @@
     <system:String x:Key="Resendpasswordresetemail">重发电子邮件</system:String>
     <system:String x:Key="Switchaccount">其他账号登录</system:String>
     <system:String x:Key="Help">遇到问题 ?</system:String>
+    <system:String x:Key="Welcometo">欢迎加入</system:String>
+    <system:String x:Key="Signininstead">立即登录</system:String>
 </ResourceDictionary>

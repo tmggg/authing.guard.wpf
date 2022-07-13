@@ -7,6 +7,17 @@
              xmlns:loginView="clr-namespace:Authing.Guard.WPF.Views.LoginView"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <TabControl Style="{StaticResource TabControlStyle}" VerticalContentAlignment="Stretch" x:Name="RegMainTabControl">
     </TabControl>
     <!--<loginView:UserInfoReplenishView />-->

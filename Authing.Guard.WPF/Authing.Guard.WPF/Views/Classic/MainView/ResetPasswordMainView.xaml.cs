@@ -1,4 +1,6 @@
-﻿using Authing.Guard.WPF.Models;
+﻿using Authing.Guard.WPF.Events;
+using Authing.Guard.WPF.Events.EventAggreator;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
 using System;
@@ -17,27 +19,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Authing.Guard.WPF.Views.V1.Main
+namespace Authing.Guard.WPF.Views.Classic.MainView
 {
     /// <summary>
-    /// RegisterMainView.xaml 的交互逻辑
+    /// ResetPasswordMainView.xaml 的交互逻辑
     /// </summary>
-    public partial class RegisterMainView : UserControl
+    public partial class ResetPasswordMainView : UserControl
     {
         private readonly GuardConfig config;
 
         private IImageService m_ImageService;
 
-        public RegisterMainView(GuardConfig guardConfig)
+        public ResetPasswordMainView(GuardConfig guardConfig)
         {
             InitializeComponent();
 
             config = guardConfig;
             m_ImageService = new ImageService();
-            Loaded += RegisterMainView_Loaded;
+            Loaded += ResetPasswordMainView_Loaded; ;
         }
 
-        private void RegisterMainView_Loaded(object sender, RoutedEventArgs e)
+        private void ResetPasswordMainView_Loaded(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(config.Logo))
             {
@@ -49,9 +51,9 @@ namespace Authing.Guard.WPF.Views.V1.Main
             }
         }
 
-        private void RegReturn2Login_OnClick(object sender, RoutedEventArgs e)
+        private void btnBackFromResetPwd_Click(object sender, RoutedEventArgs e)
         {
-            RegContent.Visibility = Visibility.Hidden;
+            EventManagement.Instance.Dispatch((int)EventId.ToLogin);
         }
     }
 }
