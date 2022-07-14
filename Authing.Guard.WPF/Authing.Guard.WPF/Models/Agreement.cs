@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Authing.Guard.WPF.Infrastructures;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Models
 {
-    public class Agreement
+    public class Agreement: NotifyPropertyChanged
     {
         [JsonProperty("userPoolId")]
         public string UserPoolId { get; set; }
@@ -38,6 +39,24 @@ namespace Authing.Guard.WPF.Models
 
         [JsonProperty("availableAt")]
         public AvailableAt AvailableAt { get; set; }
+
+        private bool m_IsChecked;
+        public bool IsChecked
+        {
+            get => m_IsChecked;
+            set => SetProperty(ref m_IsChecked, value);
+        }
+
+        private bool m_Warn;
+        /// <summary>
+        /// 是否警告
+        /// </summary>
+        public bool Warn
+        {
+            get => m_Warn;
+            set => SetProperty(ref m_Warn, value);
+        }
+
     }
 
     public enum AvailableAt

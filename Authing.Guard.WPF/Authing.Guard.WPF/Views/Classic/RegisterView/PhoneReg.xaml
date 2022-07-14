@@ -5,6 +5,7 @@
     xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
     xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach"
     xmlns:infrastructures="clr-namespace:Authing.Guard.WPF.Infrastructures"
+    xmlns:view="clr-namespace:Authing.Guard.WPF.Views.Classic"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -109,34 +110,7 @@
                 Visibility="Collapsed" />
         </StackPanel>
 
-        <CheckBox
-            x:Name="cbAgree"
-            Grid.Row="2"
-            Margin="10"
-            Checked="cbAgree_Checked"
-            Unchecked="cbAgree_Unchecked">
-            <TextBlock>
-                <TextBlock Text="{DynamicResource Agreement}" />
-                <Button Margin="0 0 0 -3" Style="{StaticResource LinkButtonStyle}" x:Name="linkService" Click="linkService_Click" Content="{DynamicResource ServiceAgreement}" />
-                <TextBlock Text="{DynamicResource And}" />
-                <TextBlock Text="{DynamicResource PrivacyPolicy}"></TextBlock>
-                <Button Style="{StaticResource LinkButtonStyle}" Margin="0 0 0 -3" x:Name="linkPrivacy" Click="linkPrivacy_Click" Content="{DynamicResource PrivacyPolicy}"></Button>
-            </TextBlock>
-            <CheckBox.Resources>
-                <Storyboard x:Key="ShakeStoryboard">
-                    <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-            </CheckBox.Resources>
-            <CheckBox.RenderTransform>
-                <TranslateTransform X="0" Y="0" />
-            </CheckBox.RenderTransform>
-        </CheckBox>
+        <view:AgreementView Grid.Row="2" Margin="10" GuardScene="Register"></view:AgreementView>
 
         <controls:PrimaryButton
             x:Name="BtnRegister"

@@ -42,7 +42,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             regexService = new RegexService();
 
             EventManagement.Instance.AddListener((int)EventId.ToLogin, this);
-
         }
 
         private void btnResetPwd_Click(object sender, RoutedEventArgs e)

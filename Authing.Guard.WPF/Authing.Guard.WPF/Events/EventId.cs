@@ -94,5 +94,23 @@ namespace Authing.Guard.WPF.Events
         ToFeedback,
 
 
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        LoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        LoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意注册协议
+        /// </summary>
+        RegisterAgreementCheck,
+        /// <summary>
+        /// 检查同意注册协议完成
+        /// </summary>
+        RegisterAgreementCheckFinish
+
+
     }
 }

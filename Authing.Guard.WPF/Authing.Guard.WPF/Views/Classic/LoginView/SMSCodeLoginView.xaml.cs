@@ -19,7 +19,7 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// SMSCodeLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class SMSCodeLoginView : BaseLoginControl
+    public partial class SMSCodeLoginView : BaseLoginControl, IEventListener
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
@@ -34,6 +34,8 @@ namespace Authing.Guard.WPF.Views.LoginView
             m_RegexService = new RegexService();
 
             LoginMethod = Enums.LoginMethods.PhoneCode;
+
+            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
         }
 
         private void SMSCodeLoginView_Loaded(object sender, RoutedEventArgs e)
@@ -76,27 +78,14 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
         }
 
-        private async void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if (!JudgeInput())
             {
                 return;
             }
-            User user = null;
 
-            try
-            {
-                user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false, ForceLogin = true }) ;
-
-                if (user != null)
-                {
-                    EventManagement.Instance.Dispatch((int)EventId.Login, EventArgs<User>.CreateEventArgs(user));
-                }
-            }
-            catch (Exception exp)
-            {
-                EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
-            }
+            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
         }
 
         private bool JudgeInput()
@@ -119,13 +108,6 @@ namespace Authing.Guard.WPF.Views.LoginView
 
                 flag = false;
             }
-            if (cbAgree.IsChecked == null || cbAgree.IsChecked == false)
-            {
-                cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-                BeginStoryboard(cbAgree);
-
-                flag = false;
-            }
 
             return flag;
         }
@@ -137,29 +119,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             storyboard.Begin();
         }
 
-        private void cbAgree_Checked(object sender, RoutedEventArgs e)
-        {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Black);
-            linkService.Foreground = new SolidColorBrush(Colors.MediumBlue);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.MediumBlue);
-        }
-
-        private void cbAgree_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-            linkService.Foreground = new SolidColorBrush(Colors.Red);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.Red);
-        }
-
-        private void linkService_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
-        }
-
-        private void linkPrivacy_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
-        }
 
         private void tbSMSCode_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -171,6 +130,35 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             tbPhone.Warn = false;
             tbPhoneRemind.Visibility = Visibility.Collapsed;
+        }
+
+        public void HandleEvent(int eventId, IEventArgs args)
+        {
+            switch (eventId)
+            {
+                case (int)EventId.LanguageChanged: break;
+                case (int)EventId.LoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
+                default: break;
+            }
+        }
+
+        private async void Login(bool allChecked)
+        {
+            User user = null;
+
+            try
+            {
+                user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false, ForceLogin = true });
+
+                if (user != null)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.Login, EventArgs<User>.CreateEventArgs(user));
+                }
+            }
+            catch (Exception exp)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
     /// <summary>
     /// MailReg.xaml 的交互逻辑
     /// </summary>
-    public partial class MailReg : UserControl
+    public partial class MailReg : UserControl, IEventListener
     {
         private IWindowsAPI m_WindowsAPI;
 
@@ -37,6 +37,8 @@ namespace Authing.Guard.WPF.Views.RegisterView
         {
             InitializeComponent();
             m_WindowsAPI = new WindowsAPI();
+
+            EventManagement.Instance.AddListener((int)EventId.RegisterAgreementCheckFinish, this);
         }
 
         private void MailBox_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -57,48 +59,11 @@ namespace Authing.Guard.WPF.Views.RegisterView
             SPasswodRemind.Visibility = Visibility.Collapsed;
         }
 
-        private void cbAgree_Checked(object sender, RoutedEventArgs e)
+        private void BtnRegister_OnClick(object sender, RoutedEventArgs e)
         {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Black);
-            linkService.Foreground = new SolidColorBrush(Colors.MediumBlue);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.MediumBlue);
-        }
-
-        private void cbAgree_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-            linkService.Foreground = new SolidColorBrush(Colors.Red);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.Red);
-        }
-
-        private void linkService_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
-        }
-
-        private void linkPrivacy_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
-        }
-
-        private async void BtnRegister_OnClick(object sender, RoutedEventArgs e)
-        {
-            User user = null;
             if (!JudgeInput()) return;
-            try
-            {
-                user = await AuthClient.Instance.RegisterByEmail(MailBox.Text, FPasswod.Password, null, null);
-            }
-            catch (Exception exception)
-            {
-                EventManagement.Instance.Dispatch((int)EventId.RegisterError,
-                    EventArgs<string>.CreateEventArgs(exception.Message));
-            }
-            if (user != null)
-            {
-                EventManagement.Instance.Dispatch((int)EventId.Register,
-                    EventArgs<User>.CreateEventArgs(user));
-            }
+
+            EventManagement.Instance.Dispatch((int)EventId.RegisterAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -151,6 +116,39 @@ namespace Authing.Guard.WPF.Views.RegisterView
             Storyboard storyboard = (Storyboard)control.Resources["ShakeStoryboard"];
             Storyboard.SetTarget(storyboard.Children.ElementAt(0) as DoubleAnimationUsingKeyFrames ?? throw new InvalidOperationException(), control);
             storyboard.Begin();
+        }
+
+        public void HandleEvent(int eventId, IEventArgs args)
+        {
+            switch (eventId)
+            {
+                case (int)EventId.LanguageChanged: break;
+                case (int)EventId.RegisterAgreementCheckFinish: Register(args.GetValue<bool>()); break;
+                default: break;
+            }
+        }
+
+        private async void Register(bool canRegister)
+        {
+            if (!canRegister)
+            {
+                return;
+            }
+            User user = null;
+            try
+            {
+                user = await AuthClient.Instance.RegisterByEmail(MailBox.Text, FPasswod.Password, null, null);
+            }
+            catch (Exception exception)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.RegisterError,
+                    EventArgs<string>.CreateEventArgs(exception.Message));
+            }
+            if (user != null)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.Register,
+                    EventArgs<User>.CreateEventArgs(user));
+            }
         }
     }
 }

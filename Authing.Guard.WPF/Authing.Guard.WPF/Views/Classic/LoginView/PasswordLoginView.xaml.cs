@@ -35,69 +35,18 @@ namespace Authing.Guard.WPF.Views.LoginView
             m_RegexService = new RegexService();
 
             LoginMethod = LoginMethods.Password;
+
+            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
         }
 
-        private async void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             if (!JudgeInput())
             {
                 return;
             }
 
-            User user = null;
-            Exception currentExp = null;
-
-            try
-            {
-                //最先用用户名登录，如果失败，再用其他方式登录，如果再失败，才判定为失败
-                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
-            }
-            catch (Exception exp)
-            {
-                currentExp = exp;
-               
-                if (exp.Message.Contains("密码不正确"))
-                {
-                    try
-                    {
-                        //判断输入的账号类型
-                        if (m_RegexService.IsMail(tbAccount.Text.Trim()))
-                        {
-                            //邮箱登录
-                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
-                        }
-
-                        else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
-                        {
-                            //手机登录
-                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        currentExp = exception;
-                    }
-                }
-                else
-                {
-                    
-                }
-            }
-            finally
-            {
-                if (user != null)
-                {
-                    //登录成功
-
-                    IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
-                    EventManagement.Instance.Dispatch((int)EventId.Login, arg);
-                }
-
-                if (currentExp != null)
-                {
-                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
-                }
-            }
+            EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -116,12 +65,6 @@ namespace Authing.Guard.WPF.Views.LoginView
                 PasswordBoxHelper.SetWarn(tbPassword, true);
                 tbPasswordRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(tbPassword);
-                flag = false;
-            }
-            if (cbAgree.IsChecked == null || cbAgree.IsChecked == false)
-            {
-                cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-                BeginStoryboard(cbAgree);
                 flag = false;
             }
 
@@ -147,46 +90,77 @@ namespace Authing.Guard.WPF.Views.LoginView
             tbPasswordRemind.Visibility = Visibility.Collapsed;
         }
 
-        private void cbAgree_Checked(object sender, RoutedEventArgs e)
-        {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Black);
-            linkService.Foreground = new SolidColorBrush(Colors.MediumBlue);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.MediumBlue);
-        }
-
-        private void cbAgree_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbAgree.Foreground = new SolidColorBrush(Colors.Red);
-            linkService.Foreground = new SolidColorBrush(Colors.Red);
-            linkPrivacy.Foreground = new SolidColorBrush(Colors.Red);
-        }
-
-        private void linkService_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/service-agreement.html");
-        }
-
-        private void linkPrivacy_Click(object sender, RoutedEventArgs e)
-        {
-            m_WindowsAPI.ShellExecute("open", @"https://www.authing.cn/privacy-policy.html");
-        }
-
-
-
         public void HandleEvent(int eventId, IEventArgs args)
-
         {
-
             switch (eventId)
-
             {
-
                 case (int)EventId.LanguageChanged:break;
-
+                case (int)EventId.LoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
                 default:break;
+            }
+        }
 
+        private async void Login(bool allChecked)
+        {
+            if (!allChecked)
+            {
+                return;
             }
 
+            User user = null;
+            Exception currentExp = null;
+
+            try
+            {
+                //最先用用户名登录，如果失败，再用其他方式登录，如果再失败，才判定为失败
+                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+            }
+            catch (Exception exp)
+            {
+                currentExp = exp;
+
+                if (exp.Message.Contains("密码不正确"))
+                {
+                    try
+                    {
+                        //判断输入的账号类型
+                        if (m_RegexService.IsMail(tbAccount.Text.Trim()))
+                        {
+                            //邮箱登录
+                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                        }
+
+                        else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
+                        {
+                            //手机登录
+                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        currentExp = exception;
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            finally
+            {
+                if (user != null)
+                {
+                    //登录成功
+
+                    IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
+                    EventManagement.Instance.Dispatch((int)EventId.Login, arg);
+                }
+
+                if (currentExp != null)
+                {
+                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                }
+            }
         }
 
 
