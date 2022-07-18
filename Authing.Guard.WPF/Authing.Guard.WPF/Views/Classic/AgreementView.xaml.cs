@@ -2,6 +2,7 @@
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
 using Authing.Guard.WPF.Views.Classic.MainView;
@@ -119,12 +120,23 @@ namespace Authing.Guard.WPF.Views.Classic
                 }
             }
 
+
             if (GuardScene == GuardScenes.Login)
             {
+                if (needCheck != 0)
+                {
+                    PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
+                }
+
                 EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck == 0));
             }
             else if (GuardScene == GuardScenes.Register)
             {
+                if (needCheck != 0)
+                {
+                    PrimaryMessageBoxService.Show("请勾选注册协议", IconType.Error);
+                }
+
                 EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck == 0));
             }
         }

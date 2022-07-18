@@ -30,6 +30,14 @@
         /// <summary>
         /// 隐藏密码
         /// </summary>
-        CloseEye
+        CloseEye,
+        /// <summary>
+        /// 成功提示
+        /// </summary>
+        Success,
+        /// <summary>
+        /// 错误提示
+        /// </summary>
+        Error
     }
 }

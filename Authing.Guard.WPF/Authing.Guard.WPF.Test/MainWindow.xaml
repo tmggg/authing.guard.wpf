@@ -12,6 +12,7 @@
     Width="400"
     mc:Ignorable="d">
     <Grid>
-        <main:GuardMainView  x:Name="guardView" AppId="62a9902a80f55c22346eb296" UserPoolSecret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />
+        <main:GuardMainView Visibility="Visible"   x:Name="guardView" AppId="62a9902a80f55c22346eb296" UserPoolSecret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />
+        <Button Click="Button_Click" Content="show messagebox" Visibility="Collapsed"></Button>
     </Grid>
 </Window>

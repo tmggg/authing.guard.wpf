@@ -1,6 +1,8 @@
 ﻿
 using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
 using Authing.ApiClient.Domain.Model;
+using Authing.Guard.WPF.Controls;
+using Authing.Guard.WPF.Services;
 using System.Windows;
 
 namespace Authing.Guard.WPF.Test
@@ -52,6 +54,11 @@ namespace Authing.Guard.WPF.Test
         private void LoginError(string error)
         {
             MessageBox.Show("登录失败：" + error);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PrimaryMessageBoxService.Show("132131231", Enums.IconType.Success);
         }
     }
 }
