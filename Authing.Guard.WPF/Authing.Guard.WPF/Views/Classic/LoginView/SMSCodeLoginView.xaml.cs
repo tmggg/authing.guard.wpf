@@ -35,7 +35,7 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             LoginMethod = Enums.LoginMethods.PhoneCode;
 
-            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
+            EventManagement.Instance.AddListener((int)EventId.SMSCodeLoginLoginLoginAgreementCheckFinish, this);
         }
 
         private void SMSCodeLoginView_Loaded(object sender, RoutedEventArgs e)
@@ -85,7 +85,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 return;
             }
 
-            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
+            EventManagement.Instance.Dispatch((int)EventId.SMSCodeLoginLoginAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -137,13 +137,14 @@ namespace Authing.Guard.WPF.Views.LoginView
             switch (eventId)
             {
                 case (int)EventId.LanguageChanged: break;
-                case (int)EventId.LoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
+                case (int)EventId.SMSCodeLoginLoginLoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
                 default: break;
             }
         }
 
         private async void Login(bool allChecked)
         {
+
             User user = null;
 
             try

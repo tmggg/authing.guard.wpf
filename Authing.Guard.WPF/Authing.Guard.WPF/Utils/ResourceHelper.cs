@@ -31,5 +31,23 @@ namespace Authing.Guard.WPF.Utils
         {
             Source = new Uri(" pack://application:,,,/Authing.Guard.WPF;component/Styles/Generic.xaml")
         };
+
+        public static ResourceDictionary GetLanguageDictionary(Authing.Guard.WPF.Enums.Lang lang)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            switch (lang)
+            {
+                case Enums.Lang.zhCn:
+                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/zh-CN.xaml", UriKind.Absolute);
+                    break;
+                case Enums.Lang.enUs:
+                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/en-US.xaml", UriKind.Absolute);
+                    break;
+                default:
+                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/zh-CN.xaml", UriKind.Absolute);
+                    break;
+            }
+            return dict;
+        }
     }
 }

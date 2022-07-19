@@ -1,5 +1,6 @@
 ﻿using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
+using Authing.Guard.WPF.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     var obj = ((ComboBox)sender).SelectedItem as Label;
                     if (string.Equals(obj.Content.ToString(), "English", StringComparison.Ordinal))
                     {
-                        var dic = SetLanguageDictionary(Enums.Lang.enUs);
+                        var dic =ResourceHelper.GetLanguageDictionary(Enums.Lang.enUs);
 
                         Application.Current.Resources.MergedDictionaries.Clear();
                         Application.Current.Resources.MergedDictionaries.Add(dic);
@@ -45,7 +46,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     }
                     if (string.Equals(obj.Content.ToString(), "中文", StringComparison.Ordinal))
                     {
-                         var dic =SetLanguageDictionary(Enums.Lang.zhCn);
+                        var dic = ResourceHelper.GetLanguageDictionary(Enums.Lang.zhCn);
 
                         Application.Current.Resources.Clear();
                         Application.Current.Resources.MergedDictionaries.Add(dic);
@@ -54,25 +55,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     }
                 }
             }
-        }
-
-        private ResourceDictionary SetLanguageDictionary(Authing.Guard.WPF.Enums.Lang lang)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-            switch (lang)
-            {
-                case Enums.Lang.zhCn:
-                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/zh-CN.xaml", UriKind.Absolute);
-                    break;
-                case Enums.Lang.enUs:
-                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/en-US.xaml", UriKind.Absolute);
-                    break;
-                default:
-                    dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Lang/zh-CN.xaml", UriKind.Absolute);
-                    break;
-            }
-            //this.Resources.MergedDictionaries.Add(dict);
-            return dict;
         }
 
         private void btnFeedback_Click(object sender, RoutedEventArgs e)

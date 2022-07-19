@@ -38,7 +38,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
             InitializeComponent();
             m_WindowsAPI = new WindowsAPI();
 
-            EventManagement.Instance.AddListener((int)EventId.RegisterAgreementCheckFinish, this);
+            EventManagement.Instance.AddListener((int)EventId.MailRegisterAgreementCheckFinish, this);
         }
 
         private void MailBox_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -63,7 +63,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
         {
             if (!JudgeInput()) return;
 
-            EventManagement.Instance.Dispatch((int)EventId.RegisterAgreementCheck);
+            EventManagement.Instance.Dispatch((int)EventId.MailRegisterAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -123,7 +123,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
             switch (eventId)
             {
                 case (int)EventId.LanguageChanged: break;
-                case (int)EventId.RegisterAgreementCheckFinish: Register(args.GetValue<bool>()); break;
+                case (int)EventId.MailRegisterAgreementCheckFinish: Register(args.GetValue<bool>()); break;
                 default: break;
             }
         }

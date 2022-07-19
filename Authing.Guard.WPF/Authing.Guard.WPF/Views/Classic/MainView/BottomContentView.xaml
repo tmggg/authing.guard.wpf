@@ -14,7 +14,6 @@
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
                 <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
-                <ResourceDictionary Source="/Authing.Guard.WPF;component/Lang/zh-CN.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -26,8 +25,8 @@
                     Style="{StaticResource ComboBoxStyle}"
                     SelectionChanged="Selector_OnSelectionChanged">
                 <ComboBox.Items>
-                    <Label Content="{StaticResource zhCN}" />
-                    <Label Content="{StaticResource enUS}" />
+                    <Label Content="{DynamicResource zhCN}" />
+                    <Label Content="{DynamicResource enUS}" />
                 </ComboBox.Items>
             </ComboBox>
             <Button HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0 0 10 0" Content="{DynamicResource Help}" Style="{StaticResource LinkButtonStyle}" x:Name="btnFeedback" Click="btnFeedback_Click"></Button>

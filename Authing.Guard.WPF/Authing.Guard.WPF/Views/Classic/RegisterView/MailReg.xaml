@@ -125,7 +125,7 @@
                     Text="密码未填写"
                     Visibility="Collapsed" />
         </StackPanel>
-        <view:AgreementView Grid.Row="3" Margin="10" GuardScene="Register"></view:AgreementView>
+        <view:AgreementView Grid.Row="3" Margin="10" GuardDetailScene="MailRegister"></view:AgreementView>
         <controls:PrimaryButton
             x:Name="BtnRegister"
             Margin="10"

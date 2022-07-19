@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="PasswordLogin">Password</system:String>
-    <system:String x:Key="PhoneLogin">Phone Code</system:String>
-    <system:String x:Key="AppScanLogin">App QR code</system:String>
+    <system:String x:Key="SendCodeLogin">Phone</system:String>
+    <system:String x:Key="AppScanLogin">APP QR code</system:String>
     <system:String x:Key="SendCode">Send Code</system:String>
     <system:String x:Key="SendCodeTip">S Retry</system:String>
     <system:String x:Key="UseAppScan">use APP scan code login</system:String>
@@ -89,4 +89,9 @@
     <system:String x:Key="Help">Help</system:String>
     <system:String x:Key="Welcometo">Welcome to</system:String>
     <system:String x:Key="Signininstead">Sign In Instead</system:String>
+    <system:String x:Key="Pleasechecktheloginprotocol">Please check the login protocol</system:String>
+    <system:String x:Key="Pleasechecktheregistrationagreement">Please check the registration agreement</system:String>
+    <system:String x:Key="EmailRegister">Email</system:String>
+    <system:String x:Key="VerifyCodeRegister">Verify Code</system:String>
+    <system:String x:Key="PhoneRegister">Phone</system:String>
 </ResourceDictionary>

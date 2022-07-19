@@ -4,70 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Authing.Guard.WPF.Views.Classic"
-             xmlns:behavior="clr-namespace:Authing.Guard.WPF.Infrastructures"
+            
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="ListBoxItem">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox Foreground="{TemplateBinding Foreground}" IsChecked="{Binding IsChecked}"></CheckBox>
-                                <RichTextBox HorizontalAlignment="Stretch" MaxWidth="400"   Foreground="{TemplateBinding Foreground}"
-                                         BorderThickness="0" behavior:HtmlRichTextBoxBehavior.Text="{Binding Title}" 
-                                         IsDocumentEnabled="True" IsReadOnly="True" />
-                                <TextBlock Text="adadasd" x:Name="tb"  Width="20"></TextBlock>
-                            </StackPanel>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Warn}" Value="True">
-                                <Setter Property="Foreground"  Value="Red"/>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <!--<CheckBox
-            x:Name="cbAgree"
-            Grid.Row="2"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            Checked="cbAgree_Checked"
-            Unchecked="cbAgree_Unchecked">
-            <TextBlock >  
-                <TextBlock Text="{DynamicResource Agreement}" />  
-                <Button Margin="0 0 0 -3" Style="{StaticResource LinkButtonStyle}" x:Name="linkService" Click="linkService_Click" Content="{DynamicResource ServiceAgreement}" />  
-                <TextBlock Text="{DynamicResource And}"/>  
-                <TextBlock Text="{DynamicResource PrivacyPolicy}"></TextBlock>  
-                <Button Style="{StaticResource LinkButtonStyle}" Margin="0 0 0 -3" x:Name="linkPrivacy" Click="linkPrivacy_Click" Content="{DynamicResource PrivacyPolicy}"></Button>  
-            </TextBlock>
-            <CheckBox.Resources>
-                <Storyboard x:Key="ShakeStoryboard">
-                    <DoubleAnimationUsingKeyFrames RepeatBehavior="5x" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)">
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.05" Value="0" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.15" Value="0" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.20" Value="-2" />
-                        <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
-                    </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
-            </CheckBox.Resources>
-            <CheckBox.RenderTransform>
-                <TranslateTransform X="0" Y="0" />
-            </CheckBox.RenderTransform>
-        </CheckBox>-->
         <ListBox x:Name="listBox" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <!--<ListBox.ItemTemplate>
-                <DataTemplate>
-                   
-                </DataTemplate>
-            </ListBox.ItemTemplate>-->
         </ListBox>
     </Grid>
 </UserControl>

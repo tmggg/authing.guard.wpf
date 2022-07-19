@@ -97,19 +97,67 @@ namespace Authing.Guard.WPF.Events
         /// <summary>
         /// 是否同意登录协议
         /// </summary>
-        LoginAgreementCheck,
+        PasswordLoginAgreementCheck,
         /// <summary>
         /// 检查同意登录协议完成
         /// </summary>
-        LoginAgreementCheckFinish,
+        PasswordLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        SMSCodeLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        SMSCodeLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        ScanCodeLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        ScanCodeLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        ADLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        ADLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        WeChatLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        WeChatLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        WeChatOfficalLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        WeChatOfficalLoginLoginLoginAgreementCheckFinish,
         /// <summary>
         /// 是否同意注册协议
         /// </summary>
-        RegisterAgreementCheck,
+        MailRegisterAgreementCheck,
         /// <summary>
         /// 检查同意注册协议完成
         /// </summary>
-        RegisterAgreementCheckFinish
+        MailRegisterAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意注册协议
+        /// </summary>
+        PhoneRegisterAgreementCheck,
+        /// <summary>
+        /// 检查同意注册协议完成
+        /// </summary>
+        PhoneRegisterAgreementCheckFinish
 
 
     }

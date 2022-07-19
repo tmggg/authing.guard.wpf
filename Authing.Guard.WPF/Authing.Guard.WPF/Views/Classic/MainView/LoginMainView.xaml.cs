@@ -81,7 +81,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 {
                     //添加 App 扫码登录界面
                     TabItem tabItem = new TabItem();
-                    tabItem.Header = Application.Current.Resources["AppScanLogin"] as String;
+                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "AppScanLogin");
                     tabItem.Content = new ScanCodeLoginView();
 
                     loginViewTabControl.Items.Add(tabItem);
@@ -103,10 +103,9 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
                     TabItem tabItem = new TabItem();
                     tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.Header = Application.Current.Resources["PasswordLogin"] as String;
 
                     tabItem.Content = passwordLoginView;
-                    tabItem.Header = passwordLoginView.LoginMethod.GetDescription();
+                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "PasswordLogin");
 
                     loginViewTabControl.Items.Add(tabItem);
 
@@ -121,7 +120,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     SMSCodeLoginView sMSCodeLoginView = new SMSCodeLoginView();
                     TabItem tabItem = new TabItem();
                     tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.Header = Application.Current.Resources["SendCode"] as String;
+                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "SendCodeLogin");
                     tabItem.Content = sMSCodeLoginView;
                     loginViewTabControl.Items.Add(tabItem);
 
@@ -135,6 +134,9 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     //添加微信小程序扫码登录
                 }
             }
+
+            //第三方登录
+            
         }
 
         private void btnSwitchLogin_Click(object sender, RoutedEventArgs e)

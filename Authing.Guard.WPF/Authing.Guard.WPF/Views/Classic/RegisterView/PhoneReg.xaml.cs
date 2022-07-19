@@ -39,7 +39,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
             InitializeComponent();
             m_WindowsAPI = new WindowsAPI();
 
-            EventManagement.Instance.AddListener((int)EventId.RegisterAgreementCheckFinish, this);
+            EventManagement.Instance.AddListener((int)EventId.PhoneRegisterAgreementCheckFinish, this);
         }
 
         private void PhoneNumber_OnTextChanged(object sender, TextChangedEventArgs e)
@@ -77,7 +77,8 @@ namespace Authing.Guard.WPF.Views.RegisterView
         private async void BtnRegister_OnClick(object sender, RoutedEventArgs e)
         {
             if (!JudgeInput()) return;
-            
+
+            EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -120,7 +121,7 @@ namespace Authing.Guard.WPF.Views.RegisterView
             switch (eventId)
             {
                 case (int)EventId.LanguageChanged: break;
-                case (int)EventId.RegisterAgreementCheckFinish: Register(args.GetValue<bool>()); break;
+                case (int)EventId.PhoneRegisterAgreementCheckFinish: Register(args.GetValue<bool>()); break;
                 default: break;
             }
         }

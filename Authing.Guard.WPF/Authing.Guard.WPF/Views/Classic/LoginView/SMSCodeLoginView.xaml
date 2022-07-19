@@ -117,7 +117,7 @@
                 Visibility="Collapsed" />
         </StackPanel>
         
-        <view:AgreementView Grid.Row="2" Margin="10" GuardScene="Login"></view:AgreementView>
+        <view:AgreementView Grid.Row="2" Margin="10" GuardDetailScene="SMSCodeLogin"></view:AgreementView>
         <controls:PrimaryButton  
             x:Name="btnLogin"  
             Grid.Row="3"  

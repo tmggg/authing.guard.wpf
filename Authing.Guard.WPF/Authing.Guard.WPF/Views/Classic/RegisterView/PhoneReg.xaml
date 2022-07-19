@@ -110,7 +110,7 @@
                 Visibility="Collapsed" />
         </StackPanel>
 
-        <view:AgreementView Grid.Row="2" Margin="10" GuardScene="Register"></view:AgreementView>
+        <view:AgreementView Grid.Row="2" Margin="10" GuardDetailScene="PhoneRegister"></view:AgreementView>
 
         <controls:PrimaryButton
             x:Name="BtnRegister"

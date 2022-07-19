@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="PasswordLogin">密码登录</system:String>
-    <system:String x:Key="PhoneLogin">短信验证码</system:String>
-    <system:String x:Key="AppScanLogin">扫码登录</system:String>
+    <system:String x:Key="SendCodeLogin">验证码登录</system:String>
+    <system:String x:Key="AppScanLogin">APP 扫码登录</system:String>
     <system:String x:Key="SendCode">发送验证码</system:String>
     <system:String x:Key="SendCodeTip">秒后重试</system:String>
     <system:String x:Key="UseAppScan">使用 APP 扫码登录</system:String>
@@ -89,4 +89,9 @@
     <system:String x:Key="Help">遇到问题 ?</system:String>
     <system:String x:Key="Welcometo">欢迎加入</system:String>
     <system:String x:Key="Signininstead">立即登录</system:String>
+    <system:String x:Key="Pleasechecktheloginprotocol">请勾选登录协议</system:String>
+    <system:String x:Key="Pleasechecktheregistrationagreement">请勾选注册协议</system:String>
+    <system:String x:Key="EmailRegister">邮箱注册</system:String>
+    <system:String x:Key="VerifyCodeRegister">邮箱验证码</system:String>
+    <system:String x:Key="PhoneRegister">手机号注册</system:String>
 </ResourceDictionary>

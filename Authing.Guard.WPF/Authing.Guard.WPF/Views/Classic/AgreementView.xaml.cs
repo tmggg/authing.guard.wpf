@@ -4,6 +4,7 @@ using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 using Authing.Guard.WPF.Views.Classic.MainView;
 using System;
@@ -28,26 +29,28 @@ namespace Authing.Guard.WPF.Views.Classic
     /// </summary>
     public partial class AgreementView : UserControl, IEventListener
     {
-        public GuardScenes GuardScene
+        public GuardDetailScene GuardDetailScene
         {
             get
             {
-                return (GuardScenes)GetValue(GuardSceneProperty);
+                return (GuardDetailScene)GetValue(GuardDetailSceneProperty);
             }
             set
             {
-                SetValue(GuardSceneProperty, value);
+                SetValue(GuardDetailSceneProperty, value);
             }
         }
 
-        public static DependencyProperty GuardSceneProperty =
-            DependencyProperty.Register(nameof(GuardScene), typeof(GuardScenes), typeof(AgreementView), new PropertyMetadata());
+        public static DependencyProperty GuardDetailSceneProperty =
+            DependencyProperty.Register(nameof(GuardDetailScene), typeof(GuardDetailScene), typeof(AgreementView), new PropertyMetadata());
 
         private List<Agreement> agreements;
 
         private List<Agreement> allAgreements;
 
         private IJsonService m_JsonService;
+
+        private Lang currentLang;
 
         public AgreementView()
         {
@@ -62,16 +65,29 @@ namespace Authing.Guard.WPF.Views.Classic
         {
             switch (eventId)
             {
-                case (int)EventId.LoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.PasswordLoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.SMSCodeLoginLoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.ScanCodeLoginLoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.ADLoginLoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.WeChatLoginLoginAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.WeChatOfficalLoginLoginAgreementCheck: AgreementCheck(); break;
 
-                case (int)EventId.RegisterAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.MailRegisterAgreementCheck: AgreementCheck(); break;
+                case (int)EventId.PhoneRegisterAgreementCheck: AgreementCheck(); break;
+
+                case (int)EventId.LanguageChanged:LanguageChanged((Lang)args.GetValue<int>());break;
             }
         }
 
-        private void AgreementView_Loaded(object sender, RoutedEventArgs e)
+        private void LanguageChanged(Lang lang)
         {
-            allAgreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(GuardMainView.Agreements));
+            currentLang = lang;
 
+            Init();
+        }
+
+        private void Init()
+        {
             agreements = new List<Agreement>();
 
             if (GuardMainView.Agreements == null || GuardMainView.Agreements.Count == 0)
@@ -80,18 +96,7 @@ namespace Authing.Guard.WPF.Views.Classic
                 return;
             }
 
-            if (GuardScene == GuardScenes.Login)
-            {
-                EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheck, this);
-
-                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).ToList();
-            }
-            else if (GuardScene == GuardScenes.Register)
-            {
-                EventManagement.Instance.AddListener((int)EventId.RegisterAgreementCheck, this);
-
-                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Register || p.AvailableAt == AvailableAt.RegisterAndLogin).ToList();
-            }
+            AddEvent();
 
             if (agreements.Count > 0)
             {
@@ -104,9 +109,72 @@ namespace Authing.Guard.WPF.Views.Classic
             }
         }
 
+        private void AgreementView_Loaded(object sender, RoutedEventArgs e)
+        {
+            allAgreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(GuardMainView.Agreements));
+
+            currentLang = Lang.zhCn;
+
+            EventManagement.Instance.AddListener((int)EventId.LanguageChanged,this);
+
+            Init();
+        }
+
+        private void AddEvent()
+        {
+            if (GuardDetailScene == GuardDetailScene.PasswordLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.PasswordLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p=>p.Lang==currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.SMSCodeLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.SMSCodeLoginLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.ScanCodeLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.ScanCodeLoginLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.ADLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.ADLoginLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.WeChatLoginLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatOfficalLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.WeChatOfficalLoginLoginAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.MailRegister)
+            {
+                EventManagement.Instance.AddListener((int)EventId.MailRegisterAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Register || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+            else if (GuardDetailScene == GuardDetailScene.PhoneRegister)
+            {
+                EventManagement.Instance.AddListener((int)EventId.PhoneRegisterAgreementCheck, this);
+
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Register || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
+            }
+        }
+
         private void AgreementCheck()
         {
-            int needCheck = agreements.Count(p=>p.Required);
+            int needCheck = agreements.Count(p => p.Required);
 
             foreach (var item in agreements)
             {
@@ -120,25 +188,85 @@ namespace Authing.Guard.WPF.Views.Classic
                 }
             }
 
+            DispatchEvent(needCheck != 0);
 
-            if (GuardScene == GuardScenes.Login)
+        }
+
+        private void DispatchEvent(bool needCheck)
+        {
+            if (GuardDetailScene == GuardDetailScene.PasswordLogin)
             {
-                if (needCheck != 0)
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("Pleasechecktheloginprotocol"), IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.PasswordLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.SMSCodeLogin)
+            {
+                if (needCheck)
                 {
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck == 0));
+                EventManagement.Instance.Dispatch((int)EventId.SMSCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
             }
-            else if (GuardScene == GuardScenes.Register)
+            else if (GuardDetailScene == GuardDetailScene.ScanCodeLogin)
             {
-                if (needCheck != 0)
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.ScanCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.ADLogin)
+            {
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.ADLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatLogin)
+            {
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.WeChatLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatOfficalLogin)
+            {
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.WeChatOfficalLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.MailRegister)
+            {
+                if (needCheck)
+                {
+                    PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("Pleasechecktheregistrationagreement"), IconType.Error);
+                }
+
+                EventManagement.Instance.Dispatch((int)EventId.MailRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+            }
+            else if (GuardDetailScene == GuardDetailScene.PhoneRegister)
+            {
+                if (needCheck)
                 {
                     PrimaryMessageBoxService.Show("请勾选注册协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck == 0));
+                EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
             }
+
         }
 
     }

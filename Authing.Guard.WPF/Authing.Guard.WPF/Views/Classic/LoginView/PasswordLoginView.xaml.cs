@@ -35,8 +35,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             m_RegexService = new RegexService();
 
             LoginMethod = LoginMethods.Password;
-
-            EventManagement.Instance.AddListener((int)EventId.LoginAgreementCheckFinish, this);
+            EventManagement.Instance.AddListener((int)EventId.PasswordLoginLoginAgreementCheckFinish, this);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -45,8 +44,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 return;
             }
-
-            EventManagement.Instance.Dispatch((int)EventId.LoginAgreementCheck);
+            EventManagement.Instance.Dispatch((int)EventId.PasswordLoginAgreementCheck);
         }
 
         private bool JudgeInput()
@@ -95,13 +93,14 @@ namespace Authing.Guard.WPF.Views.LoginView
             switch (eventId)
             {
                 case (int)EventId.LanguageChanged:break;
-                case (int)EventId.LoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
+                case (int)EventId.PasswordLoginLoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
                 default:break;
             }
         }
 
         private async void Login(bool allChecked)
         {
+
             if (!allChecked)
             {
                 return;
@@ -162,16 +161,5 @@ namespace Authing.Guard.WPF.Views.LoginView
                 }
             }
         }
-
-
-
-        private void SetLanguage()
-
-        {
-
-            tbAccount.PlaceHolder = Application.Current.Resources["SendCode"] as string;
-
-        }
-
     }
 }

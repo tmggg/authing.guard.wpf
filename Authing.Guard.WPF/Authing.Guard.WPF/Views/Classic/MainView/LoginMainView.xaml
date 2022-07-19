@@ -25,6 +25,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical">
@@ -69,7 +70,9 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="bottomGrid" Grid.Row="3">
+        <Grid x:Name="thridLoginContent">
+        </Grid>
+        <Grid x:Name="bottomGrid" Grid.Row="4">
             <!--<local:BottomContentView VerticalAlignment="Bottom"></local:BottomContentView>-->
         </Grid>
     </Grid>
