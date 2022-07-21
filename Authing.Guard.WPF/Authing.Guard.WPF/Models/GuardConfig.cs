@@ -53,6 +53,11 @@ namespace Authing.Guard.WPF.Models
         public List<SocialConnections> SocialConnections { get; set; }
 
         /// <summary>
+        /// 需要使用的企业身份源列表(不包括 LDAP)，列表项值为配置的企业身份源唯一标识符，注意：企业身份源需要传入对应 appId 才能使用
+        /// </summary>
+        public List<EnterpriseConnection> EnterpriseConnections { get; set; }
+
+        /// <summary>
         /// 默认显示的登录方式。可选值为 LoginMethod 中的某一项
         /// </summary>
         public LoginMethods DefaultLoginMethod { get; set; }

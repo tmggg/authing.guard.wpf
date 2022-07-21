@@ -10,7 +10,7 @@ namespace Authing.Guard.WPF.Models
     /// <summary>
     /// 企业登录源信息
     /// </summary>
-    public class EnterpriseConnections
+    public class EnterpriseConnection
     {
         [JsonProperty("id")]
         public string Id { get; set; }

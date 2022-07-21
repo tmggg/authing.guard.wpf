@@ -1,6 +1,7 @@
 ﻿using Authing.ApiClient.Domain.Client.Impl.AuthenticationClient;
 using Authing.ApiClient.Domain.Client.Impl.ManagementBaseClient;
 using Authing.Guard.WPF.Services;
+using Authing.Library.Domain.Client.Impl.AuthenticationClient;
 using System;
 
 namespace Authing.Guard.WPF.Factories
@@ -97,6 +98,53 @@ namespace Authing.Guard.WPF.Factories
                     otp.Secret = ConfigService.SecretId;
                     otp.Host = ConfigService.Host;
                 }) ;
+                if (Client != null)
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
+    }
+
+    public class SocialAuthClient
+    {
+        private static SocialAuthenticationClient Client;
+
+        private static readonly Lazy<SocialAuthenticationClient> lazy =
+            new Lazy<SocialAuthenticationClient>(() =>
+            {
+                if (Client == null)
+                {
+                    Client = new SocialAuthenticationClient(otp =>
+                    {
+                        otp.UserPoolId = ConfigService.UserPoolId;
+                        otp.Secret = ConfigService.SecretId;
+                        otp.Host = ConfigService.Host;
+                        otp.AppId = ConfigService.AppId;
+                    });
+                }
+
+                return Client;
+            });
+
+        public static SocialAuthenticationClient Instance
+        { get { return lazy.Value; } }
+
+        private SocialAuthClient()
+        { }
+
+        public static bool Init()
+        {
+            if (Client == null)
+            {
+                Client = new SocialAuthenticationClient(otp =>
+                {
+                    otp.UserPoolId = ConfigService.UserPoolId;
+                    otp.Secret = ConfigService.SecretId;
+                    otp.Host = ConfigService.Host;
+                    otp.AppId = ConfigService.AppId;
+                });
                 if (Client != null)
                 {
                     return true;

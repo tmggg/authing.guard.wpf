@@ -70,7 +70,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="thridLoginContent">
+        <Grid x:Name="thirdLoginContent" Grid.Row="3">
         </Grid>
         <Grid x:Name="bottomGrid" Grid.Row="4">
             <!--<local:BottomContentView VerticalAlignment="Bottom"></local:BottomContentView>-->

@@ -1,0 +1,12 @@
+﻿<Window x:Class="Authing.Guard.WPF.Core.Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Authing.Guard.WPF.Core.Test" xmlns:main="clr-namespace:Authing.Guard.WPF.Views.Classic.MainView;assembly=Authing.Guard.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <main:GuardMainView Visibility="Visible"   x:Name="guardView" AppId="62a9902a80f55c22346eb296" UserPoolSecret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />
+    </Grid>
+</Window>

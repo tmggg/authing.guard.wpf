@@ -136,6 +136,11 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             }
 
             //第三方登录
+            if (GuardMainView.SocialConnections.Count > 0 || GuardMainView.EnterpriseConnections.Count > 0)
+            { 
+                ThirdLoginMainView thirdLoginMainView = new ThirdLoginMainView();
+                thirdLoginContent.Children.Add(thirdLoginMainView);
+            }
             
         }
 

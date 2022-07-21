@@ -10,10 +10,15 @@ using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
+using CefSharp;
+using CefSharp.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -28,16 +33,24 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
         public static List<SocialConnection> SocialConnections { get; private set; }
 
-        public static List<EnterpriseConnections> EnterpriseConnections { get; private set; }
+        public static List<EnterpriseConnection> EnterpriseConnections { get; private set; }
 
         private IJsonService m_JsonService;
 
         public GuardMainView()
         {
-            var dic =ResourceHelper.GetLanguageDictionary(Enums.Lang.zhCn);
+            InitializeCefSharp();
+
+            var dic = ResourceHelper.GetLanguageDictionary(Lang.zhCn);
 
             Application.Current.Resources.MergedDictionaries.Clear();
+
+
             Application.Current.Resources.MergedDictionaries.Add(dic);
+
+            ResourceDictionary dict = new ResourceDictionary();
+            dict.Source = new Uri("pack://application:,,,/Authing.Guard.WPF;component/Styles/IconResource.xaml", UriKind.Absolute);
+            Application.Current.Resources.MergedDictionaries.Add(dict);
 
             InitializeComponent();
 
@@ -45,6 +58,42 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
             Loaded += MainView_Loaded;
             Unloaded += MainView_Unloaded;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private static void InitializeCefSharp()
+        {
+            return;
+
+            var settings = new CefSettings();
+
+            // Set BrowserSubProcessPath based on app bitness at runtime
+            settings.BrowserSubprocessPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+                                                   Environment.Is64BitProcess ? "x64" : "x86",
+                                                   "CefSharp.BrowserSubprocess.exe");
+
+
+            // Make sure you set performDependencyCheck false
+            Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
+        }
+
+        // Will attempt to load missing assembly from either x86 or x64 subdir
+        // Required by CefSharp to load the unmanaged dependencies when running using AnyCPU
+        private static Assembly Resolver(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.StartsWith("CefSharp"))
+            {
+                string assemblyName = args.Name.Split(new[] { ',' }, 2)[0] + ".dll";
+                string archSpecificPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+                                                       Environment.Is64BitProcess ? "x64" : "x86",
+                                                       assemblyName);
+
+                return File.Exists(archSpecificPath)
+                           ? Assembly.LoadFile(archSpecificPath)
+                           : null;
+            }
+
+            return null;
         }
 
 
@@ -116,8 +165,15 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     Config.RegisterMethods = appInfo.RegisterTabs.List.ToList().GetEnumByEnumMember<RegisterMethods>();
                     Config.DefaultRegisterMethod = (RegisterMethods)Enum.Parse(typeof(RegisterMethods), appInfo.RegisterTabs.Default.FirstCharToUpper());
                     //Config.DefaultScences
-                    Config.SocialConnections = m_JsonService.Deserialize<List<SocialConnection>>(m_JsonService.Serialize(appInfo.SocialConnections)).Select(p=>p.Provider).ToList().GetEnumByEnumMember<SocialConnections>();
-                    //Config.SocialConnections.Add()
+
+                    SocialConnections = m_JsonService.Deserialize<List<SocialConnection>>(m_JsonService.Serialize(appInfo.SocialConnections));
+
+                    Config.SocialConnections = SocialConnections.Select(p => p.Provider).ToList().GetEnumByEnumMember<SocialConnections>();
+
+                    EnterpriseConnections = m_JsonService.Deserialize<List<EnterpriseConnection>>(m_JsonService.Serialize(appInfo.EcConnections));
+
+                    Config.EnterpriseConnections = EnterpriseConnections;
+
                     Config.DefaultLoginMethod = (LoginMethods)Enum.Parse(typeof(LoginMethods), appInfo.LoginTabs.Default.FirstCharToUpper());
                     //Config.AutoRegister=appInfo.
                     Config.DisableRegister = appInfo.RegisterDisabled;
@@ -264,8 +320,8 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
         }
 
         private void ToFeedbackView()
-        { 
-            
+        {
+
         }
     }
 }

@@ -207,7 +207,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingGitlab" TargetType="Button">
+    <Style x:Key="Gitlab" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -232,7 +232,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingYuYan" TargetType="Button">
+    <Style x:Key="YuYan" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -257,7 +257,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingAnZhuo" TargetType="Button">
+    <Style x:Key="AnZhuo" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -282,7 +282,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingLarkPublic" TargetType="Button">
+    <Style x:Key="LarkPublic" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -322,7 +322,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingLarkInternal" TargetType="Button">
+    <Style x:Key="LarkInternal" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -363,7 +363,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingCloseWithCircle" TargetType="Button">
+    <Style x:Key="CloseWithCircle" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -388,7 +388,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingCloseWithoutCircle" TargetType="Button">
+    <Style x:Key="CloseWithoutCircle" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -414,7 +414,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingAppleWeb" TargetType="Button">
+    <Style x:Key="AppleWeb" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -439,7 +439,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingGoogle" TargetType="Button">
+    <Style x:Key="Google" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -464,7 +464,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingDingTalk" TargetType="Button">
+    <Style x:Key="DingTalk" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -489,7 +489,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingApple" TargetType="Button">
+    <Style x:Key="Apple" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -514,7 +514,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingAplipayWeb" TargetType="Button">
+    <Style x:Key="AplipayWeb" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -539,7 +539,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatMiniprogramAppLaunch" TargetType="Button">
+    <Style x:Key="WechatMiniprogramAppLaunch" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -564,7 +564,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingQQ" TargetType="Button">
+    <Style x:Key="QQ" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -589,7 +589,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatMobile" TargetType="Button">
+    <Style x:Key="WechatMobile" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -614,7 +614,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingBaidu" TargetType="Button">
+    <Style x:Key="Baidu" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -639,7 +639,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatPC" TargetType="Button">
+    <Style x:Key="WechatPC" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -665,7 +665,7 @@
     </Style>
 
 
-    <Style x:Key="AuthingWechatMiniprogramQrconnec" TargetType="Button">
+    <Style x:Key="WechatMiniprogramQrconnec" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -690,7 +690,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatWebpageAuthorization" TargetType="Button">
+    <Style x:Key="WechatWebpageAuthorization" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -720,7 +720,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatMiniprogramDefault" TargetType="Button">
+    <Style x:Key="WechatMiniprogramDefault" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -745,7 +745,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWechatworkServiceProviderAuthorization" TargetType="Button">
+    <Style x:Key="WechatworkServiceProviderAuthorization" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -771,7 +771,7 @@
     </Style>
 
 
-    <Style x:Key="AuthingWechatworkCorpQrconnect" TargetType="Button">
+    <Style x:Key="WechatworkCorpQrconnect" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -802,7 +802,7 @@
     </Style>
 
 
-    <Style x:Key="AuthingWechatworkServiceProviderQrconnect" TargetType="Button">
+    <Style x:Key="WechatworkServiceProviderQrconnect" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -832,7 +832,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingWeibo" TargetType="Button">
+    <Style x:Key="Weibo" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -857,7 +857,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="AuthingGithub" TargetType="Button">
+    <Style x:Key="Github" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
