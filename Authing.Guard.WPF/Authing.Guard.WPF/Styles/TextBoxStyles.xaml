@@ -13,6 +13,7 @@
         <Setter Property="PlaceHolderFontSize" Value="12" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="PlacelHolderHorizontalAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{StaticResource AppTextBoxNormalGrayBrush}" />
         <Setter Property="PlaceHolderForeground" Value="{StaticResource TextBoxPlaceHolderGrayBrush}" />
@@ -20,7 +21,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:PlaceHolderTextBox">
                     <Grid>
-                        <Border x:Name="outBd" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border x:Name="outBd"  CornerRadius="{TemplateBinding CornerRadius}">
                             <Grid Background="Transparent">
                                 <Border x:Name="bd" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"></Border>
                                 <Grid>

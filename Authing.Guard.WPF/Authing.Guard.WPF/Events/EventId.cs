@@ -76,6 +76,89 @@ namespace Authing.Guard.WPF.Events
         /// 语言选择改变
         /// </summary>
         LanguageChanged,
+        /// <summary>
+        /// 跳转到登录界面
+        /// </summary>
+        ToLogin,
+        /// <summary>
+        /// 跳转到忘记密码界面
+        /// </summary>
+        ToResetPassword,
+        /// <summary>
+        /// 跳转到注册界面
+        /// </summary>
+        ToRegister,
+        /// <summary>
+        /// 跳转到问题反馈界面
+        /// </summary>
+        ToFeedback,
+
+
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        PasswordLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        PasswordLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        SMSCodeLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        SMSCodeLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        ScanCodeLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        ScanCodeLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        ADLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        ADLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        WeChatLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        WeChatLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意登录协议
+        /// </summary>
+        WeChatOfficalLoginLoginAgreementCheck,
+        /// <summary>
+        /// 检查同意登录协议完成
+        /// </summary>
+        WeChatOfficalLoginLoginLoginAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意注册协议
+        /// </summary>
+        MailRegisterAgreementCheck,
+        /// <summary>
+        /// 检查同意注册协议完成
+        /// </summary>
+        MailRegisterAgreementCheckFinish,
+        /// <summary>
+        /// 是否同意注册协议
+        /// </summary>
+        PhoneRegisterAgreementCheck,
+        /// <summary>
+        /// 检查同意注册协议完成
+        /// </summary>
+        PhoneRegisterAgreementCheckFinish
+
 
     }
 }

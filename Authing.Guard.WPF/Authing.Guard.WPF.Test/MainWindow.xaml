@@ -6,11 +6,13 @@
     xmlns:guard="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
     xmlns:local="clr-namespace:Authing.Guard.WPF.Test"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.LoginView;assembly=Authing.Guard.WPF"
+    xmlns:main="clr-namespace:Authing.Guard.WPF.Views.Classic.MainView;assembly=Authing.Guard.WPF"
     Title="MainWindow"
+    WindowStartupLocation="CenterScreen"
+    Width="400"
     mc:Ignorable="d">
     <Grid>
-        <!--<main:MainView  x:Name="guardView" AppId="6215dd9277d6ef55dfab41f8"  Secret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />-->
-        <main:MainView  x:Name="guardView" AppId="6172807001258f603126a78a" Secret="6671136fa932eb692735a6f82af3b67b" UserPoolId="617280674680a6ca2b1f6317" />
+        <main:GuardMainView Visibility="Visible"   x:Name="guardView" AppId="62a9902a80f55c22346eb296" UserPoolSecret="ccf4951a33e5d54d64e145782a65f0a7" UserPoolId="613189b2eed393affbbf396e" />
+        <Button Click="Button_Click" Content="show messagebox" Visibility="Collapsed"></Button>
     </Grid>
 </Window>

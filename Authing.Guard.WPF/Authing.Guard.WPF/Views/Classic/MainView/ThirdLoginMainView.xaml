@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Authing.Guard.WPF.Views.Classic.MainView.ThirdLoginMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="ThirdCottent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0,10,0,10">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Foreground="{StaticResource AppLightGrayBrush}">——— </TextBlock>
+                    <Label
+                    Content="{DynamicResource ContinueWith}" VerticalContentAlignment="Center"
+                    FontSize="16" Foreground="#888888" />
+                    <TextBlock Foreground="{StaticResource AppLightGrayBrush}" VerticalAlignment="Center"> ———</TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <ItemsControl
+                    x:Name="SocialloginControl" Grid.Row="3"
+                    ItemsSource="{Binding DemoData}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button
+                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                attach:IconAttach.ForegroundColorLight="{Binding FColor}"
+                                attach:IconAttach.Geometry="{Binding Logo}"
+                                attach:IconAttach.Height="24" attach:IconAttach.Width="24"
+                                Click="ButtonBase_OnClick"
+                                Command="{Binding DataContext.OpenBrowserCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
+                                CommandParameter="{Binding}"
+                                Style="{DynamicResource IconButtonStyle}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Grid x:Name="webGrid" Grid.Row="2"></Grid>
+        </Grid>
+    </Grid>
+</UserControl>

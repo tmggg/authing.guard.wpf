@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Authing.Guard.WPF.Views.Classic.MainView.RegisterMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Authing.Guard.WPF.Views.Classic.MainView"
+              xmlns:registerView="clr-namespace:Authing.Guard.WPF.Views.RegisterView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/IconStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="/Authing.Guard.WPF;component/Styles/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="RegContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <Image
+                x:Name="imgLogo"
+                Width="50"
+                Height="50" >
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"></EllipseGeometry>
+                    </Image.Clip>
+                </Image>
+                <StackPanel Margin="0 10 0 20" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="{StaticResource Welcometo}" FontWeight="Bold" FontSize="{StaticResource MediumSize}"></TextBlock>
+                    <TextBlock VerticalAlignment="Center" Margin="5 0 0 0" x:Name="tbTitle" Text="Authing" HorizontalAlignment="Center" FontSize="{StaticResource MediumSize}" />
+                </StackPanel>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <TabControl Style="{StaticResource TabControlStyle}" x:Name="RegMainTabControl"></TabControl>
+            </Grid>
+            <Button HorizontalAlignment="Right" Margin="0 0 10 0" Grid.Row="2" Content="{StaticResource Signininstead}" Style="{StaticResource LinkButtonStyle}" x:Name="RegReturn2Login" Click="RegReturn2Login_OnClick"></Button>
+            <!--<local:BottomContentView Grid.Row="3" VerticalContentAlignment="Bottom"></local:BottomContentView>-->
+        </Grid>
+    </Grid>
+</UserControl>
