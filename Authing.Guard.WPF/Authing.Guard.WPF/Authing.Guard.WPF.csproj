@@ -1,4 +1,4 @@
-﻿<Project >
+﻿<Project>
 
 	<Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk.WindowsDesktop" />
 		
@@ -7,8 +7,8 @@
 		<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageId>SDKDemo</PackageId>
-		<Version>3.0.1</Version>
+		<PackageId>SDKV3Demo</PackageId>
+		<Version>3.0.4</Version>
 		<Platforms>AnyCPU;x64;x86</Platforms>
 		
 	</PropertyGroup>
@@ -52,11 +52,27 @@
 
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
+		<PackageReference Include="CefSharp.Common.NETCore" Version="103.0.90" />
 		<PackageReference Include="CefSharp.Wpf.NETCore" Version="103.0.90" />
+		<PackageReference Include="chromiumembeddedframework.runtime.win-arm64" Version="103.0.9" />
+		<PackageReference Include="chromiumembeddedframework.runtime.win-x64" Version="103.0.9" />
+		<PackageReference Include="chromiumembeddedframework.runtime.win-x86" Version="103.0.9" />
+
+
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net48'">
 		<PackageReference Include="CefSharp.Wpf" Version="103.0.90" />
 	</ItemGroup>
+
+	<PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">
+		<DefineConstants>$(DefineConstants);ANYCPU</DefineConstants>
+		<!--
+    For versions 87 and 88 specify CefSharpPlatformTargetOverride when using AnyCPU.
+    For versions 89 and above use PlatformTarget (CefSharpPlatformTargetOverride will also still work)
+    -->
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<!--<CefSharpPlatformTargetOverride>AnyCPU</CefSharpPlatformTargetOverride>-->
+	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(PlatformTarget)' == 'x86'">
 	<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x86</RuntimeIdentifier>
