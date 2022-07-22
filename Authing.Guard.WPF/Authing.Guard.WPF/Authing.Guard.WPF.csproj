@@ -4,7 +4,7 @@
 		
 	<PropertyGroup>
 		<CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
-		<TargetFrameworks>net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>SDKDemo</PackageId>
@@ -54,9 +54,9 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
 		<PackageReference Include="CefSharp.Wpf.NETCore" Version="103.0.90" />
 	</ItemGroup>
-	<!--<ItemGroup Condition="'$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net48'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net48'">
 		<PackageReference Include="CefSharp.Wpf" Version="103.0.90" />
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<PropertyGroup Condition="'$(PlatformTarget)' == 'x86'">
 	<RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-x86</RuntimeIdentifier>
