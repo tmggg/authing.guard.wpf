@@ -59,6 +59,48 @@ namespace Authing.Guard.WPF.Views.Classic
             InitializeComponent();
 
             Loaded += AgreementView_Loaded;
+            Unloaded += AgreementView_Unloaded;
+        }
+
+        private void AgreementView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (GuardDetailScene == GuardDetailScene.PasswordLogin)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.PasswordLoginAgreementCheck, this);
+            }
+            else if (GuardDetailScene == GuardDetailScene.SMSCodeLogin)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.SMSCodeLoginLoginAgreementCheck, this);
+            }
+            else if (GuardDetailScene == GuardDetailScene.ScanCodeLogin)
+            {
+                EventManagement.Instance.AddListener((int)EventId.ScanCodeLoginLoginAgreementCheck, this);
+
+            }
+            else if (GuardDetailScene == GuardDetailScene.ADLogin)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.ADLoginLoginAgreementCheck, this);
+
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatLogin)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.WeChatLoginLoginAgreementCheck, this);
+
+            }
+            else if (GuardDetailScene == GuardDetailScene.WeChatOfficalLogin)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.WeChatOfficalLoginLoginAgreementCheck, this);
+
+            }
+            else if (GuardDetailScene == GuardDetailScene.MailRegister)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.MailRegisterAgreementCheck, this);
+
+            }
+            else if (GuardDetailScene == GuardDetailScene.PhoneRegister)
+            {
+                EventManagement.Instance.RemoveListener((int)EventId.PhoneRegisterAgreementCheck, this);
+            }
         }
 
         public void HandleEvent(int eventId, IEventArgs args)
@@ -75,7 +117,7 @@ namespace Authing.Guard.WPF.Views.Classic
                 case (int)EventId.MailRegisterAgreementCheck: AgreementCheck(); break;
                 case (int)EventId.PhoneRegisterAgreementCheck: AgreementCheck(); break;
 
-                case (int)EventId.LanguageChanged:LanguageChanged((Lang)args.GetValue<int>());break;
+                case (int)EventId.LanguageChanged: LanguageChanged((Lang)args.GetValue<int>()); break;
             }
         }
 
@@ -115,7 +157,7 @@ namespace Authing.Guard.WPF.Views.Classic
 
             currentLang = Lang.zhCn;
 
-            EventManagement.Instance.AddListener((int)EventId.LanguageChanged,this);
+            EventManagement.Instance.AddListener((int)EventId.LanguageChanged, this);
 
             Init();
         }
@@ -126,10 +168,11 @@ namespace Authing.Guard.WPF.Views.Classic
             {
                 EventManagement.Instance.AddListener((int)EventId.PasswordLoginAgreementCheck, this);
 
-                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p=>p.Lang==currentLang.GetDescription()).ToList();
+                agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.SMSCodeLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.SMSCodeLoginLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.SMSCodeLoginLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
@@ -201,7 +244,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("Pleasechecktheloginprotocol"), IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.PasswordLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.PasswordLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.SMSCodeLogin)
             {
@@ -210,7 +253,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.SMSCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.SMSCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.ScanCodeLogin)
             {
@@ -219,7 +262,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.ScanCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.ScanCodeLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.ADLogin)
             {
@@ -228,7 +271,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.ADLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.ADLoginLoginLoginAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.WeChatLogin)
             {
@@ -237,7 +280,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.WeChatLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.WeChatLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.WeChatOfficalLogin)
             {
@@ -246,7 +289,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选登录协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.WeChatOfficalLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.WeChatOfficalLoginLoginAgreementCheck, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.MailRegister)
             {
@@ -255,7 +298,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("Pleasechecktheregistrationagreement"), IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.MailRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.MailRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
             else if (GuardDetailScene == GuardDetailScene.PhoneRegister)
             {
@@ -264,7 +307,7 @@ namespace Authing.Guard.WPF.Views.Classic
                     PrimaryMessageBoxService.Show("请勾选注册协议", IconType.Error);
                 }
 
-                EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(needCheck));
+                EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
 
         }

@@ -60,7 +60,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 string url = SocialAuthClient.Instance.Authorize(item.Identifier,new Library.Domain.Model.Authentication.SocialAuthorizeOptions { Protocol="oidc"});
 
                  
-                SocialLogin a = new SocialLogin( "https://www.qq.com", url, new SolidColorBrush(Colors.Red),item.Provider.GetEnumByEnumMember<IconType>());
+                SocialLogin a = new SocialLogin( "https://www.qq.com", url, new SolidColorBrush(Color.FromArgb(255, 174, 185, 212)), item.Provider.GetEnumByEnumMember<IconType>());
 
                 DemoData.Add(a);
             }
@@ -105,19 +105,40 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
         private void LoginSuccess(string userData)
         {
-            SocialLoginResult result = m_JsonService.Deserialize<SocialLoginResult>(userData);
-
-            Dispatcher.BeginInvoke(new Action(() => 
+            try
             {
-                MessageBox.Show(userData);
+                SocialLoginResult result = m_JsonService.Deserialize<SocialLoginResult>(userData);
 
-                webGrid.Children.Clear();
-                MyBrowser.Dispose();
-            }));
+                if (result._event.source != "authing" || result._event.source != "socialLogin")
+                {
+                    return;
+                }
 
-            MyBrowser.LoginSuccessAction -= LoginSuccess;
+                if (result.code == 200)
+                {
+                    //登录成功
 
+                }
+                else
+                { 
+                    //登录失败
+                }
 
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    
+                    webGrid.Children.Clear();
+                    MyBrowser.Dispose();
+                }));
+
+                MyBrowser.LoginSuccessAction -= LoginSuccess;
+            }
+            catch (Exception exp)
+            {
+                return;
+            }
         }
+
+        //private void 
     }
 }

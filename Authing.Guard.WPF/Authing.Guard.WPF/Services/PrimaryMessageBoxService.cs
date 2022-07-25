@@ -21,6 +21,7 @@ namespace Authing.Guard.WPF.Services
         public static void Show(string message, IconType iconType, double x = 0, double y = 0)
         {
             PrimaryMessageBox primaryMessageBox = new PrimaryMessageBox();
+            primaryMessageBox.ShowInTaskbar = false;
             primaryMessageBox.Message = message;
             primaryMessageBox.IconType = iconType;
 

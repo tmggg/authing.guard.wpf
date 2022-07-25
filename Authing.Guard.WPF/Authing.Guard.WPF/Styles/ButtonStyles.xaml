@@ -79,7 +79,7 @@
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ControlTemplate.Resources>
-                    <Grid>
+                    <Grid Background="Transparent">
                         <Ellipse Fill="#EFF1F6"></Ellipse>
                         <Border
                         Background="Transparent" 
@@ -102,8 +102,9 @@
                                 </Path.Fill>
                             </Path>-->
                                 <Grid>
-                                    <controls:Icon x:Name="icon" ImageWidth="{TemplateBinding attach:IconAttach.Width}" Type="{TemplateBinding attach:IconAttach.IconType}"
-                                            ImageHeight="{TemplateBinding attach:IconAttach.Height}"></controls:Icon>
+                                    <controls:Icon x:Name="icon" Fill="{TemplateBinding attach:IconAttach.ForegroundColorLight}" ImageWidth="{TemplateBinding attach:IconAttach.Width}" Type="{TemplateBinding attach:IconAttach.IconType}"
+                                            ImageHeight="{TemplateBinding attach:IconAttach.Height}">
+                                    </controls:Icon>
                                 </Grid>
 
                             </ContentControl>
@@ -140,12 +141,12 @@
                                 </BeginStoryboard>
                             </MultiTrigger.ExitActions>
                         </MultiTrigger>-->
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <!--<Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="icon" Storyboard.TargetProperty="Forground"
+                                            Storyboard.TargetName="solidColorBursh" Storyboard.TargetProperty="Color"
                                             From="{StaticResource SecondaryBorderColor}"
                                             To="{StaticResource PrimaryTextColor}"
                                             Duration="0:0:0.2" />
@@ -156,17 +157,17 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="icon" Storyboard.TargetProperty="Forground"
+                                            Storyboard.TargetName="solidColorBursh" Storyboard.TargetProperty="Color"
                                             From="{StaticResource PrimaryTextColor}"
                                             To="{StaticResource SecondaryBorderColor}"
                                             Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
-                        </Trigger>
-                        <!--<Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PathLogo" Property="Fill" Value="{Binding (attach:IconAttach.ForegroundColorLight), RelativeSource={RelativeSource TemplatedParent}}" />
                         </Trigger>-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="{StaticResource AppBlueBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
