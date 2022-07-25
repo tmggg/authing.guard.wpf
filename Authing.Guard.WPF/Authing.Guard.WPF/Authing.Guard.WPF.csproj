@@ -46,10 +46,12 @@
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
 	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Views\Upgrade\" />
+	  <Page Update="Views\Classic\RegisterView\MailReg.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
+	  <Page Update="Views\Classic\RegisterView\PhoneReg.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	  </Page>
 	</ItemGroup>
 
 

@@ -97,7 +97,7 @@ namespace Authing.Guard.WPF.Factories
                     otp.UserPoolId = ConfigService.UserPoolId;
                     otp.Secret = ConfigService.SecretId;
                     otp.Host = ConfigService.Host;
-                }) ;
+                });
                 if (Client != null)
                 {
                     return true;
@@ -139,6 +139,54 @@ namespace Authing.Guard.WPF.Factories
             if (Client == null)
             {
                 Client = new SocialAuthenticationClient(otp =>
+                {
+                    otp.UserPoolId = ConfigService.UserPoolId;
+                    otp.Secret = ConfigService.SecretId;
+                    otp.Host = ConfigService.Host;
+                    otp.AppId = ConfigService.AppId;
+                });
+                if (Client != null)
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
+    }
+
+    public class QrCodeAuthClient
+    {
+        private static QrCodeAuthenticationClient Client;
+
+        private static readonly Lazy<QrCodeAuthenticationClient> lazy =
+            new Lazy<QrCodeAuthenticationClient>(() =>
+            {
+                if (Client == null)
+                {
+                    Client = new QrCodeAuthenticationClient(otp =>
+                    {
+                        otp.UserPoolId = ConfigService.UserPoolId;
+                        otp.Secret = ConfigService.SecretId;
+                        otp.Host = ConfigService.Host;
+                        otp.AppId = ConfigService.AppId;
+                    });
+                }
+
+                return Client;
+            });
+
+        public static QrCodeAuthenticationClient Instance
+        { get { return lazy.Value; } }
+
+        private QrCodeAuthClient()
+        {
+        }
+
+        public static bool Init()
+        {
+            if (Client == null)
+            {
+                Client = new QrCodeAuthenticationClient(otp =>
                 {
                     otp.UserPoolId = ConfigService.UserPoolId;
                     otp.Secret = ConfigService.SecretId;

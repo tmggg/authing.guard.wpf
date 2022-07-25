@@ -4,19 +4,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using Authing.ApiClient.Domain.Model;
-using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
-using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 using Authing.Guard.WPF.Views.Classic.MainView;
 
-namespace Authing.Guard.WPF.Views.Classic.RegisterView
+namespace Authing.Guard.WPF.Views.Upgrade.RegisterView
 {
     /// <summary>
     /// PhoneReg.xaml 的交互逻辑
@@ -98,25 +96,6 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
                 flag = false;
             }
 
-            res = FPasswod.Password.ValidationData();
-            if (!res.IsValid)
-            {
-                FPasswodRemind.Text = res.ErrorContent.ToString();
-                PasswordBoxHelper.SetWarn(FPasswod, true);
-                FPasswodRemind.Visibility = Visibility.Visible;
-                BeginStoryboard(FPasswod);
-                flag = false;
-            }
-            res = SPasswod.Password.ValidationData();
-            if (!res.IsValid)
-            {
-                SPasswodRemind.Text = res.ErrorContent.ToString();
-                PasswordBoxHelper.SetWarn(SPasswod, true);
-                SPasswodRemind.Visibility = Visibility.Visible;
-                BeginStoryboard(SPasswod);
-                flag = false;
-            }
-
             res = ChallengeCode.Text.ValidationData();
             if (!res.IsValid)
             {
@@ -124,15 +103,6 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
                 ChallengeCode.Warn = true;
                 ChallengeCodeRemind.Visibility = Visibility.Visible;
                 BeginStoryboard(ChallengeCode);
-                flag = false;
-            }
-
-            if (!FPasswod.Password.CompareWith(SPasswod.Password))
-            {
-                PasswordBoxHelper.SetWarn(SPasswod, true);
-                SPasswodRemind.Visibility = Visibility.Visible;
-                SPasswodRemind.Text = ResourceHelper.GetResource<string>("PassWordNotSame");
-                BeginStoryboard(SPasswod);
                 flag = false;
             }
 
@@ -166,7 +136,7 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
             try
             {
                 //user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, "", null, true);
-                user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, SPasswod.Password, registerAndLoginOptions: new RegisterAndLoginOptions() { ForceLogin = false });
+                user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, null, null, true);
             }
             catch (Exception exception)
             {
@@ -178,18 +148,6 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(user));
             }
-        }
-
-        private void FPasswod_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            PasswordBoxHelper.SetWarn(FPasswod, false);
-            FPasswodRemind.Visibility = Visibility.Collapsed;
-        }
-
-        private void SPasswod_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            PasswordBoxHelper.SetWarn(SPasswod, false);
-            SPasswodRemind.Visibility = Visibility.Collapsed;
         }
     }
 }
