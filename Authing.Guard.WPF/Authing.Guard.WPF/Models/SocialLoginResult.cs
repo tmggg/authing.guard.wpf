@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Models
 {
-    internal class SocialLoginResult
-    {
-    }
-
-
-    public class Rootobject
+    public class SocialLoginResult
     {
         public int code { get; set; }
         public Data data { get; set; }
@@ -60,7 +55,7 @@ namespace Authing.Guard.WPF.Models
         public object openid { get; set; }
         public string password { get; set; }
         public string passwordLastSetAt { get; set; }
-        public int passwordSecurityLevel { get; set; }
+        public int? passwordSecurityLevel { get; set; }
         public object phone { get; set; }
         public object phoneCountryCode { get; set; }
         public bool phoneVerified { get; set; }
