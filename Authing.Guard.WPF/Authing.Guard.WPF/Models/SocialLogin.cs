@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Authing.Guard.WPF.Enums;
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace Authing.Guard.WPF.Models
@@ -10,14 +11,15 @@ namespace Authing.Guard.WPF.Models
         public string AuthenticationUrl { get; }
 
         public SolidColorBrush FColor { get; }
-        public Geometry Logo { get; }
 
-        public SocialLogin(string loginUrl, string authenticationUrl,SolidColorBrush fColor, Geometry logo)
+        public IconType IconType { get; }
+
+        public SocialLogin(string loginUrl, string authenticationUrl,SolidColorBrush fColor, IconType iconType)
         {
             LoginUrl = loginUrl;
             FColor = fColor;
-            Logo = logo;
             AuthenticationUrl = authenticationUrl;
+            IconType= iconType;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
