@@ -12,9 +12,8 @@ using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
-using Authing.Library.Domain.Model.Exceptions;
 
-namespace Authing.Guard.WPF.Views.Classic.RegisterView
+namespace Authing.Guard.WPF.Views.Upgrade.RegisterView
 {
     /// <summary>
     /// MailReg.xaml 的交互逻辑
@@ -127,8 +126,7 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
             User user = null;
             try
             {
-                AuthingErrorBox e = new AuthingErrorBox();
-                user = await AuthClient.Instance.RegisterByEmail(MailBox.Text, FPasswod.Password, authingErrorBox: e);
+                user = await AuthClient.Instance.RegisterByEmail(MailBox.Text, FPasswod.Password, null, null);
             }
             catch (Exception exception)
             {

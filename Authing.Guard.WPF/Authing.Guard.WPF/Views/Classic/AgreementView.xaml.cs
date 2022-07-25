@@ -113,7 +113,6 @@ namespace Authing.Guard.WPF.Views.Classic
                 case (int)EventId.ADLoginLoginAgreementCheck: AgreementCheck(); break;
                 case (int)EventId.WeChatLoginLoginAgreementCheck: AgreementCheck(); break;
                 case (int)EventId.WeChatOfficalLoginLoginAgreementCheck: AgreementCheck(); break;
-
                 case (int)EventId.MailRegisterAgreementCheck: AgreementCheck(); break;
                 case (int)EventId.PhoneRegisterAgreementCheck: AgreementCheck(); break;
 
@@ -232,7 +231,6 @@ namespace Authing.Guard.WPF.Views.Classic
             }
 
             DispatchEvent(needCheck != 0);
-
         }
 
         private void DispatchEvent(bool needCheck)
@@ -309,8 +307,6 @@ namespace Authing.Guard.WPF.Views.Classic
 
                 EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheckFinish, EventArgs<bool>.CreateEventArgs(!needCheck));
             }
-
         }
-
     }
 }

@@ -8,6 +8,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Authing.Guard.WPF.Factories;
+using Authing.Library.Domain.Client.Impl.AuthenticationClient;
+using Authing.Library.Domain.Model.Authentication;
+using System.Threading.Tasks;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -16,7 +20,6 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// </summary>
     public partial class ScanCodeLoginView : UserControl
     {
-
         public ScanCodeLoginView()
         {
             InitializeComponent();
@@ -24,10 +27,12 @@ namespace Authing.Guard.WPF.Views.LoginView
             InitBinding();
         }
 
-        private void InitDemoData()
+        private async Task InitDemoData()
         {
-            QrCodeControl.QrCode = new BitmapImage(new Uri("pack://application:,,,/Authing.Guard.WPF;component/Commons/Images/qrcode.png"));
-            QrCodeControl.IsExpired = true;
+            var res = await QrCodeAuthClient.Instance.GeneCode(new GeneQrCodeParam { AutoMergeQrCode = false, Scene = QrCodeScene.APP_AUTH });
+            //QrCodeControl.QrCode = new BitmapImage(new Uri("pack://application:,,,/Authing.Guard.WPF;component/Commons/Images/qrcode.png"));
+            QrCodeControl.QrCode = new BitmapImage(new Uri(res.Url));
+            //QrCodeControl.IsExpired = false;
             //Messenger.Default.Register();
         }
 
