@@ -17,8 +17,31 @@ namespace Authing.Guard.WPF.Controls
 
         public Action<string> LoginSuccessAction { get; set; }
 
+        /// <summary>
+        /// 初始化 CEF 环境，必须调用。
+        /// </summary>
+        public static void Init()
+        {
+#if NETFRAMEWORK
+            
+            CefSharp.CefRuntime.SubscribeAnyCpuAssemblyResolver();
+
+            var settings = new CefSharp.Wpf.CefSettings()
+            { };
+
+#else
+
+            CefSharp.Wpf.CefSettings cefSettings = new CefSharp.Wpf.CefSettings();
+
+#endif
+        }
+
         public CollapsableChromiumWebBrowser()
         {
+            if (!Cef.IsInitialized)
+            {
+                throw new Exception("CEF 未初始化");
+            }
             Loaded += BrowserLoaded;
         }
 
