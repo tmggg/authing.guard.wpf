@@ -68,7 +68,7 @@ namespace Authing.Guard.WPF.Utils.Extensions
                 }
             }
 
-            throw new Exception("");
+            throw new Exception($"{value} 没有找到枚举值");
         }
     }
 }

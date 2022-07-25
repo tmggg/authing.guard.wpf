@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Authing.Guard.WPF.Enums;
+using System.Windows;
 using System.Windows.Media;
 
 namespace Authing.Guard.WPF.Infrastructures.Attach
@@ -44,5 +45,10 @@ namespace Authing.Guard.WPF.Infrastructures.Attach
         {
             return (SolidColorBrush)element.GetValue(ForegroundColorLightProperty);
         }
+
+        public static readonly DependencyProperty IconTypeProperty = DependencyProperty.RegisterAttached("IconType", typeof(IconType), typeof(IconAttach), new PropertyMetadata(IconType.Blank));
+
+        public static void SetIconType(DependencyObject element, IconType iconType) => element.SetValue(IconTypeProperty, iconType);
+        public static IconType GetIconType(DependencyObject element) => (IconType)element.GetValue(IconTypeProperty);
     }
 }

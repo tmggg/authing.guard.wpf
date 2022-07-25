@@ -59,14 +59,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="IconButtonStyle" TargetType="Button">
+    <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
         <Setter Property="attach:BorderAttach.CornerRadius" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
         <Setter Property="Background" Value="{DynamicResource SecondaryBorderBrush}" />
         <Setter Property="attach:BorderAttach.CornerRadius" Value="0" />
-        <Setter Property="Margin" Value="10" />
+        <Setter Property="Padding" Value="10" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
@@ -79,17 +79,19 @@
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ControlTemplate.Resources>
-                    <Border
-                        Background="Transparent"
+                    <Grid>
+                        <Ellipse Fill="#EFF1F6"></Ellipse>
+                        <Border
+                        Background="Transparent" 
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{Binding Path=(attach:BorderAttach.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}">
-                        <ContentControl
+                            <ContentControl
                             Margin="{TemplateBinding Padding}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                            <Path
+                                <!--<Path
                                 x:Name="PathLogo"
                                 Width="{TemplateBinding attach:IconAttach.Width}"
                                 Height="{TemplateBinding attach:IconAttach.Height}"
@@ -98,9 +100,15 @@
                                 <Path.Fill>
                                     <SolidColorBrush x:Name="FillBrush" Color="{DynamicResource SecondaryBorderColor}" />
                                 </Path.Fill>
-                            </Path>
-                        </ContentControl>
-                    </Border>
+                            </Path>-->
+                                <Grid>
+                                    <controls:Icon x:Name="icon" ImageWidth="{TemplateBinding attach:IconAttach.Width}" Type="{TemplateBinding attach:IconAttach.IconType}"
+                                            ImageHeight="{TemplateBinding attach:IconAttach.Height}"></controls:Icon>
+                                </Grid>
+
+                            </ContentControl>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <!--  此样式动画不正常  -->
                         <!--<MultiTrigger>
@@ -137,7 +145,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="FillBrush" Storyboard.TargetProperty="Color"
+                                            Storyboard.TargetName="icon" Storyboard.TargetProperty="Forground"
                                             From="{StaticResource SecondaryBorderColor}"
                                             To="{StaticResource PrimaryTextColor}"
                                             Duration="0:0:0.2" />
@@ -148,7 +156,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation
-                                            Storyboard.TargetName="FillBrush" Storyboard.TargetProperty="Color"
+                                            Storyboard.TargetName="icon" Storyboard.TargetProperty="Forground"
                                             From="{StaticResource PrimaryTextColor}"
                                             To="{StaticResource SecondaryBorderColor}"
                                             Duration="0:0:0.2" />

@@ -47,8 +47,9 @@
                             <Button
                                 HorizontalAlignment="Center" VerticalAlignment="Center"
                                 attach:IconAttach.ForegroundColorLight="{Binding FColor}"
-                                attach:IconAttach.Geometry="{Binding Logo}"
-                                attach:IconAttach.Height="24" attach:IconAttach.Width="24"
+                                Margin="5"
+                                attach:IconAttach.Height="15" attach:IconAttach.Width="15"
+                                attach:IconAttach.IconType="{Binding IconType}"
                                 Click="ButtonBase_OnClick"
                                 Command="{Binding DataContext.OpenBrowserCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=ItemsControl}}"
                                 CommandParameter="{Binding}"

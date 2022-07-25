@@ -1,7 +1,9 @@
 ﻿using Authing.Guard.WPF.Controls;
+using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 using System;
 using System.Collections.Generic;
@@ -57,7 +59,8 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             {
                 string url = SocialAuthClient.Instance.Authorize(item.Identifier,new Library.Domain.Model.Authentication.SocialAuthorizeOptions { Protocol="oidc"});
 
-                SocialLogin a = new SocialLogin( "https://www.qq.com", url, new SolidColorBrush(Colors.Red), Application.Current.Resources["QQ"] as Geometry);
+                 
+                SocialLogin a = new SocialLogin( "https://www.qq.com", url, new SolidColorBrush(Colors.Red),item.Provider.GetEnumByEnumMember<IconType>());
 
                 DemoData.Add(a);
             }
