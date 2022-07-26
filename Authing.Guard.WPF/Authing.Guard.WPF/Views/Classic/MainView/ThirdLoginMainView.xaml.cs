@@ -1,4 +1,5 @@
-﻿using Authing.Guard.WPF.Controls;
+﻿using Authing.ApiClient.Domain.Model;
+using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Models;
@@ -103,21 +104,24 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             }
         }
 
-        private void LoginSuccess(string userData)
+        private  void LoginSuccess(string userData)
         {
             try
             {
                 SocialLoginResult result = m_JsonService.Deserialize<SocialLoginResult>(userData);
 
-                if (result._event.source != "authing" || result._event.source != "socialLogin")
+                if (result.LoginEvent.source != "authing" || result.LoginEvent.source != "socialLogin")
                 {
                     return;
                 }
 
-                if (result.code == 200)
+                if (result.Code == 200)
                 {
+                    //result.data.
                     //登录成功
-
+                  var ss=  m_JsonService.Deserialize<UpdateUserInput>(m_JsonService.Serialize(result.Data));
+                //AuthClient.Instance.RegisterByUsername(ss.Username,ss.Password);
+                //AuthClient.Instance.LoginByUsername
                 }
                 else
                 { 

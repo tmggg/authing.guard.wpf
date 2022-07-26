@@ -108,7 +108,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             ConfigService.AppId = AppId;
             ConfigService.UserPoolId = UserPoolId;
             ConfigService.SecretId = UserPoolSecret;
-
+            ConfigService.Host = AuthClient.Instance.Host;
             try
             {
                 AuthClient.Init();

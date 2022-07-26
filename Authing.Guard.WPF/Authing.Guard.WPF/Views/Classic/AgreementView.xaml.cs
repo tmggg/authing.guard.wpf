@@ -165,6 +165,7 @@ namespace Authing.Guard.WPF.Views.Classic
         {
             if (GuardDetailScene == GuardDetailScene.PasswordLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.PasswordLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.PasswordLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
@@ -178,36 +179,42 @@ namespace Authing.Guard.WPF.Views.Classic
             }
             else if (GuardDetailScene == GuardDetailScene.ScanCodeLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.ScanCodeLoginLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.ScanCodeLoginLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.ADLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.ADLoginLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.ADLoginLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.WeChatLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.WeChatLoginLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.WeChatLoginLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.WeChatOfficalLogin)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.WeChatOfficalLoginLoginAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.WeChatOfficalLoginLoginAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Login || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.MailRegister)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.MailRegisterAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.MailRegisterAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Register || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();
             }
             else if (GuardDetailScene == GuardDetailScene.PhoneRegister)
             {
+                EventManagement.Instance.RemoveListener((int)EventId.PhoneRegisterAgreementCheck, this);
                 EventManagement.Instance.AddListener((int)EventId.PhoneRegisterAgreementCheck, this);
 
                 agreements = allAgreements.Where(p => p.AvailableAt == AvailableAt.Register || p.AvailableAt == AvailableAt.RegisterAndLogin).Where(p => p.Lang == currentLang.GetDescription()).ToList();

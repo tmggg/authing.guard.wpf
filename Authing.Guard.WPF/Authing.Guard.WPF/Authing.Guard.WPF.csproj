@@ -7,10 +7,10 @@
 		<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<PackageId>SDKV3Demo</PackageId>
+		<PackageId>$(AssemblyName)</PackageId>
 		<Version>3.0.4</Version>
 		<Platforms>AnyCPU;x64;x86</Platforms>
-		
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,6 +20,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Authing.Library" Version="0.0.23" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="NLog" Version="4.7.15" />
 	</ItemGroup>
