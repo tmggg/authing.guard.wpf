@@ -9,6 +9,8 @@ using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
@@ -137,6 +139,15 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
             }
             if (user != null)
             {
+                if (ConfigService.ExtendConfig.ComplatePlaces.Any(l => l == ComplatePlace.Register))
+                {
+                    UserWithEvent param = new UserWithEvent();
+                    param.User = user;
+                    param.EventFrom = EventId.Login;
+                    EventManagement.Instance.Dispatch((int)EventId.ToUserInfoReplenish,
+                        EventArgs<UserWithEvent>.CreateEventArgs(param));
+                    return;
+                }
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(user));
             }

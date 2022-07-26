@@ -4,7 +4,7 @@
 		
 	<PropertyGroup>
 		<CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
-		<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
+		<TargetFrameworks>net48</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>$(AssemblyName)</PackageId>

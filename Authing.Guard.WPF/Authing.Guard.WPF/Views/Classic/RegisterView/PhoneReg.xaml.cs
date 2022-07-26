@@ -10,11 +10,13 @@ using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 using Authing.Guard.WPF.Views.Classic.MainView;
+using Authing.Library.Domain.Model.Exceptions;
 
 namespace Authing.Guard.WPF.Views.Classic.RegisterView
 {
@@ -165,8 +167,9 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
             User user = null;
             try
             {
+                AuthingErrorBox e = new AuthingErrorBox();
                 //user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, "", null, true);
-                user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, SPasswod.Password, registerAndLoginOptions: new RegisterAndLoginOptions() { ForceLogin = false });
+                user = await AuthClient.Instance.RegisterByPhoneCode(PhoneNumber.Text, ChallengeCode.Text, SPasswod.Password, registerAndLoginOptions: new RegisterAndLoginOptions() { ForceLogin = false },authingErrorBox:e);
             }
             catch (Exception exception)
             {
@@ -175,6 +178,15 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
             }
             if (user != null)
             {
+                if (ConfigService.ExtendConfig.ComplatePlaces.Any(l => l == ComplatePlace.Register))
+                {
+                    UserWithEvent param = new UserWithEvent();
+                    param.User = user;
+                    param.EventFrom = EventId.Login;
+                    EventManagement.Instance.Dispatch((int)EventId.ToUserInfoReplenish,
+                        EventArgs<UserWithEvent>.CreateEventArgs(param));
+                    return;
+                }
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(user));
             }
