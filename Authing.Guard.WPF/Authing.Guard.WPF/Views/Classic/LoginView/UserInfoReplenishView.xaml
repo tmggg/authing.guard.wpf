@@ -199,15 +199,6 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <!--<Image
-                x:Name="imgLogo"
-                Width="50"
-                HorizontalAlignment="Left"
-                Height="50">
-                <Image.Clip>
-                    <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"></EllipseGeometry>
-                </Image.Clip>
-            </Image>-->
             <Button Grid.Row="0" Name="IgnoreBtn" Click="IgnoreBtn_OnClick" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource LinkButtonStyle}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
