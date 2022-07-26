@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using Authing.Guard.WPF.Views.LoginView;
 
 namespace Authing.Guard.WPF.Views.Classic.MainView
 {
@@ -31,6 +32,9 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
     {
 
 
+        public static List<EnterpriseConnection> EnterpriseConnections { get; private set; }
+        public static ExtendConfig ExtendConfig { get; private set; }
+
         private IJsonService m_JsonService;
 
         public GuardMainView()
@@ -40,7 +44,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             var dic = ResourceHelper.GetLanguageDictionary(Lang.zhCn);
 
             Application.Current.Resources.MergedDictionaries.Clear();
-
 
             Application.Current.Resources.MergedDictionaries.Add(dic);
 
@@ -110,7 +113,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 AuthClient.Init();
                 AppManageClient.Init();
 
-
                 var appInfo = await AppManageClient.Instance.Applications.FindByIdV2(AppId);
                 //var app = await AppManageClient.Instance.Applications.FindById(AppId);
                 if (appInfo != null)
@@ -140,8 +142,11 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     Config.AppHost = appInfo.RequestHostname;
                     //Config.Lang
                     ConfigService.Agreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(appInfo.Agreements));
-
-
+                    //用户补全字段
+                    ExtendConfig = new ExtendConfig();
+                    ExtendConfig.CanIgnore = appInfo.SkipComplateFileds;
+                    ExtendConfig.ExtendFields = m_JsonService.DeserializeCamelCase<List<ExtendField>>(
+                        m_JsonService.Serialize(appInfo.ExtendsFields));
                 }
 
                 EventManagement.Instance.Dispatch((int)EventId.Load, EventArgs<AuthenticationClient>.CreateEventArgs(AuthClient.Instance));
@@ -151,7 +156,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 EventManagement.Instance.Dispatch((int)EventId.LoadError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
-
 
         public void HandleEvent(int eventId, IEventArgs args)
         {
@@ -235,20 +239,26 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 case (int)EventId.RegisterInfoCompletedError:
                     Config.RegisterInfoCompletedError?.Invoke(args.GetValue<User>(), AuthClient.Instance);
                     break;
+
                 case (int)EventId.ToResetPassword:
                     ToResetPasswordView();
                     break;
+
                 case (int)EventId.ToRegister:
                     ToRegisterView();
                     break;
+
                 case (int)EventId.ToLogin:
                     ToLoginView();
                     break;
+
                 case (int)EventId.ToFeedback:
                     ToFeedbackView();
                     break;
+                case (int)EventId.ToUserInfoReplenish:
+                    ToUserInfoReplenish();
+                    break;
                 case (int)EventId.LanguageChanged: LanguageChanged(args.GetValue<int>()); break;
-
 
                 default: break;
             }
@@ -257,6 +267,14 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
         private void LanguageChanged(int language)
         {
             ConfigService.Lang = (Lang)language;
+        }
+
+        private void ToUserInfoReplenish()
+        {
+            content.Children.Clear();
+            content.Children.Add(new UserInfoReplenishView());
+
+            bottomView.Visibility = Visibility.Hidden;
         }
 
         private void ToResetPasswordView()
@@ -285,7 +303,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
         private void ToFeedbackView()
         {
-
         }
     }
 }

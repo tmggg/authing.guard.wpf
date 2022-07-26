@@ -9,6 +9,7 @@ using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
@@ -76,7 +77,7 @@ namespace Authing.Guard.WPF.Views.Upgrade.RegisterView
         {
             if (!JudgeInput()) return;
 
-            var res = GuardMainView.Agreements;
+            var res = ConfigService.Agreements;
 
             EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheck);
         }

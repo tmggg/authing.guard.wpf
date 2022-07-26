@@ -19,5 +19,13 @@
         /// <param name="jsonText">待反序列化的字符串参数</param>
         /// <returns></returns>
         T Deserialize<T>(string jsonText);
+
+        /// <summary>
+        /// 反序列化字符串忽略大小写
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jsonText">待反序列化的字符串参数</param>
+        /// <returns></returns>
+        T DeserializeCamelCase<T>(string jsonText);
     }
 }

@@ -13,6 +13,7 @@ namespace Authing.Guard.WPF.Models
             LoginMethods = new List<LoginMethods>();
             RegisterMethods = new List<RegisterMethods>();
             SocialConnections = new List<SocialConnections>();
+            ExtendFields = new List<ExtendField>();
         }
 
         #region 属性
@@ -101,6 +102,8 @@ namespace Authing.Guard.WPF.Models
         /// 私有部署时的 API 请求地址
         /// </summary>
         public string Host { get; set; }
+
+        public List<ExtendField> ExtendFields { get; set; }
 
         #endregion 属性
 
