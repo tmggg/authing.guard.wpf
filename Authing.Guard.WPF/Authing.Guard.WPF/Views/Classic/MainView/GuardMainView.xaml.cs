@@ -21,6 +21,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using Authing.Guard.WPF.Views.Classic.LoginView;
 using Authing.Guard.WPF.Views.LoginView;
 
 namespace Authing.Guard.WPF.Views.Classic.MainView
@@ -33,7 +34,6 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
 
 
         public static List<EnterpriseConnection> EnterpriseConnections { get; private set; }
-        public static ExtendConfig ExtendConfig { get; private set; }
 
         private IJsonService m_JsonService;
 
@@ -143,9 +143,11 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     //Config.Lang
                     ConfigService.Agreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(appInfo.Agreements));
                     //用户补全字段
-                    ExtendConfig = new ExtendConfig();
-                    ExtendConfig.CanIgnore = appInfo.SkipComplateFileds;
-                    ExtendConfig.ExtendFields = m_JsonService.DeserializeCamelCase<List<ExtendField>>(
+                    ConfigService.ExtendConfig = new ExtendConfig();
+                    ConfigService.ExtendConfig.CanIgnore = appInfo.SkipComplateFileds;
+                    ConfigService.ExtendConfig.Places = m_JsonService.DeserializeCamelCase<List<string>>(
+                        m_JsonService.Serialize(appInfo.ComplateFiledsPlace));
+                    ConfigService.ExtendConfig.ExtendFields = m_JsonService.DeserializeCamelCase<List<ExtendField>>(
                         m_JsonService.Serialize(appInfo.ExtendsFields));
                 }
 
@@ -256,7 +258,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     ToFeedbackView();
                     break;
                 case (int)EventId.ToUserInfoReplenish:
-                    ToUserInfoReplenish();
+                    ToUserInfoReplenish(args.GetValue<UserWithEvent>());
                     break;
                 case (int)EventId.LanguageChanged: LanguageChanged(args.GetValue<int>()); break;
 
@@ -269,12 +271,12 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             ConfigService.Lang = (Lang)language;
         }
 
-        private void ToUserInfoReplenish()
+        private void ToUserInfoReplenish(UserWithEvent param)
         {
             content.Children.Clear();
-            content.Children.Add(new UserInfoReplenishView());
+            content.Children.Add(new UserInfoReplenishView(param));
 
-            bottomView.Visibility = Visibility.Hidden;
+            bottomView.Visibility = Visibility.Collapsed;
         }
 
         private void ToResetPasswordView()

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Authing.Guard.WPF.Views.LoginView.UserInfoReplenishView"
+﻿<UserControl x:Class="Authing.Guard.WPF.Views.Classic.LoginView.UserInfoReplenishView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,6 @@
              xmlns:validations="clr-namespace:Authing.Guard.WPF.Infrastructures.Validations"
              xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
              mc:Ignorable="d"
-             MaxHeight="500"
              d:DesignHeight="500" d:DesignWidth="350">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -209,7 +208,7 @@
                     <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"></EllipseGeometry>
                 </Image.Clip>
             </Image>-->
-            <Button Grid.Row="0" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource LinkButtonStyle}">
+            <Button Grid.Row="0" Name="IgnoreBtn" Click="IgnoreBtn_OnClick" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource LinkButtonStyle}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Path Width="20" Height="20" RenderTransformOrigin="0.5 0.5" Data="{StaticResource UpGeometry}" Stroke="{StaticResource AppBlueBrush}" Stretch="Uniform">
@@ -221,7 +220,7 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <TextBlock FontSize="24" Grid.Row="0" Text="{DynamicResource ReplenishTitle}" FontWeight="Bold" Margin="0 5" />
+            <TextBlock IsHitTestVisible="False" FontSize="24" Grid.Row="0" Text="{DynamicResource ReplenishTitle}" FontWeight="Bold" Margin="0 5" />
             <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="1" Text="{DynamicResource ReplenishTitleContent}" />
         </Grid>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding DataItems}"
