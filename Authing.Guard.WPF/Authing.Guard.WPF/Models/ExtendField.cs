@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Authing.Guard.WPF.Utils.Extensions;
 
@@ -50,6 +51,14 @@ namespace Authing.Guard.WPF.Models
         UserInfoMail,
     }
 
+    public enum ComplatePlace
+    {
+        [EnumMember(Value = "login")]
+        login,
+        [EnumMember(Value = "register")]
+        Register
+    }
+
     public class ExtendField
     {
         public string Name { get; set; }
@@ -69,6 +78,16 @@ namespace Authing.Guard.WPF.Models
     {
         public bool CanIgnore { get; set; }
 
+        public List<string> Places { get; set; }
+
         public List<ExtendField> ExtendFields { get; set; }
+
+        public List<ComplatePlace> ComplatePlaces
+        {
+            get
+            {
+                return Places.Select(t => EnumExtension.ToEnum<ComplatePlace>(t)).ToList();
+            }
+        }
     }
 }

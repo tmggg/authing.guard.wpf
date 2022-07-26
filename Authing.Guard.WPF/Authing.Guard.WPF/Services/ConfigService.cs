@@ -43,5 +43,11 @@ GKl64GDcIq3au+aqJQIDAQAB
         /// 企业登录
         /// </summary>
         public static List<EnterpriseConnection> EnterpriseConnections { get; set; }
+
+        /// <summary>
+        /// 用户信息补全
+        /// </summary>
+        public static ExtendConfig ExtendConfig { get; set; }
+
     }
 }

@@ -3,11 +3,11 @@ using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
-using Authing.Guard.WPF.Views.LoginView;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Authing.Guard.WPF.Views.Classic.LoginView;
 using Authing.Guard.WPF.Views.Classic.RegisterView;
 
 namespace Authing.Guard.WPF.Views.Classic.MainView
@@ -62,11 +62,11 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     tabItem.Content = new MailReg();
                     RegMainTabControl.Items.Add(tabItem);
 
-                    tabItem = new TabItem();
-                    tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-                    tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByMail");
-                    tabItem.Content = new UserInfoReplenishView();
-                    RegMainTabControl.Items.Add(tabItem);
+                    //tabItem = new TabItem();
+                    //tabItem.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+                    //tabItem.SetResourceReference(HeaderedContentControl.HeaderProperty, "RegByMail");
+                    //tabItem.Content = new UserInfoReplenishView();
+                    //RegMainTabControl.Items.Add(tabItem);
                 }
                 else if (item == Enums.RegisterMethods.EmailCode)
                 {
