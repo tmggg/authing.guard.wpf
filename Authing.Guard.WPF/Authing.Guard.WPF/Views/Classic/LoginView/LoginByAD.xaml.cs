@@ -69,6 +69,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                         EventArgs<UserWithEvent>.CreateEventArgs(param));
                     return;
                 }
+                PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("loginSuccessWelcome") + user.Username, IconType.Success);
                 EventManagement.Instance.Dispatch((int)EventId.Login,
                     EventArgs<User>.CreateEventArgs(user));
             }
