@@ -30,7 +30,7 @@ namespace Authing.Guard.WPF.Utils
         /// <param name="cancellationToken"></param>
         /// <param name="bearerToken">临时token，只这一次生效，如果为null，则使用SetBearerToken设置的token</param>
         /// <returns></returns>
-        Task<string> PostAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null);
+        Task<string> PostAsync(string baseUrl, string apiPath, Dictionary<string, object> param, CancellationToken cancellationToken, string bearerToken = null);
 
         /// <summary>
         /// Post请求

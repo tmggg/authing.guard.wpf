@@ -29,11 +29,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
     /// </summary>
     public partial class GuardMainView : BaseGuardControl, IEventListener
     {
-        public static List<Agreement> Agreements { get; private set; }
 
-        public static List<SocialConnection> SocialConnections { get; private set; }
-
-        public static List<EnterpriseConnection> EnterpriseConnections { get; private set; }
 
         private IJsonService m_JsonService;
 
@@ -128,13 +124,13 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     Config.DefaultRegisterMethod = (RegisterMethods)Enum.Parse(typeof(RegisterMethods), appInfo.RegisterTabs.Default.FirstCharToUpper());
                     //Config.DefaultScences
 
-                    SocialConnections = m_JsonService.Deserialize<List<SocialConnection>>(m_JsonService.Serialize(appInfo.SocialConnections));
+                    ConfigService.SocialConnections = m_JsonService.Deserialize<List<SocialConnection>>(m_JsonService.Serialize(appInfo.SocialConnections));
 
-                    Config.SocialConnections = SocialConnections.Select(p => p.Provider).ToList().GetEnumByEnumMember<SocialConnections>();
+                    Config.SocialConnections = ConfigService.SocialConnections.Select(p => p.Provider).ToList().GetEnumByEnumMember<SocialConnections>();
 
-                    EnterpriseConnections = m_JsonService.Deserialize<List<EnterpriseConnection>>(m_JsonService.Serialize(appInfo.EcConnections));
+                    ConfigService.EnterpriseConnections = m_JsonService.Deserialize<List<EnterpriseConnection>>(m_JsonService.Serialize(appInfo.EcConnections));
 
-                    Config.EnterpriseConnections = EnterpriseConnections;
+                    Config.EnterpriseConnections = ConfigService.EnterpriseConnections;
 
                     Config.DefaultLoginMethod = (LoginMethods)Enum.Parse(typeof(LoginMethods), appInfo.LoginTabs.Default.FirstCharToUpper());
                     //Config.AutoRegister=appInfo.
@@ -143,7 +139,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                     //Config.IsSSO = m_JsonService.Deserialize<bool>( appInfo.SsoPageCustomizationSettings.ToString());
                     Config.AppHost = appInfo.RequestHostname;
                     //Config.Lang
-                    Agreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(appInfo.Agreements));
+                    ConfigService.Agreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(appInfo.Agreements));
 
 
                 }
@@ -251,10 +247,16 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
                 case (int)EventId.ToFeedback:
                     ToFeedbackView();
                     break;
+                case (int)EventId.LanguageChanged: LanguageChanged(args.GetValue<int>()); break;
 
 
                 default: break;
             }
+        }
+
+        private void LanguageChanged(int language)
+        {
+            ConfigService.Lang = (Lang)language;
         }
 
         private void ToResetPasswordView()

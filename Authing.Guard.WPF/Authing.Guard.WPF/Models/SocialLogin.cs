@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Authing.Guard.WPF.Models
 {
-    public class SocialLogin : INotifyPropertyChanged
+    public class SocialLogin 
     {
         public string LoginUrl { get; }
 
@@ -22,6 +22,5 @@ namespace Authing.Guard.WPF.Models
             IconType= iconType;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

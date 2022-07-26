@@ -112,8 +112,6 @@ namespace Authing.Guard.WPF.Views.LoginView
             }
 
             User user = null;
-            Exception currentExp = null;
-            AuthingErrorBox authingErrorBox = new AuthingErrorBox();
 
             CancellationTokenSource cts = ConfigService.CreateCancellationTokenSource();
 
@@ -121,54 +119,24 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 GraphQLResponse<User> result= await guardApiService.PasswordLogin(tbAccount.Text.Trim(), tbPassword.Password,false,new System.Collections.Generic.Dictionary<string, string> { },cts.Token);
 
-                //最先用用户名登录，如果失败，再用其他方式登录，如果再失败，才判定为失败
-                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
-            }
-            catch (Exception exp)
-            {
-                currentExp = exp;
+                user = result.Data;
 
-                if (exp.Message.Contains("密码不正确"))
+                if (result.Code == 200)
                 {
-                    try
-                    {
-                        //判断输入的账号类型
-                        if (m_RegexService.IsMail(tbAccount.Text.Trim()))
-                        {
-                            //邮箱登录
-                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
-                        }
-
-                        else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
-                        {
-                            //手机登录
-                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        currentExp = exception;
-                    }
-                }
-                else
-                {
-
-                }
-            }
-            finally
-            {
-                if (user != null)
-                {
-                    //登录成功
+                    PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("loginSuccessWelcome")+user.Username,IconType.Success);
 
                     IEventArgs arg = EventArgs<User>.CreateEventArgs(user);
                     EventManagement.Instance.Dispatch((int)EventId.Login, arg);
                 }
-
-                if (currentExp != null)
+                else
                 {
-                    EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(currentExp.Message));
+                    PrimaryMessageBoxService.Show(result.Message, IconType.Error);
                 }
+
+            }
+            catch (Exception exp)
+            {
+                EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
     }

@@ -94,4 +94,5 @@
     <system:String x:Key="EmailRegister">Email</system:String>
     <system:String x:Key="VerifyCodeRegister">Verify Code</system:String>
     <system:String x:Key="PhoneRegister">Phone</system:String>
+    <system:String x:Key="loginSuccessWelcome">Successful login, welcome:</system:String>
 </ResourceDictionary>

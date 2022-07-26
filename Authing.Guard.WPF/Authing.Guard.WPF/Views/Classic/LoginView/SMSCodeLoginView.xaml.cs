@@ -1,12 +1,15 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Controls;
+using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
+using Authing.Library.Domain.Model.Exceptions;
 using System;
 using System.Linq;
 using System.Windows;
@@ -144,20 +147,32 @@ namespace Authing.Guard.WPF.Views.LoginView
 
         private async void Login(bool allChecked)
         {
+            if (!allChecked)
+            {
+                return;
+            }
 
             User user = null;
-
+            AuthingErrorBox authingErrorBox = new AuthingErrorBox();
             try
             {
-                user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false, ForceLogin = true });
+                user = await AuthClient.Instance.LoginByPhoneCode(tbPhone.Text, tbSMSCode.Text, new RegisterAndLoginOptions { AutoRegister = false, ForceLogin = true },authingErrorBox);
 
                 if (user != null)
                 {
+                    PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("loginSuccessWelcome") + user.Username, IconType.Success);
+
                     EventManagement.Instance.Dispatch((int)EventId.Login, EventArgs<User>.CreateEventArgs(user));
+                }
+                else
+                {
+                    PrimaryMessageBoxService.Show(authingErrorBox.Value.First().Message.Message, IconType.Error);
                 }
             }
             catch (Exception exp)
             {
+                PrimaryMessageBoxService.Show(exp.Message, IconType.Error);
+
                 EventManagement.Instance.Dispatch((int)EventId.LoginError, EventArgs<string>.CreateEventArgs(exp.Message));
             }
         }
