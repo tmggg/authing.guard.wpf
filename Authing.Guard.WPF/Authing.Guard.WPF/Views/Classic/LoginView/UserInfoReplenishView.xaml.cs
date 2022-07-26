@@ -172,8 +172,11 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
         private void IgnoreBtn_OnClick(object sender, RoutedEventArgs e)
         {
             if (_userWithEvent.EventFrom == EventId.Login)
+            {
+                PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("loginSuccessWelcome") + _userWithEvent.User.Username, IconType.Success);
                 EventManagement.Instance.Dispatch((int)EventId.Login,
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
+            }
             else
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
