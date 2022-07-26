@@ -1,8 +1,10 @@
 ﻿using Authing.ApiClient.Domain.Model;
 using Authing.ApiClient.Domain.Utils;
 using Authing.ApiClient.Infrastructure.GraphQL;
+using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
 using System;
 using System.Collections.Generic;
@@ -40,12 +42,14 @@ namespace Authing.Guard.WPF.Services
                 throw new ArgumentException($"“{nameof(password)}”不能为 null 或空。", nameof(password));
             }
 
-            string response = await m_HttpService.PostAsync(ConfigService.Host, "/api/v2/login/account", new Dictionary<string, string>() 
+            m_HttpService.SetHeader("x-authing-lang", ConfigService.Lang.GetDescription());
+
+            string response = await m_HttpService.PostAsync(ConfigService.Host, "/api/v2/login/account", new Dictionary<string, object>() 
             {
                 { "account",account},
                 { "password",EncryptHelper.RsaEncryptWithPublic( password,ConfigService.PublicKey)},
                 { "customData",m_JsonService.Serialize(customData)},
-                { "autoRegister",autoRegister.ToString()}
+                { "autoRegister",autoRegister}
                 
             }, cancellationToken);
 

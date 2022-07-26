@@ -3,6 +3,7 @@ using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
@@ -136,7 +137,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
             }
 
             //第三方登录
-            if (GuardMainView.SocialConnections.Count > 0 || GuardMainView.EnterpriseConnections.Count > 0)
+            if (ConfigService.SocialConnections.Count > 0 || ConfigService.EnterpriseConnections.Count > 0)
             { 
                 ThirdLoginMainView thirdLoginMainView = new ThirdLoginMainView();
                 thirdLoginContent.Children.Add(thirdLoginMainView);

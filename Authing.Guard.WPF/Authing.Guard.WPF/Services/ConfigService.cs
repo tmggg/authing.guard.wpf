@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Authing.Guard.WPF.Enums;
+using Authing.Guard.WPF.Models;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Authing.Guard.WPF.Services
@@ -22,5 +25,23 @@ GKl64GDcIq3au+aqJQIDAQAB
             const int SECONDS = 10;
             return new CancellationTokenSource(TimeSpan.FromSeconds(SECONDS));
         }
+
+        public static Lang Lang { get; set; }
+
+        /// <summary>
+        /// 登录注册协议
+        /// </summary>
+        public static List<Agreement> Agreements { get; set; }
+
+        /// <summary>
+        /// 社会化登录
+        /// </summary>
+        public static List<SocialConnection> SocialConnections { get; set; }
+
+
+        /// <summary>
+        /// 企业登录
+        /// </summary>
+        public static List<EnterpriseConnection> EnterpriseConnections { get; set; }
     }
 }
