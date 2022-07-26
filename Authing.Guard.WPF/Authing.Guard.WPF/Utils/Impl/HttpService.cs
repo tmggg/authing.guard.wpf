@@ -68,7 +68,7 @@ namespace Authing.Guard.WPF.Utils.Impl
             }
         }
 
-        public async Task<string> PostAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null)
+        public async Task<string> PostAsync(string baseUrl, string apiPath, Dictionary<string, object> param, CancellationToken cancellationToken, string bearerToken = null)
         {
             try
             {

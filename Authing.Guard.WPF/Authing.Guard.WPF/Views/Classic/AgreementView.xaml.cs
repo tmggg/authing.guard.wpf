@@ -131,7 +131,7 @@ namespace Authing.Guard.WPF.Views.Classic
         {
             agreements = new List<Agreement>();
 
-            if (GuardMainView.Agreements == null || GuardMainView.Agreements.Count == 0)
+            if (ConfigService.Agreements == null || ConfigService.Agreements.Count == 0)
             {
                 this.Visibility = Visibility.Collapsed;
                 return;
@@ -152,7 +152,7 @@ namespace Authing.Guard.WPF.Views.Classic
 
         private void AgreementView_Loaded(object sender, RoutedEventArgs e)
         {
-            allAgreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(GuardMainView.Agreements));
+            allAgreements = m_JsonService.Deserialize<List<Agreement>>(m_JsonService.Serialize(ConfigService.Agreements));
 
             currentLang = Lang.zhCn;
 

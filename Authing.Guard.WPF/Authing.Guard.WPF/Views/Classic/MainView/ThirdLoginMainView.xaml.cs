@@ -3,6 +3,7 @@ using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Models;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Extensions;
 using Authing.Guard.WPF.Utils.Impl;
@@ -56,7 +57,7 @@ namespace Authing.Guard.WPF.Views.Classic.MainView
         {
             DemoData = new ObservableCollection<SocialLogin>();
 
-            foreach (var item in GuardMainView.SocialConnections)
+            foreach (var item in ConfigService.SocialConnections)
             {
                 string url = SocialAuthClient.Instance.Authorize(item.Identifier,new Library.Domain.Model.Authentication.SocialAuthorizeOptions { Protocol="oidc"});
 
