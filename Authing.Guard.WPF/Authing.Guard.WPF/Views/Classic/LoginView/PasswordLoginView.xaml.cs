@@ -1,4 +1,5 @@
 ﻿using Authing.ApiClient.Domain.Model;
+using Authing.ApiClient.Infrastructure.GraphQL;
 using Authing.ApiClient.Types;
 using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
@@ -6,10 +7,13 @@ using Authing.Guard.WPF.Events;
 using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Factories;
 using Authing.Guard.WPF.Infrastructures;
+using Authing.Guard.WPF.Services;
 using Authing.Guard.WPF.Utils;
 using Authing.Guard.WPF.Utils.Impl;
+using Authing.Library.Domain.Model.Exceptions;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,11 +24,11 @@ namespace Authing.Guard.WPF.Views.LoginView
     /// <summary>
     /// PasswordLoginView.xaml 的交互逻辑
     /// </summary>
-    public partial class PasswordLoginView : BaseLoginControl,IEventListener
+    public partial class PasswordLoginView : BaseLoginControl, IEventListener
     {
         private IWindowsAPI m_WindowsAPI;
         private IRegexService m_RegexService;
-
+        private GuardApiService guardApiService;
 
 
         public PasswordLoginView()
@@ -35,6 +39,7 @@ namespace Authing.Guard.WPF.Views.LoginView
             m_RegexService = new RegexService();
 
             LoginMethod = LoginMethods.Password;
+            guardApiService = new GuardApiService();
             EventManagement.Instance.AddListener((int)EventId.PasswordLoginLoginAgreementCheckFinish, this);
         }
 
@@ -92,9 +97,9 @@ namespace Authing.Guard.WPF.Views.LoginView
         {
             switch (eventId)
             {
-                case (int)EventId.LanguageChanged:break;
+                case (int)EventId.LanguageChanged: break;
                 case (int)EventId.PasswordLoginLoginAgreementCheckFinish: Login(args.GetValue<bool>()); break;
-                default:break;
+                default: break;
             }
         }
 
@@ -108,11 +113,16 @@ namespace Authing.Guard.WPF.Views.LoginView
 
             User user = null;
             Exception currentExp = null;
+            AuthingErrorBox authingErrorBox = new AuthingErrorBox();
+
+            CancellationTokenSource cts = ConfigService.CreateCancellationTokenSource();
 
             try
             {
+                GraphQLResponse<User> result= await guardApiService.PasswordLogin(tbAccount.Text.Trim(), tbPassword.Password,false,new System.Collections.Generic.Dictionary<string, string> { },cts.Token);
+
                 //最先用用户名登录，如果失败，再用其他方式登录，如果再失败，才判定为失败
-                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                user = await AuthClient.Instance.LoginByUsername(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
             }
             catch (Exception exp)
             {
@@ -126,13 +136,13 @@ namespace Authing.Guard.WPF.Views.LoginView
                         if (m_RegexService.IsMail(tbAccount.Text.Trim()))
                         {
                             //邮箱登录
-                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                            user = await AuthClient.Instance.LoginByEmail(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
                         }
 
                         else if (m_RegexService.IsPhone(tbAccount.Text.Trim()))
                         {
                             //手机登录
-                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false });
+                            user = await AuthClient.Instance.LoginByPhonePassword(tbAccount.Text.Trim(), tbPassword.Password, new RegisterAndLoginOptions { AutoRegister = false }, authingErrorBox);
                         }
                     }
                     catch (Exception exception)

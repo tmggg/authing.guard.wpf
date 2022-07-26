@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,16 @@ namespace Authing.Guard.WPF.Models
 {
     public class SocialLoginResult
     {
-        public int code { get; set; }
-        public Data data { get; set; }
-        public Event _event { get; set; }
-        public string message { get; set; }
+        [JsonProperty("code")]
+        public int Code { get; set; }
+        [JsonProperty("Data")]
+        public Data Data { get; set; }
+
+        [JsonProperty("event")]
+        public Event LoginEvent { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
     }
 
     public class Data
