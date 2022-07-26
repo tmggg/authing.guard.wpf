@@ -92,6 +92,10 @@ namespace Authing.Guard.WPF.Events
         /// 跳转到问题反馈界面
         /// </summary>
         ToFeedback,
+        /// <summary>
+        /// 跳转到用户信息补全
+        /// </summary>
+        ToUserInfoReplenish,
 
 
         /// <summary>

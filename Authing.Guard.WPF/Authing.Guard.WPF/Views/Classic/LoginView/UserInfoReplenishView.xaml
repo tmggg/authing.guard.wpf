@@ -116,7 +116,7 @@
                             attach:IconAttach.Width="24"
                             attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
                             Content="{DynamicResource SendCode}"
-                            Count="3"
+                            Count="60"
                             Click="PhoneSendCodeBtn_OnClick"
                             FontSize="14" />
                     </Grid>
@@ -176,7 +176,7 @@
                             Click="MailSendCodeBtn_OnClick"
                             attach:TipContentAttach.TipContent="{DynamicResource SendCodeTip}"
                             Content="{DynamicResource SendCode}"
-                            Count="3"
+                            Count="60"
                             FontSize="14" />
                     </Grid>
                 </Grid>
@@ -193,15 +193,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <Rectangle HorizontalAlignment="Left" Fill="Gray" Width="42" Height="42"></Rectangle>
-            <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource LinkButtonStyle}">
+            <!--<Image
+                x:Name="imgLogo"
+                Width="50"
+                HorizontalAlignment="Left"
+                Height="50">
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="25" RadiusY="25" Center="25,25"></EllipseGeometry>
+                </Image.Clip>
+            </Image>-->
+            <Button Grid.Row="0" Margin="0 5 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource LinkButtonStyle}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Path Width="20" Height="20" RenderTransformOrigin="0.5 0.5" Data="{StaticResource UpGeometry}" Stroke="{StaticResource AppBlueBrush}" Stretch="Uniform">
@@ -213,8 +221,8 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
-            <TextBlock FontSize="24" Grid.Row="1" Text="{DynamicResource ReplenishTitle}" FontWeight="Bold" Margin="0 5" />
-            <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="2" Text="{DynamicResource ReplenishTitleContent}" />
+            <TextBlock FontSize="24" Grid.Row="0" Text="{DynamicResource ReplenishTitle}" FontWeight="Bold" Margin="0 5" />
+            <TextBlock FontSize="16" Margin="0 0 0 5"  TextWrapping="WrapWithOverflow" Grid.Row="1" Text="{DynamicResource ReplenishTitleContent}" />
         </Grid>
         <ItemsControl Grid.Row="1" ItemsSource="{Binding DataItems}"
                       ItemTemplateSelector="{StaticResource UserInfoSelector}">
@@ -226,5 +234,12 @@
                 </ControlTemplate>
             </ItemsControl.Template>
         </ItemsControl>
+        <controls:PrimaryButton
+            x:Name="BtnCommit"
+            Margin="10"
+            Height="40"
+            Grid.Row="2"
+            Click="BtnCommit_OnClick"
+            Content="{DynamicResource Commit}" />
     </Grid>
 </UserControl>

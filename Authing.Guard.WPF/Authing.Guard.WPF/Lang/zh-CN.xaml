@@ -95,4 +95,5 @@
     <system:String x:Key="VerifyCodeRegister">邮箱验证码</system:String>
     <system:String x:Key="PhoneRegister">手机号注册</system:String>
     <system:String x:Key="loginSuccessWelcome">登录成功，欢迎你：</system:String>
+    <system:String x:Key="Commit">提交</system:String>
 </ResourceDictionary>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows;
 using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
@@ -9,6 +8,8 @@ using Authing.Guard.WPF.Events.EventAggreator;
 using Authing.Guard.WPF.Infrastructures;
 using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
+using Authing.Guard.WPF.Utils.Extensions;
+using Authing.Guard.WPF.Views.Classic.MainView;
 
 namespace Authing.Guard.WPF.Views.LoginView
 {
@@ -22,7 +23,8 @@ namespace Authing.Guard.WPF.Views.LoginView
         public UserInfoReplenishView()
         {
             InitializeComponent();
-            InitDemoData();
+            //InitDemoData();
+            MakeData();
             DataContext = this;
             this.Unloaded += (sender, args) =>
             {
@@ -32,6 +34,40 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 EventManagement.Instance.AddListener((int)EventId.LanguageChanged, this);
             };
+        }
+
+        private void MakeData()
+        {
+            DataItems = new ObservableCollection<InfoReplenish>();
+            if (GuardMainView.ExtendConfig.ExtendFields is null) return;
+            foreach (var control in GuardMainView.ExtendConfig.ExtendFields)
+            {
+                if (control.Control == ControlName.UserInfoPhone || control.Control == ControlName.UserInfoMail)
+                {
+                    if (control.Control == ControlName.UserInfoPhone)
+                        DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>(control.Control.ToString()), InfoType = InfoType.Phone, IsNessary = control.Required });
+                    else
+                        DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>(control.Control.ToString()), InfoType = InfoType.Mail, IsNessary = control.Required });
+                    continue;
+                }
+                if (control.Control == ControlName.UserInfoGender)
+                {
+                    DataItems.Add(new InfoReplenish()
+                    {
+                        Name = ResourceHelper.GetResource<string>(control.Control.ToString()),
+                        Items = new List<string>()
+                        {
+                            ResourceHelper.GetResource<string>("Undefined"),
+                            ResourceHelper.GetResource<string>("Male"),
+                            ResourceHelper.GetResource<string>("FaMale")
+                        },
+                        IsNessary = true
+                    });
+                    continue;
+                }
+
+                DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>(control.Control.ToString()), IsNessary = control.Required });
+            }
         }
 
         private void InitDemoData()
@@ -83,10 +119,12 @@ namespace Authing.Guard.WPF.Views.LoginView
             {
                 case (int)EventId.LanguageChanged:
                     DataItems.Clear();
-                    FillData();
+                    MakeData();
+                    //FillData();
                     break;
             }
         }
+
         private async void MailSendCodeBtn_OnClick(object sender, RoutedEventArgs e)
         {
             if (sender is CoutDownButton)
@@ -96,7 +134,7 @@ namespace Authing.Guard.WPF.Views.LoginView
                 await TaskExHelper.Delay(1000);
                 btn.IsBusy = false;
                 btn.StartCountDown = true;
-                btn.Content = "已验证";
+                //btn.Content = "已验证";
             }
         }
 
@@ -109,8 +147,13 @@ namespace Authing.Guard.WPF.Views.LoginView
                 await TaskExHelper.Delay(1000);
                 btn.IsBusy = false;
                 btn.StartCountDown = true;
-                btn.Content = "已验证";
+                //btn.Content = "已验证";
             }
+        }
+
+        private void BtnCommit_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

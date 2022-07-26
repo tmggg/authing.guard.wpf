@@ -78,7 +78,7 @@ namespace Authing.Guard.WPF.Views.Classic.RegisterView
         {
             if (!JudgeInput()) return;
 
-            var res = GuardMainView.Agreements;
+            var res = ConfigService.Agreements;
 
             EventManagement.Instance.Dispatch((int)EventId.PhoneRegisterAgreementCheck);
         }
