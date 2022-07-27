@@ -1,6 +1,9 @@
 ﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Data;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 
 namespace Authing.Guard.WPF.Infrastructures.Validations
@@ -11,10 +14,20 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+            string phone = "";
             var emptyCheck = base.Validate(value, cultureInfo);
             if (!emptyCheck.IsValid)
                 return emptyCheck;
-            if (re.IsMatch(value as string ?? string.Empty))
+            if (value is string)
+            {
+                phone = value as string;
+            }
+            else if (value is BindingExpression)
+            {
+                var bindingExpression = value as BindingExpression;
+                phone = (bindingExpression.DataItem as InfoReplenish).Code;
+            }
+            if (re.IsMatch(phone ?? string.Empty))
             {
                 return BuildResult(true);
             }

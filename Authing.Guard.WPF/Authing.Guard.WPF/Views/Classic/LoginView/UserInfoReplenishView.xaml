@@ -35,9 +35,9 @@
                             <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
                         </TextBox.Resources>
                         <TextBox.Text>
-                            <Binding Path="Data" UpdateSourceTrigger="PropertyChanged">
+                            <Binding NotifyOnValidationError="True" Path="Data" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:EmptyValidation>
+                                    <validations:EmptyValidation ValidationStep="UpdatedValue">
                                         <validations:ComparisonValue
                                             DataName="{Binding Data, Source={StaticResource NameProxy}}"
                                             IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}"></validations:ComparisonValue>
@@ -59,7 +59,7 @@
                         <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="5 0  0 5"  Text="{Binding Name}" />
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
-                    <ComboBox Grid.Row="1" SelectedIndex="0" ItemsSource="{Binding Items}" Style="{StaticResource ComboBoxStyle}" />
+                    <ComboBox Grid.Row="1" SelectedItem="{Binding Data}" SelectedIndex="0" ItemsSource="{Binding Items}" Style="{StaticResource ComboBoxStyle}" />
                 </Grid>
             </DataTemplate>
 
@@ -80,9 +80,9 @@
                             <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
                         </TextBox.Resources>
                         <TextBox.Text>
-                            <Binding Path="Data" UpdateSourceTrigger="PropertyChanged">
+                            <Binding NotifyOnValidationError="True" Path="Data" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:PhoneValidation>
+                                    <validations:PhoneValidation ValidationStep="UpdatedValue">
                                         <validations:ComparisonValue
                                             DataName="{Binding Data, Source={StaticResource NameProxy}}"
                                             IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}" />
@@ -98,9 +98,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBox attach:TipContentAttach.TipContent="{DynamicResource PhoneCodeNotify}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
-                                <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
+                                <Binding NotifyOnValidationError="True" Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <validations:EmptyValidation />
+                                        <validations:EmptyValidation ValidationStep="UpdatedValue"/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -139,9 +139,9 @@
                             <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
                         </TextBox.Resources>
                         <TextBox.Text>
-                            <Binding Path="Data" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="Data" NotifyOnValidationError="True" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
-                                    <validations:MailValidation>
+                                    <validations:MailValidation ValidationStep="UpdatedValue">
                                         <validations:ComparisonValue
                                             DataName="{Binding Data, Source={StaticResource NameProxy}}"
                                             IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}" />
@@ -157,9 +157,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBox attach:TipContentAttach.TipContent="{DynamicResource PhoneCodeNotify}" Style="{StaticResource InputTextBoxStyle}">
                             <TextBox.Text>
-                                <Binding Path="Code" UpdateSourceTrigger="PropertyChanged">
+                                <Binding NotifyOnValidationError="True" Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <validations:EmptyValidation />
+                                        <validations:EmptyValidation ValidationStep="UpdatedValue"/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>

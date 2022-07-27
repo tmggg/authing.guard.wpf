@@ -22,8 +22,13 @@
 		<PackageReference Include="Authing.Library" Version="0.0.23" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="NLog" Version="4.7.15" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="System.Design" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +71,9 @@
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net452' OR '$(TargetFramework)' == 'net48'">
 		<PackageReference Include="CefSharp.Wpf" Version="103.0.90" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Behaviors\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Platform)' == 'AnyCPU'">

@@ -14,7 +14,7 @@ namespace Authing.Guard.WPF.Models
         [EnumMember(Value = "username")]
         UserInfoUserName,
 
-        [EnumMember(Value = "nickename")]
+        [EnumMember(Value = "nickname")]
         UserInfoNickName,
 
         [EnumMember(Value = "gender")]

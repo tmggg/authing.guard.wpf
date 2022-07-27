@@ -96,4 +96,5 @@
     <system:String x:Key="PhoneRegister">Phone</system:String>
     <system:String x:Key="loginSuccessWelcome">Successful login, welcome:</system:String>
     <system:String x:Key="Commit">Commit</system:String>
+    <system:String x:Key="FillNessary">Please fill nessary field</system:String>
 </ResourceDictionary>

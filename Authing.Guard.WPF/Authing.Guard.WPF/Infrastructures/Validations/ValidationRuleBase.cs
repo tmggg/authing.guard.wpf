@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
 using Authing.Guard.WPF.Annotations;
+using Authing.Guard.WPF.Models;
 using Authing.Guard.WPF.Utils;
 
 namespace Authing.Guard.WPF.Infrastructures.Validations
@@ -27,7 +28,16 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             {
                 return BuildResult(true, "");
             }
-            if (value is string)
+            if (value is BindingExpression expression)
+            {
+                var info = expression.DataItem as InfoReplenish;
+
+                if (string.IsNullOrWhiteSpace(info.Data))
+                {
+                    return BuildResult(false, ComparisonValue?.DataName + " " + ResourceHelper.GetResource<string>("EmptyError"));
+                }
+            }
+            else if (value is string)
             {
                 if (string.IsNullOrWhiteSpace(value as string))
                 {

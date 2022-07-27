@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using Authing.ApiClient.Domain.Model;
+using Authing.Guard.WPF.Annotations;
 using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
@@ -43,7 +48,6 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
             else
                 IgnoreBtn.Visibility = Visibility.Collapsed;
         }
-
         private void MakeData()
         {
             DataItems = new ObservableCollection<InfoReplenish>();
@@ -161,13 +165,31 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
 
         private void BtnCommit_OnClick(object sender, RoutedEventArgs e)
         {
-            if(_userWithEvent.EventFrom == EventId.Login)
+            var dataOK = DataCheck();
+            if (!dataOK) 
+            {
+                PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("FillNessary"), IconType.Error);
+                return;
+            }
+            //var res = MakeUpdateData(DataItems);
+            if (_userWithEvent.EventFrom == EventId.Login)
                 EventManagement.Instance.Dispatch((int)EventId.Login,
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
             else
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
         }
+
+        private bool DataCheck()
+        {
+            return !DataItems.Any(i =>
+                 i.IsNessary && string.IsNullOrWhiteSpace(i.Data));
+        }
+
+        //private UpdateUserInput MakeUpdateData(ObservableCollection<InfoReplenish> dataItems)
+        //{
+
+        //}
 
         private void IgnoreBtn_OnClick(object sender, RoutedEventArgs e)
         {
@@ -180,6 +202,14 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
             else
                 EventManagement.Instance.Dispatch((int)EventId.Register,
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
