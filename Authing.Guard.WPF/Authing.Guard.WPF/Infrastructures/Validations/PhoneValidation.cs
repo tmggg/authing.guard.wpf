@@ -22,12 +22,16 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             {
                 phone = value as string;
             }
-            else if (value is BindingExpression)
+            if (value is BindingExpression)
             {
                 var bindingExpression = value as BindingExpression;
-                phone = (bindingExpression.DataItem as InfoReplenish).Code;
+                phone = (bindingExpression.DataItem as InfoReplenish)?.Code;
             }
-            if (re.IsMatch(phone ?? string.Empty))
+            if (value is null || ComparisonValue is null || ComparisonValue?.IsNessery == false)
+            {
+                return BuildResult(true, "");
+            }
+            if (re.IsMatch(phone))
             {
                 return BuildResult(true);
             }

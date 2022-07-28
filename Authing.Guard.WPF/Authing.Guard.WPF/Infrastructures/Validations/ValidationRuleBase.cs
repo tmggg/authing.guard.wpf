@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Authing.Guard.WPF.Annotations;
+using Authing.Guard.WPF.Utils;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
-using Authing.Guard.WPF.Annotations;
 using Authing.Guard.WPF.Models;
-using Authing.Guard.WPF.Utils;
 
 namespace Authing.Guard.WPF.Infrastructures.Validations
 {
@@ -24,7 +19,7 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value is null || ComparisonValue?.IsNessery == false)
+            if (ComparisonValue?.IsNessery == false || ComparisonValue == null)
             {
                 return BuildResult(true, "");
             }
@@ -32,22 +27,20 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             {
                 var info = expression.DataItem as InfoReplenish;
 
-                if (string.IsNullOrWhiteSpace(info.Data))
-                {
+                if (string.IsNullOrWhiteSpace(info?.Data))
                     return BuildResult(false, ComparisonValue?.DataName + " " + ResourceHelper.GetResource<string>("EmptyError"));
-                }
+                else
+                    return BuildResult(true, "");
             }
-            else if (value is string)
+            if (value is string s)
             {
-                if (string.IsNullOrWhiteSpace(value as string))
+                if (string.IsNullOrWhiteSpace(s))
                 {
                     return BuildResult(false, ComparisonValue?.DataName + " " + ResourceHelper.GetResource<string>("EmptyError"));
                 }
             }
             else
-            {
                 return BuildResult(false, ErrorMessage);
-            }
             return BuildResult(true, "");
         }
     }

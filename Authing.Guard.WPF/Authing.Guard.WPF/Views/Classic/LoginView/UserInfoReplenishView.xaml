@@ -8,8 +8,13 @@
              xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach"
              xmlns:validations="clr-namespace:Authing.Guard.WPF.Infrastructures.Validations"
              xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:behaviors="clr-namespace:Authing.Guard.WPF.Behaviors"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="350">
+    <i:Interaction.Behaviors>
+        <behaviors:ValidationExceptionBehavior></behaviors:ValidationExceptionBehavior>
+    </i:Interaction.Behaviors>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -65,6 +70,10 @@
 
             <DataTemplate x:Key="PhoneReplenish" DataType="{x:Type models:InfoReplenish}">
                 <Grid Margin="5 0 5 20">
+                    <Grid.Resources>
+                        <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
+                        <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -75,10 +84,6 @@
                         <TextBlock Visibility="{Binding IsNessary,Converter={StaticResource Boolean2VisibilityConverter}}" Foreground="Red" VerticalAlignment="Center" Margin="5 0  0 0"  Text="*" />
                     </StackPanel>
                     <TextBox attach:TipContentAttach.TipContent="{Binding TipContent}" Grid.Row="1" Style="{StaticResource InputTextBoxStyle}">
-                        <TextBox.Resources>
-                            <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
-                            <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
-                        </TextBox.Resources>
                         <TextBox.Text>
                             <Binding NotifyOnValidationError="True" Path="Data" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -100,7 +105,9 @@
                             <TextBox.Text>
                                 <Binding NotifyOnValidationError="True" Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <validations:EmptyValidation ValidationStep="UpdatedValue"/>
+                                        <validations:EmptyValidation ValidationStep="UpdatedValue">
+                                            <validations:ComparisonValue IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}"/>
+                                        </validations:EmptyValidation>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -124,6 +131,10 @@
 
             <DataTemplate x:Key="MailReplenish" DataType="{x:Type models:InfoReplenish}">
                 <Grid Margin="5 0 5 20">
+                    <Grid.Resources>
+                        <validations:BindingProxy x:Key="IsNessaryProxy" Data="{Binding IsNessary}" />
+                        <validations:BindingProxy x:Key="NameProxy" Data="{Binding Name}" />
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -159,7 +170,9 @@
                             <TextBox.Text>
                                 <Binding NotifyOnValidationError="True" Path="Code" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <validations:EmptyValidation ValidationStep="UpdatedValue"/>
+                                        <validations:EmptyValidation ValidationStep="UpdatedValue">
+                                            <validations:ComparisonValue IsNessery="{Binding Data, Source={StaticResource IsNessaryProxy}}"/>
+                                        </validations:EmptyValidation>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
@@ -228,6 +241,7 @@
             x:Name="BtnCommit"
             Margin="10"
             Height="40"
+            IsEnabled="{Binding IsValid}"
             Grid.Row="2"
             Click="BtnCommit_OnClick"
             Content="{DynamicResource Commit}" />

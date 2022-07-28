@@ -13,4 +13,5 @@
         <Setter Property="SnapsToDevicePixels" Value="True"></Setter>
     </Style>
     <converters:Boolean2VisibilityConverter x:Key="Boolean2VisibilityConverter" />
+    <converters:Null2StringConverter x:Key="Null2StringConverter" />
 </ResourceDictionary>

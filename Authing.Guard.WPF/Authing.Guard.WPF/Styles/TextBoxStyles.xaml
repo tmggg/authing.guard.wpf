@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Authing.Guard.WPF.Controls"
                      xmlns:ins="clr-namespace:Authing.Guard.WPF.Infrastructures"
+                    xmlns:converter="clr-namespace:Authing.Guard.WPF.Converters"
                      xmlns:attach="clr-namespace:Authing.Guard.WPF.Infrastructures.Attach">
 
     <ResourceDictionary.MergedDictionaries>
@@ -363,7 +364,7 @@
                 <TextBlock
                     Margin="5,3,0,0"
                     Foreground="#FF4E50"
-                    Text="{Binding Path=AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=adornedElementPlaceholder}" />
+                    Text="{Binding Path=AdornedElement.(Validation.Errors)[0].ErrorContent,Converter={x:Static converter:Null2StringConverter.Null2String}, ElementName=adornedElementPlaceholder}" />
             </controls:TransitioningContentControl>
         </Grid>
     </ControlTemplate>

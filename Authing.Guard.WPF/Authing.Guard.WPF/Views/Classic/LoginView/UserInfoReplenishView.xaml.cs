@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Authing.ApiClient.Domain.Model;
 using Authing.Guard.WPF.Annotations;
+using Authing.Guard.WPF.Behaviors;
 using Authing.Guard.WPF.Controls;
 using Authing.Guard.WPF.Enums;
 using Authing.Guard.WPF.Events;
@@ -23,10 +24,36 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
     /// <summary>
     /// UserInfoReplenishView.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoReplenishView : IEventListener
+    public partial class UserInfoReplenishView : IEventListener, IValidationExceptionHandler, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private readonly UserWithEvent _userWithEvent;
         public ObservableCollection<InfoReplenish> DataItems { get; set; }
+
+        private bool _isValid;
+
+        public bool IsValid
+        {
+            get
+            {
+                return _isValid;
+            }
+            set
+            {
+                if (value != _isValid)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                }
+            }
+        }
 
         public UserInfoReplenishView(UserWithEvent param)
         {
@@ -80,6 +107,16 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
 
                 DataItems.Add(new InfoReplenish() { Name = ResourceHelper.GetResource<string>(control.Control.ToString()), IsNessary = control.Required });
             }
+
+            foreach (var dataItem in DataItems)
+            {
+                dataItem.PropertyChanged += DataItem_PropertyChanged;
+            }
+        }
+
+        private void DataItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            IsValid = DataCheck();
         }
 
         private void InitDemoData()
@@ -166,9 +203,10 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
         private void BtnCommit_OnClick(object sender, RoutedEventArgs e)
         {
             var dataOK = DataCheck();
-            if (!dataOK) 
+            if (!dataOK)
             {
                 PrimaryMessageBoxService.Show(ResourceHelper.GetResource<string>("FillNessary"), IconType.Error);
+                IsValid = dataOK;
                 return;
             }
             //var res = MakeUpdateData(DataItems);
@@ -204,12 +242,5 @@ namespace Authing.Guard.WPF.Views.Classic.LoginView
                     EventArgs<User>.CreateEventArgs(_userWithEvent.User));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

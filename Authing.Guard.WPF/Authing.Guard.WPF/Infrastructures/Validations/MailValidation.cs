@@ -14,16 +14,20 @@ namespace Authing.Guard.WPF.Infrastructures.Validations
             var emptyCheck = base.Validate(value, cultureInfo);
             if (!emptyCheck.IsValid)
                 return emptyCheck;
-            if (value is string)
+            if (value is string s)
             {
-                valueAsString = value as string;
+                valueAsString = s;
             }
-            else if (value is BindingExpression)
+            if (value is BindingExpression)
             {
                 var bindingExpression = value as BindingExpression;
                 valueAsString = (bindingExpression.DataItem as InfoReplenish).Code;
             }
             int index = valueAsString.IndexOf('@');
+            if (ComparisonValue?.IsNessery == false || ComparisonValue == null || value == null)
+            {
+                return BuildResult(true, "");
+            }
             if (index > 0 && index != valueAsString.Length - 1 && index == valueAsString.LastIndexOf('@'))
             {
                 return BuildResult(true, "");
